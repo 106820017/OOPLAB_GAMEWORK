@@ -138,6 +138,12 @@
     <ClCompile Include="Source\Rock.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\House.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Store.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -183,6 +189,12 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rock.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\House.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Store.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -241,6 +253,93 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\bush.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_11.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_12.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_13.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_14.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_15.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_16.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_17.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_18.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_19.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_20.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_21.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_22.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_23.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_24.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cabin_25.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\0406.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bmp00003.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

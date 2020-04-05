@@ -231,6 +231,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// 開始載入資料
 	//
 	gamemap.LoadBitmap();
+	store.LoadBitmap();
 
 	/*int i;
 	for (i = 0; i < NUMBALLS; i++)	
@@ -265,18 +266,25 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
-	if (nChar == KEY_LEFT)
-		character.SetMovingLeft(true);
+	const char KEY_ESC	 = 0x1B; // keyboard ESC
+	CheckInStore();
+	if (!in_store) {
+		if (nChar == KEY_LEFT)
+			character.SetMovingLeft(true);
 		//eraser.SetMovingLeft(true);
-	if (nChar == KEY_RIGHT)
-		character.SetMovingRight(true);
+		if (nChar == KEY_RIGHT)
+			character.SetMovingRight(true);
 		//eraser.SetMovingRight(true);
-	if (nChar == KEY_UP)
-		character.SetMovingUp(true);
+		if (nChar == KEY_UP)
+			character.SetMovingUp(true);
 		//eraser.SetMovingUp(true);
-	if (nChar == KEY_DOWN)
-		character.SetMovingDown(true);
+		if (nChar == KEY_DOWN)
+			character.SetMovingDown(true);
 		//eraser.SetMovingDown(true);
+	}
+	
+	if (in_store && nChar == KEY_ESC)
+		LeaveStore();
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -285,6 +293,7 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	//CheckInStore();
 	if (nChar == KEY_LEFT)
 		character.SetMovingLeft(false);
 		//eraser.SetMovingLeft(false);
@@ -340,7 +349,7 @@ void CGameStateRun::OnShow()
 	//
 	gamemap.OnShow();
 	//background.ShowBitmap();			// 貼上背景圖
-	help.ShowBitmap();					// 貼上說明圖
+	//help.ShowBitmap();					// 貼上說明圖
 	hits_left.ShowBitmap();
 	/*for (int i=0; i < NUMBALLS; i++)
 		ball[i].OnShow();			*/	// 貼上第i號球
@@ -354,5 +363,20 @@ void CGameStateRun::OnShow()
 	corner.ShowBitmap();
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
+
+	if (in_store) {
+		store.OnShow();
+	}
+}
+
+void CGameStateRun::CheckInStore() {
+	in_store = mapp->EnterHouse(character.GetX2(), character.GetY1());
+}
+
+void CGameStateRun::LeaveStore() {
+	in_store = false;
+	character.SetXY(character.GetX1() - 120, character.GetY1() + 120);
+	mapp->SetSX(character.GetX1());
+	mapp->SetSY(character.GetY1());
 }
 }

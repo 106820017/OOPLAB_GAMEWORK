@@ -42,8 +42,37 @@
 #define IDB_WITCH                       173
 #define IDB_WITCH_BACK                  174
 #define IDB_GRASS                       175
-#define IDB_BITMAP3                     176
 #define IDB_BUSH                        176
+#define IDB_HOUSE_1                     179
+#define IDB_HOUSE_2                     180
+#define IDB_HOUSE_3                     181
+#define IDB_HOUSE_4                     182
+#define IDB_HOUSE_5                     183
+#define IDB_HOUSE_6                     184
+#define IDB_HOUSE_7                     185
+#define IDB_HOUSE_8                     186
+#define IDB_HOUSE_9                     187
+#define IDB_HOUSE_10                    188
+#define IDB_HOUSE_11                    189
+#define IDB_HOUSE_12                    190
+#define IDB_HOUSE_13                    191
+#define IDB_HOUSE_14                    192
+#define IDB_HOUSE_15                    193
+#define IDB_HOUSE_16                    194
+#define IDB_HOUSE_17                    195
+#define IDB_HOUSE_18                    196
+#define IDB_HOUSE_19                    197
+#define IDB_HOUSE_20                    198
+#define IDB_HOUSE_21                    199
+#define IDB_HOUSE_22                    200
+#define IDB_HOUSE_23                    204
+#define IDB_HOUSE_24                    205
+#define IDB_HOUSE_25                    206
+#define IDB_SHOP_BACKGROUND             208
+#define IDB_LEFT_ARROW                  209
+#define IDB_ANNOUNCEMENT                211
+#define IDB_BITMAP3                     212
+#define IDB_SIGN                        212
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -56,7 +85,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        177
+#define _APS_NEXT_RESOURCE_VALUE        213
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

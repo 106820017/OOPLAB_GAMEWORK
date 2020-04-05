@@ -1,4 +1,4 @@
-
+#include "Store.h"
 #include "Character.h"
 #include "Rock.h"
 #include "CEraser.h"
@@ -52,11 +52,14 @@ namespace game_framework {
 		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
 		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
+		void CheckInStore();
+		void LeaveStore();
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		const int		NUMBALLS;	// 球的總數
+		bool			in_store = false;
 		Map				gamemap;
 		Map *			mapp = &gamemap;
 		CMovingBitmap	background;	// 背景圖
@@ -65,7 +68,8 @@ namespace game_framework {
 		CMovingBitmap	corner;		// 角落圖
 		//CEraser			eraser;		// 拍子
 		Character		character;
-		Rock			rock;
+		Store			store;
+		//Rock			rock;
 		CInteger		hits_left;	// 剩下的撞擊數
 		//CBouncingBall   bball;		// 反覆彈跳的球
 	};

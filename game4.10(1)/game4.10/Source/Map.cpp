@@ -15,10 +15,13 @@ namespace game_framework {
 	void Map::Initialize() {
 		for (int i = 0; i < 30; i++)
 			for (int j = 0; j < 30; j++)
-				map[i][j] = 1;
-		for (int i = 3; i < 30; i += 3)
-			for (int j = 0; j < 30; j += 3)
 				map[i][j] = 0;
+		for (int i = 0; i < 30; i++)
+			for (int j = 0; j < 30; j++)
+				map[i][j] = obstacle[j][i];
+		/*for (int i = 3; i < 30; i += 3)
+			for (int j = 0; j < 30; j += 3)
+				map[i][j] = 2;*/
 	}
 
 	int Map::ScreenX(int x) {
@@ -32,7 +35,13 @@ namespace game_framework {
 	bool Map::IsEmpty(int x, int y) {
 		int blockX = x / 120;
 		int blockY = y / 120;
-		return map[blockX][blockY] == 1;
+		return (map[blockX][blockY] == 0 || map[blockX][blockY] == 4);
+	}
+
+	bool Map::EnterHouse(int x, int y) {
+		int blockX = x / 120;
+		int blockY = y / 120;
+		return (map[blockX + 1][blockY] == 3 && map[blockX][blockY - 1] == 3);
 	}
 
 	void Map::SetEmpty(int x, int y) {
@@ -45,6 +54,8 @@ namespace game_framework {
 		bitmap.LoadBitmap(IDB_GRASS);
 		rock.LoadBitmap(IDB_TEST_ROCK, RGB(255, 255, 255));
 		bush.LoadBitmap(IDB_BUSH, RGB(255, 255, 255));
+		house.LoadBitmap();
+		//house.LoadBitmap(IDB_TEST);
 	}
 
 	void Map::OnShow() {
@@ -54,11 +65,22 @@ namespace game_framework {
 				int y = j * 120 - sy;
 				bitmap.SetTopLeft(x, y);
 				bitmap.ShowBitmap();
-				if (map[i][j] == 0) {
+				switch (map[i][j]) {
+				case 1:
+					bush.SetTopLeft(x, y);
+					bush.ShowBitmap();
+					break;
+				case 2:
 					rock.SetTopLeft(x, y);
 					rock.ShowBitmap();
+					break;
+				case 4:
+					house.SetXY(x, y);
+					//house.OnShow();
+					break;
 				}
 			}
+			house.OnShow();
 		}
 	}
 
