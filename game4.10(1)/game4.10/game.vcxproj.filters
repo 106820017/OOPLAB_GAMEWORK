@@ -144,6 +144,15 @@
     <ClCompile Include="Source\Store.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Opponent.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Battlefield.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BattlePlayer.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -195,6 +204,15 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Store.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Opponent.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Battlefield.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BattlePlayer.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -340,6 +358,27 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\bmp00003.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\battle_background1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\battle_background2.bmp.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\battle_background3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\rock.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blank.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rock2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

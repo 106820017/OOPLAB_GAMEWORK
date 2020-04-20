@@ -258,6 +258,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\audio.cpp" />
+    <ClCompile Include="Source\Battlefield.cpp" />
+    <ClCompile Include="Source\BattlePlayer.cpp" />
     <ClCompile Include="Source\CBall.cpp" />
     <ClCompile Include="Source\CBouncingBall.cpp" />
     <ClCompile Include="Source\CEraser.cpp" />
@@ -284,6 +286,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Source\Map.cpp" />
+    <ClCompile Include="Source\Opponent.cpp" />
     <ClCompile Include="Source\Rock.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -309,6 +312,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
+    <ClInclude Include="Source\Battlefield.h" />
+    <ClInclude Include="Source\BattlePlayer.h" />
     <ClInclude Include="Source\CBall.h" />
     <ClInclude Include="Source\CBouncingBall.h" />
     <ClInclude Include="Source\CEraser.h" />
@@ -319,6 +324,7 @@
     <ClInclude Include="Source\House.h" />
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Map.h" />
+    <ClInclude Include="Source\Opponent.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\Rock.h" />
     <ClInclude Include="Source\StdAfx.h" />
@@ -336,7 +342,12 @@
   <ItemGroup>
     <Image Include="RES\0406.bmp" />
     <Image Include="RES\526efa7f16ab4_thumb900.bmp" />
+    <Image Include="RES\battle_background1.bmp" />
+    <Image Include="RES\battle_background2.bmp.bmp" />
+    <Image Include="RES\battle_background3.bmp" />
     <Image Include="res\bitmap3.bmp" />
+    <Image Include="res\bitmap4.bmp" />
+    <Image Include="RES\blank.bmp" />
     <Image Include="res\bmp00001.bmp" />
     <Image Include="res\bmp00002.bmp" />
     <Image Include="res\bmp00003.bmp" />
@@ -369,6 +380,8 @@
     <Image Include="RES\cabin_8.bmp" />
     <Image Include="RES\cabin_9.bmp" />
     <Image Include="RES\grass.bmp" />
+    <Image Include="res\rock.bmp" />
+    <Image Include="RES\rock2.bmp" />
     <Image Include="RES\role.bmp" />
     <Image Include="RES\role_test.bmp" />
     <Image Include="RES\role_test2.bmp" />

@@ -197,6 +197,14 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	//eraser.OnMove();
 	character.OnMove(mapp);
+	CheckInBattle();
+	//gamemap.OpponentsOnMove();
+	if (!in_battle) {
+		gamemap.OpponentsOnMove();
+	}
+	else {
+		battlefield.OnMove();
+	}
 	//
 	// 判斷擦子是否碰到球
 	//
@@ -230,8 +238,12 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	// 開始載入資料
 	//
+	/*unsigned seed;
+	seed = (unsigned)time(NULL); // 取得時間序列
+	srand(seed);*/
 	gamemap.LoadBitmap();
 	store.LoadBitmap();
+	battlefield.LoadBitmap();
 
 	/*int i;
 	for (i = 0; i < NUMBALLS; i++)	
@@ -268,7 +280,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_ESC	 = 0x1B; // keyboard ESC
 	CheckInStore();
-	if (!in_store) {
+	if (!in_store && !in_battle) {
 		if (nChar == KEY_LEFT)
 			character.SetMovingLeft(true);
 		//eraser.SetMovingLeft(true);
@@ -367,6 +379,10 @@ void CGameStateRun::OnShow()
 	if (in_store) {
 		store.OnShow();
 	}
+
+	if (in_battle) {
+		battlefield.OnShow();
+	}
 }
 
 void CGameStateRun::CheckInStore() {
@@ -375,6 +391,17 @@ void CGameStateRun::CheckInStore() {
 
 void CGameStateRun::LeaveStore() {
 	in_store = false;
+	character.SetXY(character.GetX1() - 120, character.GetY1() + 120);
+	mapp->SetSX(character.GetX1());
+	mapp->SetSY(character.GetY1());
+}
+
+void CGameStateRun::CheckInBattle() {
+	in_battle = mapp->InBattle(character.GetX1(), character.GetX2(), character.GetY1(), character.GetY2());
+}
+
+void CGameStateRun::LeaveBattle() {
+	in_battle = false;
 	character.SetXY(character.GetX1() - 120, character.GetY1() + 120);
 	mapp->SetSX(character.GetX1());
 	mapp->SetSY(character.GetY1());

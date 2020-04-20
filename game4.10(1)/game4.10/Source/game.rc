@@ -106,7 +106,7 @@ IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 
 IDB_TEST_GRASS          BITMAP                  "..\\res\\bitmap3.bmp"
 
-IDB_TEST_ROCK           BITMAP                  "..\\res\\bmp00001.bmp"
+IDB_TEST_ROCK           BITMAP                  "..\\res\\rock.bmp"
 
 IDB_TEST                BITMAP                  "..\\res\\bmp00002.bmp"
 
@@ -177,6 +177,18 @@ IDB_LEFT_ARROW          BITMAP                  "c:\\users\\user\\downloads\\gam
 IDB_ANNOUNCEMENT        BITMAP                  "c:\\users\\user\\downloads\\game4.10(1)\\game4.10\\res\\bmp00002.bmp"
 
 IDB_SIGN                BITMAP                  "c:\\users\\user\\downloads\\game4.10(1)\\game4.10\\res\\bmp00003.bmp"
+
+IDB_OPPONENT_SCENT      BITMAP                  "c:\\users\\user\\downloads\\game4.10(1)\\game4.10\\res\\bitmap4.bmp"
+
+IDB_BATTLE_BACKGROUND_1 BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\battle_background1.bmp"
+
+IDB_BATTLE_BACKGROUND_2 BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\battle_background2.bmp.bmp"
+
+IDB_BATTLE_BACKGROUND_3 BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\battle_background3.bmp"
+
+IDB_BLANK               BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\blank.bmp"
+
+IDB_ROCK                BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\rock2.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

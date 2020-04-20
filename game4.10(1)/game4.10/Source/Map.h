@@ -1,4 +1,5 @@
 #include "House.h"
+#include "Opponent.h"
 
 namespace game_framework {
 	class Map {
@@ -12,6 +13,7 @@ namespace game_framework {
 		int ScreenY(int y);
 		bool IsEmpty(int x, int y);
 		bool EnterHouse(int x, int y);
+		bool InBattle(int x1, int x2, int y1, int y2);
 		void SetEmpty(int x, int y);
 		void Initialize();				
 		void LoadBitmap();				
@@ -24,9 +26,13 @@ namespace game_framework {
 		//void SetXY(int nx, int ny);
 		void SetSX(int x);
 		void SetSY(int y);
+		void OpponentsOnMove();
+		//int** GetOpponentPoints();
 	protected:
 		CMovingBitmap bitmap, rock, bush;
 		House house;
+		Opponent opponents[5] = { opponent1, opponent2, opponent3, opponent4, opponent5 };
+		Opponent opponent1, opponent2, opponent3, opponent4, opponent5;
 		int map[30][30];
 		/*int rocks[30][30];
 		int bushes[30][30];*/
