@@ -77,8 +77,17 @@
 #define IDB_BATTLE_BACKGROUND_2         216
 #define IDB_BATTLE_BACKGROUND_3         218
 #define IDB_BLANK                       219
-#define IDB_BITMAP4                     220
 #define IDB_ROCK                        220
+#define IDB_KIRBY                       221
+#define IDB_KIRBY_ANGRY                 222
+#define IDB_TEST_WEAPON                 223
+#define IDB_KIRBY_WOUNDED               224
+#define IDB_RF_KIRBY                    225
+#define IDB_RF_KIRBY_WOUNDED            226
+#define IDB_RF_KIRBY_ANGRY              227
+#define IDB_KIRBY_UNDER_ATTACK          228
+#define IDB_BITMAP4                     229
+#define IDB_RF_KIRBY_UNDER_ATTACK       229
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -91,7 +100,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        221
+#define _APS_NEXT_RESOURCE_VALUE        230
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

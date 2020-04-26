@@ -309,6 +309,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Source\Store.cpp" />
+    <ClCompile Include="Source\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -331,6 +332,7 @@
     <ClInclude Include="Source\gamelib.h" />
     <ClInclude Include="Source\mygame.h" />
     <ClInclude Include="Source\Store.h" />
+    <ClInclude Include="Source\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">
@@ -380,6 +382,15 @@
     <Image Include="RES\cabin_8.bmp" />
     <Image Include="RES\cabin_9.bmp" />
     <Image Include="RES\grass.bmp" />
+    <Image Include="RES\Kirby.bmp" />
+    <Image Include="RES\Kirby_angry_small.bmp" />
+    <Image Include="RES\Kirby_small.bmp" />
+    <Image Include="RES\Kirby_under_attack_small.bmp" />
+    <Image Include="RES\Kirby_wounded_small.bmp" />
+    <Image Include="RES\rf_Kirby_angry_small.bmp" />
+    <Image Include="RES\rf_Kirby_small.bmp" />
+    <Image Include="RES\rf_Kirby_under_attack_small.bmp" />
+    <Image Include="RES\rf_Kirby_wounded_small.bmp" />
     <Image Include="res\rock.bmp" />
     <Image Include="RES\rock2.bmp" />
     <Image Include="RES\role.bmp" />

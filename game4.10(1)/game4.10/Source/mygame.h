@@ -64,6 +64,10 @@ namespace game_framework {
 		const int		NUMBALLS;	// 球的總數
 		bool			in_store = false;
 		bool			in_battle = false;
+		bool			weapon1_in_attack = false;
+		bool			weapon2_in_attack = false;
+		bool			player1_attacked = false;
+		bool			player2_attacked = false;
 		Map				gamemap;
 		Map *			mapp = &gamemap;
 		CMovingBitmap	background;	// 背景圖

@@ -190,6 +190,24 @@ IDB_BLANK               BITMAP                  "C:\\Users\\User\\Downloads\\gam
 
 IDB_ROCK                BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\rock2.bmp"
 
+IDB_KIRBY               BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\Kirby_small.bmp"
+
+IDB_KIRBY_ANGRY         BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\Kirby_angry_small.bmp"
+
+IDB_TEST_WEAPON         BITMAP                  "c:\\users\\user\\downloads\\game4.10(1)\\game4.10\\res\\bmp00001.bmp"
+
+IDB_KIRBY_WOUNDED       BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\Kirby_wounded_small.bmp"
+
+IDB_RF_KIRBY            BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\rf_Kirby_small.bmp"
+
+IDB_RF_KIRBY_WOUNDED    BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\rf_Kirby_wounded_small.bmp"
+
+IDB_RF_KIRBY_ANGRY      BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\rf_Kirby_angry_small.bmp"
+
+IDB_KIRBY_UNDER_ATTACK  BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\Kirby_under_attack_small.bmp"
+
+IDB_RF_KIRBY_UNDER_ATTACK BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\rf_Kirby_under_attack_small.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

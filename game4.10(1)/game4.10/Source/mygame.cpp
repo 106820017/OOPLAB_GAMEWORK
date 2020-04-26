@@ -279,6 +279,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_ESC	 = 0x1B; // keyboard ESC
+	const char KEY_SPACE = 0x20; // keyboard空白鍵
 	CheckInStore();
 	if (!in_store && !in_battle) {
 		if (nChar == KEY_LEFT)
@@ -297,6 +298,18 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	
 	if (in_store && nChar == KEY_ESC)
 		LeaveStore();
+
+	if (in_battle && nChar == KEY_SPACE) {
+		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
+			battlefield.OnAttack(1);
+			player1_attacked = true;
+		}
+		else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
+			battlefield.OnAttack(2);
+			player1_attacked = false;
+		}
+	}
+
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)

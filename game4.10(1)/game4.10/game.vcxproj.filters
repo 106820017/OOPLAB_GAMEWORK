@@ -153,6 +153,9 @@
     <ClCompile Include="Source\BattlePlayer.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Weapon.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -213,6 +216,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\BattlePlayer.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Weapon.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -379,6 +385,33 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\rock2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Kirby.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Kirby_small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Kirby_angry_small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Kirby_wounded_small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_Kirby_small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_Kirby_wounded_small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_Kirby_angry_small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Kirby_under_attack_small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_Kirby_under_attack_small.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
