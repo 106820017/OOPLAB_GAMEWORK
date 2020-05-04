@@ -86,8 +86,21 @@
 #define IDB_RF_KIRBY_WOUNDED            226
 #define IDB_RF_KIRBY_ANGRY              227
 #define IDB_KIRBY_UNDER_ATTACK          228
-#define IDB_BITMAP4                     229
 #define IDB_RF_KIRBY_UNDER_ATTACK       229
+#define IDB_CHARACTER_1                 230
+#define IDB_CHARACTER_2                 231
+#define IDB_CHARACTER_3                 232
+#define IDB_CHARACTER_4                 233
+#define IDB_CHARACTER_5                 234
+#define IDB_CHARACTER_6                 235
+#define IDB_RF_CHARACTER_1              236
+#define IDB_RF_CHARACTER_2              237
+#define IDB_RF_CHARACTER_3              238
+#define IDB_RF_CHARACTER_4              239
+#define IDB_RF_CHARACTER_5              240
+#define IDB_RF_CHARACTER_6              241
+#define IDB_HEALTHBAR_BACKGROUND        242
+#define IDB_HEALTHBAR                   243
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -100,7 +113,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        230
+#define _APS_NEXT_RESOURCE_VALUE        245
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

@@ -14,8 +14,11 @@ namespace game_framework {
 		void OnAttack(int num);
 		void ChangeCharacter(int number, int number2);
 		void ChangeWeapon(int number, int number2);
+		void CheckHit();
 	protected:
 		CAnimation background;
+		CMovingBitmap healthbar_background;
+		CMovingBitmap healthbar;
 		//BattlePlayer playerChar1;
 		//BattlePlayer playerChar2;
 		BattlePlayer * playerPointer1 = new BattlePlayer(0);

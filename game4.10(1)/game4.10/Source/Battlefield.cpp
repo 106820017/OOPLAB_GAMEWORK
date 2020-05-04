@@ -57,6 +57,9 @@ namespace game_framework {
 
 		weapon1.LoadBitmap();
 		weapon2.LoadBitmap();
+
+		healthbar_background.LoadBitmap(IDB_HEALTHBAR_BACKGROUND, RGB(255, 255, 255));
+		healthbar.LoadBitmap(IDB_HEALTHBAR, RGB(255, 255, 255));
 	}
 
 	void Battlefield::OnMove() {
@@ -71,12 +74,22 @@ namespace game_framework {
 		background.OnShow();
 		playerPointer1->OnShow();
 		playerPointer2->OnShow();
+		CheckHit();
 		if (weapon1.IsAlive()) {
 			weapon1.OnShow();
 		}
 		else if (weapon2.IsAlive()) {
 			weapon2.OnShow();
 		}
+
+		healthbar.SetTopLeft(-111 + (playerPointer1->GetHealth()*176/100), 20); //血量條長度176, 左框左上(65, 20)
+		healthbar.ShowBitmap();
+
+		healthbar.SetTopLeft(254 + (playerPointer2->GetHealth()*176/100), 20);	//血量條長度176, 左框左上(430, 20)
+		healthbar.ShowBitmap();
+
+		healthbar_background.SetTopLeft(0, 0);
+		healthbar_background.ShowBitmap();
 	}
 
 	void Battlefield::OnAttack(int num) {
@@ -90,6 +103,18 @@ namespace game_framework {
 			break;
 		default:
 			break;
+		}
+	}
+
+	void Battlefield::CheckHit() {
+		if (weapon2.IsAlive() && (weapon2.GetX1() < playerPointer1->GetX2() - 10 && weapon2.GetX2() > playerPointer1->GetX1() + 10 && weapon2.GetY1() < playerPointer1->GetY2() - 10 && weapon2.GetY2() > playerPointer1->GetY1() + 10)) {
+			//playerPointer1->SetHit(true);
+			weapon2.SetAlive(false);
+			playerPointer1->GetAttack();
+		}
+		else if (weapon1.IsAlive() && (weapon1.GetX1() < playerPointer2->GetX2() - 10 && weapon1.GetX2() > playerPointer2->GetX1() + 10 && weapon1.GetY1() < playerPointer2->GetY2() - 10 && weapon1.GetY2() > playerPointer2->GetY1() + 10)) {
+			weapon1.SetAlive(false);
+			playerPointer2->GetAttack();
 		}
 	}
 }

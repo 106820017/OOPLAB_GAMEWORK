@@ -40,30 +40,31 @@ namespace game_framework {
 	}
 
 	void Character::OnMove(Map * m){
-		animation.OnMove();
+		if (isMovingLeft || isMovingRight || isMovingUp || isMovingDown)
+			aniPointer->OnMove();
 		if (isMovingRight) {	//想往右
-			if (m->IsEmpty(x + animation.Width(), y) && m->IsEmpty(x + animation.Width(), y + animation.Height() - 1) && x + animation.Width() < 3600) {
+			if (m->IsEmpty(x + aniPointer->Width(), y) && m->IsEmpty(x + aniPointer->Width(), y + aniPointer->Height() - 1) && x + aniPointer->Width() < 3600) {
 				x += 10;
 				m->SetSX(x);
 			}
 		}
 
 		if (isMovingLeft) {	//想往左
-			if (m->IsEmpty(x - 1, y) && m->IsEmpty(x - 1, y + animation.Height() - 1) && x > 0) {
+			if (m->IsEmpty(x - 1, y) && m->IsEmpty(x - 1, y + aniPointer->Height() - 1) && x > 0) {
 				x -= 10;
 				m->SetSX(x);
 			}
 		}
 
 		if (isMovingDown) {	//想往下
-			if (m->IsEmpty(x, y + animation.Height()) && m->IsEmpty(x + animation.Width() - 1, y + animation.Height()) && y + animation.Height() < 3600) {
+			if (m->IsEmpty(x, y + aniPointer->Height()) && m->IsEmpty(x + aniPointer->Width() - 1, y + aniPointer->Height()) && y + aniPointer->Height() < 3600) {
 				y += 10;
 				m->SetSY(y);
 			}
 		}
 
 		if (isMovingUp) {	//想往上
-			if (m->IsEmpty(x, y - 1) && m->IsEmpty(x + animation.Width() - 1, y - 1) && y > 0) {
+			if (m->IsEmpty(x, y - 1) && m->IsEmpty(x + aniPointer->Width() - 1, y - 1) && y > 0) {
 				y -= 10;
 				m->SetSY(y);
 			}
@@ -96,8 +97,18 @@ namespace game_framework {
 	}
 
 	void Character::LoadBitmap() {
-		animation.AddBitmap(IDB_WITCH, RGB(255, 255, 255));
-		animation_back.AddBitmap(IDB_WITCH_BACK, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_CHARACTER_1, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_CHARACTER_2, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_CHARACTER_3, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_CHARACTER_4, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_CHARACTER_5, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_CHARACTER_6, RGB(255, 255, 255));
+		animation_back.AddBitmap(IDB_RF_CHARACTER_1, RGB(255, 255, 255));
+		animation_back.AddBitmap(IDB_RF_CHARACTER_2, RGB(255, 255, 255));
+		animation_back.AddBitmap(IDB_RF_CHARACTER_3, RGB(255, 255, 255));
+		animation_back.AddBitmap(IDB_RF_CHARACTER_4, RGB(255, 255, 255));
+		animation_back.AddBitmap(IDB_RF_CHARACTER_5, RGB(255, 255, 255));
+		animation_back.AddBitmap(IDB_RF_CHARACTER_6, RGB(255, 255, 255));
 	}
 
 	void Character::OnShow(Map * m) {

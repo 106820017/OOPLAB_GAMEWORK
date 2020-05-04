@@ -9,6 +9,7 @@ namespace game_framework {
 		int  GetX2();
 		int  GetY2();
 		bool IsAlive();
+		bool WasHit();
 		void SetWeapon(int s_code);
 		void Initialize();
 		void SetInitialXY(int x, int y);	//作為初始用的
@@ -31,6 +32,6 @@ namespace game_framework {
 		int ini_x_speed = 18;
 		const int drop_acceleration = 3;
 		bool alive;
-
+		//bool get_hit;
 	};
 }

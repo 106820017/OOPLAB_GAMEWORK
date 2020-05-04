@@ -344,6 +344,7 @@
   <ItemGroup>
     <Image Include="RES\0406.bmp" />
     <Image Include="RES\526efa7f16ab4_thumb900.bmp" />
+    <Image Include="RES\background_healthbar.bmp" />
     <Image Include="RES\battle_background1.bmp" />
     <Image Include="RES\battle_background2.bmp.bmp" />
     <Image Include="RES\battle_background3.bmp" />
@@ -353,6 +354,7 @@
     <Image Include="res\bmp00001.bmp" />
     <Image Include="res\bmp00002.bmp" />
     <Image Include="res\bmp00003.bmp" />
+    <Image Include="res\bmp00004.bmp" />
     <Image Include="RES\bush.bmp" />
     <Image Include="RES\cabin.bmp" />
     <Image Include="RES\cabin2.bmp" />
@@ -387,10 +389,23 @@
     <Image Include="RES\Kirby_small.bmp" />
     <Image Include="RES\Kirby_under_attack_small.bmp" />
     <Image Include="RES\Kirby_wounded_small.bmp" />
+    <Image Include="RES\left1.bmp" />
+    <Image Include="RES\left2.bmp" />
+    <Image Include="RES\left3.bmp" />
+    <Image Include="RES\left4.bmp" />
+    <Image Include="RES\left5.bmp" />
+    <Image Include="RES\left6.bmp" />
+    <Image Include="RES\redbar_small.bmp" />
     <Image Include="RES\rf_Kirby_angry_small.bmp" />
     <Image Include="RES\rf_Kirby_small.bmp" />
     <Image Include="RES\rf_Kirby_under_attack_small.bmp" />
     <Image Include="RES\rf_Kirby_wounded_small.bmp" />
+    <Image Include="RES\right1.bmp" />
+    <Image Include="RES\right2.bmp" />
+    <Image Include="RES\right3.bmp" />
+    <Image Include="RES\right4.bmp" />
+    <Image Include="RES\right5.bmp" />
+    <Image Include="RES\right6.bmp" />
     <Image Include="res\rock.bmp" />
     <Image Include="RES\rock2.bmp" />
     <Image Include="RES\role.bmp" />

@@ -208,6 +208,34 @@ IDB_KIRBY_UNDER_ATTACK  BITMAP                  "C:\\Users\\User\\Downloads\\gam
 
 IDB_RF_KIRBY_UNDER_ATTACK BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\rf_Kirby_under_attack_small.bmp"
 
+IDB_CHARACTER_1         BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\right1.bmp"
+
+IDB_CHARACTER_2         BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\right2.bmp"
+
+IDB_CHARACTER_3         BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\right3.bmp"
+
+IDB_CHARACTER_4         BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\right4.bmp"
+
+IDB_CHARACTER_5         BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\right5.bmp"
+
+IDB_CHARACTER_6         BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\right6.bmp"
+
+IDB_RF_CHARACTER_1      BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\left1.bmp"
+
+IDB_RF_CHARACTER_2      BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\left2.bmp"
+
+IDB_RF_CHARACTER_3      BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\left3.bmp"
+
+IDB_RF_CHARACTER_4      BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\left4.bmp"
+
+IDB_RF_CHARACTER_5      BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\left5.bmp"
+
+IDB_RF_CHARACTER_6      BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\left6.bmp"
+
+IDB_HEALTHBAR_BACKGROUND BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\background_healthbar.bmp"
+
+IDB_HEALTHBAR           BITMAP                  "C:\\Users\\User\\Downloads\\game4.10(1)\\game4.10\\RES\\redbar_small.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

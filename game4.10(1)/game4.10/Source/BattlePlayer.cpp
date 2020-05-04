@@ -72,6 +72,7 @@ namespace game_framework {
 	}
 
 	void BattlePlayer::OnShow() {
+		LowOfHealth();
 		aniPointer_recent->SetTopLeft(x, y);
 		aniPointer_recent->OnShow();
 	}
@@ -99,6 +100,16 @@ namespace game_framework {
 	int BattlePlayer::GetY2()
 	{
 		return y + aniPointer_recent->Height();
+	}
+
+	int BattlePlayer::GetHealth()
+	{
+		return Health;
+	}
+
+	void BattlePlayer::GetAttack()
+	{
+		Health -= 20;
 	}
 
 	/*void BattlePlayer::SetHPLow() {

@@ -63,6 +63,10 @@ namespace game_framework {
 		return alive;
 	}
 
+	/*bool Weapon::WasHit() {
+		return get_hit;
+	}*/
+
 	void Weapon::SetXY(int x, int y) {
 		this->x = x;
 		this->y = y;
@@ -107,5 +111,7 @@ namespace game_framework {
 
 	void Weapon::SetAlive(bool isAlive) {
 		alive = isAlive;
+		if (isAlive == false)
+			Initialize();
 	}
 }
