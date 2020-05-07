@@ -206,7 +206,7 @@ IDB_RF_KIRBY_ANGRY      BITMAP                  "..\\RES\\rf_Kirby_angry_small.b
 
 IDB_KIRBY_UNDER_ATTACK  BITMAP                  "..\\RES\\Kirby_under_attack_small.bmp"
 
-IDB_RF_KIRBY_UNDER_ATTACK BITMAP                "..\\RES\\rf_Kirby_under_attack_small.bmp"
+IDB_RF_KIRBY_UNDER_ATTACK BITMAP                  "..\\RES\\rf_Kirby_under_attack_small.bmp"
 
 IDB_CHARACTER_1         BITMAP                  "..\\RES\\right1.bmp"
 
@@ -235,6 +235,8 @@ IDB_RF_CHARACTER_6      BITMAP                  "..\\RES\\left6.bmp"
 IDB_HEALTHBAR_BACKGROUND BITMAP                  "..\\RES\\background_healthbar.bmp"
 
 IDB_HEALTHBAR           BITMAP                  "..\\RES\\redbar_small.bmp"
+
+IDB_DOT                 BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\dot.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

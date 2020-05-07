@@ -156,6 +156,9 @@
     <ClCompile Include="Source\Weapon.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Parabola.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -219,6 +222,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Weapon.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Parabola.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -457,6 +463,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\bmp00004.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\dot.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

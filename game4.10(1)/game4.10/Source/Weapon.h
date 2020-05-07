@@ -1,4 +1,5 @@
 #pragma once
+#include "Parabola.h"
 
 namespace game_framework {
 	class Weapon {
@@ -9,7 +10,7 @@ namespace game_framework {
 		int  GetX2();
 		int  GetY2();
 		bool IsAlive();
-		bool WasHit();
+		//bool WasHit();
 		void SetWeapon(int s_code);
 		void Initialize();
 		void SetInitialXY(int x, int y);	//作為初始用的
@@ -18,6 +19,7 @@ namespace game_framework {
 		void OnShow();
 		void SetXY(int x, int y);
 		void SetInvertSpeed();	//設為反方向速度
+		void SetAngle(int angle = 0);
 		//void SetXY();	//轉換centerXY為XY
 		void SetAlive(bool isAlive);
 		void CheckAlive();
@@ -25,6 +27,9 @@ namespace game_framework {
 	protected:
 		CAnimation * aniPointer;
 		CAnimation animation[10];
+
+		Parabola parabola;
+
 		int x, y;
 		int ini_x = 120, ini_y = 290;
 		int centerX, centerY;

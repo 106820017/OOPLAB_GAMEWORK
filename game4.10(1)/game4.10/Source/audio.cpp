@@ -335,4 +335,9 @@ void CAudio::Stop(unsigned id)
 	}
 }
 
+bool CAudio::GetOpened()
+{
+	return isOpened;
+}
+
 }

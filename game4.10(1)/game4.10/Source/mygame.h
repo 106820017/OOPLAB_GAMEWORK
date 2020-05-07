@@ -12,9 +12,11 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 
 	enum AUDIO_ID {				// 定義各種音效的編號
-		AUDIO_DING,				// 0
-		AUDIO_LAKE,				// 1
-		AUDIO_NTUT				// 2
+		//AUDIO_DING,				// 0
+		//AUDIO_LAKE,				// 1
+		AUDIO_GAME,			    // 2
+		AUDIO_FIGHT,
+		AUDIO_STORE
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -64,6 +66,7 @@ namespace game_framework {
 		const int		NUMBALLS;	// 球的總數
 		bool			in_store = false;
 		bool			in_battle = false;
+		bool			music_played = true;
 		bool			weapon1_in_attack = false;
 		bool			weapon2_in_attack = false;
 		bool			player1_attacked = false;

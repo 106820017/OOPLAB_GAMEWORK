@@ -29,6 +29,7 @@ namespace game_framework {
 		this->y = y;
 		centerX = x + 8;
 		centerY = y + 8;
+		parabola.SetXY(x, y);
 	}
 
 	void Weapon::SetWeapon(int s_code) {
@@ -113,5 +114,11 @@ namespace game_framework {
 		alive = isAlive;
 		if (isAlive == false)
 			Initialize();
+	}
+
+	void Weapon::SetAngle(int angle) {
+		parabola.SetAngle(angle);
+		x_speed = parabola.GetSpeed()[0];
+		y_speed = parabola.GetSpeed()[1];
 	}
 }
