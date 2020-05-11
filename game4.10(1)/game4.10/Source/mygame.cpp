@@ -415,6 +415,12 @@ void CGameStateRun::OnShow()
 		store.OnShow();
 	}
 
+	if (battlefield.GetHealth(1) <= 0 || battlefield.GetHealth(2) <= 0) {
+		LeaveBattle();
+		battlefield.ChangeCharacter(0, 0);
+
+	}
+
 	if (in_battle) {
 		battlefield.OnShow();
 	}
@@ -437,8 +443,17 @@ void CGameStateRun::CheckInBattle() {
 
 void CGameStateRun::LeaveBattle() {
 	in_battle = false;
-	character.SetXY(character.GetX1() - 120, character.GetY1() + 120);
+	int nX1 = character.GetX1() - 120;
+	int nX2 = character.GetY1() + 120;
+	if (nX1 <= 0)
+		nX1 = character.GetX1() + 120;
+	if (nX2 >= 3480)
+		nX2 = character.GetY1() - 120;
+
+	character.SetXY(nX1, nX2);
+
 	mapp->SetSX(character.GetX1());
 	mapp->SetSY(character.GetY1());
+	player1_attacked = false;
 }
 }

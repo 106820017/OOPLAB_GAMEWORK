@@ -8,6 +8,7 @@ namespace game_framework {
 		int  GetY1();
 		int  GetX2();
 		int  GetY2();*/
+		int  GetAngle();
 		int* GetSpeed();
 		void Initialize();
 		void LoadBitmap();

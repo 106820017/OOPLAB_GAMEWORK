@@ -19,7 +19,7 @@ namespace game_framework {
 		void OnShow();
 		void SetXY(int x, int y);
 		void SetInvertSpeed();	//設為反方向速度
-		void SetAngle(int angle = 0);
+		void SetAngle(int angle = 0);	//設定角度
 		//void SetXY();	//轉換centerXY為XY
 		void SetAlive(bool isAlive);
 		void CheckAlive();
@@ -30,6 +30,7 @@ namespace game_framework {
 
 		Parabola parabola;
 
+		int angle;
 		int x, y;
 		int ini_x = 120, ini_y = 290;
 		int centerX, centerY;

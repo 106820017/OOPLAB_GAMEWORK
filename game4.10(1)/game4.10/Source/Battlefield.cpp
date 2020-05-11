@@ -23,6 +23,18 @@ namespace game_framework {
 		}
 	}
 
+	int Battlefield::GetHealth(int player_num) {
+		switch (player_num)
+		{
+		case 1:
+			return playerPointer1->GetHealth();
+		case 2:
+			return playerPointer2->GetHealth();
+		default:
+			return 0;
+		}
+	}
+
 	void Battlefield::Initialize() {
 		x = y = 0;
 		weapon2.SetInitialXY(486, 290);
@@ -34,11 +46,19 @@ namespace game_framework {
 		s_code = number;
 		playerPointer2 = new BattlePlayer(number2);
 		s_code2 = number2;
+		playerPointer1->LoadBitmap();
+		playerPointer2->LoadBitmap();
+		playerPointer2->SetPlayer2();
 	}
 
 	void Battlefield::ChangeWeapon(int number, int number2) {
 		weapon1.SetWeapon(number);
 		weapon2.SetWeapon(number2);
+	}
+
+	void Battlefield::SetAngle(int angle1, int angle2) {
+		weapon1.SetAngle(angle1);
+		weapon2.SetAngle(angle2);
 	}
 
 	void Battlefield::LoadBitmap() {

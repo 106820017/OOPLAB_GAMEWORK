@@ -7,13 +7,15 @@ namespace game_framework {
 	public:
 		Battlefield();
 		bool GetWeaponAlive(int num);
+		int  GetHealth(int player_num);
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
 		void OnMove();
 		void OnAttack(int num);
-		void ChangeCharacter(int number, int number2);
+		void ChangeCharacter(int number = 0, int number2 = 0);
 		void ChangeWeapon(int number, int number2);
+		void SetAngle(int angle1, int angle2);
 		void CheckHit();
 	protected:
 		CAnimation background;

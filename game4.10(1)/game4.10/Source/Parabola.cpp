@@ -15,6 +15,10 @@ namespace game_framework {
 		Initialize();
 	}
 
+	int Parabola::GetAngle() {
+		return angle;
+	}
+
 	int* Parabola::GetSpeed() {
 		int speedX = (int)(sqrt(337)*cos((double)angle*(PI / 180)));
 		int speedY = -(int)(sqrt(337)*sin((double)angle*(PI / 180)));

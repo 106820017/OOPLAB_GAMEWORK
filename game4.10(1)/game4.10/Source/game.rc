@@ -236,7 +236,7 @@ IDB_HEALTHBAR_BACKGROUND BITMAP                  "..\\RES\\background_healthbar.
 
 IDB_HEALTHBAR           BITMAP                  "..\\RES\\redbar_small.bmp"
 
-IDB_DOT                 BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\dot.bmp"
+IDB_DOT                 BITMAP                  "..\\RES\\dot.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
