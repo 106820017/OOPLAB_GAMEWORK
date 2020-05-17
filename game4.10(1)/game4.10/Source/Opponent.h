@@ -1,5 +1,6 @@
 #pragma once
 //#include "Map.h"
+#include "Random.h"
 
 namespace game_framework {
 	class Opponent {
@@ -16,6 +17,7 @@ namespace game_framework {
 
 	protected:
 		CMovingBitmap bitmap;
+		Random random;
 		int x, y;
 
 		void RandomMove(unsigned seed);

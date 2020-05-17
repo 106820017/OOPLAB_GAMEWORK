@@ -321,7 +321,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (in_store && nChar == KEY_ESC)
 		LeaveStore();
 
-	if (in_battle && nChar == KEY_SPACE) {
+	/*if (in_battle && nChar == KEY_SPACE) {
 		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
 			battlefield.OnAttack(1);
 			player1_attacked = true;
@@ -329,6 +329,33 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
 			battlefield.OnAttack(2);
 			player1_attacked = false;
+		}
+	}*/
+
+	if (in_battle && nChar == KEY_SPACE) {
+		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
+			battlefield.SetCharge(1, true);
+		}
+		else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
+			battlefield.SetCharge(2, true);
+		}
+	}
+
+	if (in_battle && nChar == KEY_UP) {
+		if (!player1_attacked) {
+			battlefield.SetAngle(battlefield.GetAngle(1) + 5, battlefield.GetAngle(2));
+		}
+		else if (player1_attacked) {
+			battlefield.SetAngle(battlefield.GetAngle(1), battlefield.GetAngle(2) + 5);
+		}
+	}
+	
+	if (in_battle && nChar == KEY_DOWN) {
+		if (!player1_attacked) {
+			battlefield.SetAngle(battlefield.GetAngle(1) - 5, battlefield.GetAngle(2));
+		}
+		else if (player1_attacked) {
+			battlefield.SetAngle(battlefield.GetAngle(1), battlefield.GetAngle(2) - 5);
 		}
 	}
 
@@ -340,6 +367,7 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_SPACE = 0x20; // keyboard空白鍵
 	//CheckInStore();
 	if (nChar == KEY_LEFT)
 		character.SetMovingLeft(false);
@@ -353,6 +381,19 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (nChar == KEY_DOWN)
 		character.SetMovingDown(false);
 		//eraser.SetMovingDown(false);
+
+	if (in_battle && nChar == KEY_SPACE) {
+		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
+			battlefield.SetCharge(1, false);
+			battlefield.OnAttack(1);
+			player1_attacked = true;
+		}
+		else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
+			battlefield.SetCharge(2, false);
+			battlefield.OnAttack(2);
+			player1_attacked = false;
+		}
+	}
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作

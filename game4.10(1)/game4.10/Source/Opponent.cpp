@@ -32,11 +32,17 @@ namespace game_framework {
 	}
 
 	void Opponent::Initialize() {
-		unsigned seed;
+		/*unsigned seed;
 		seed = (unsigned)time(NULL) * (rand()%10); // 取得時間序列
 		srand(seed);
 		x = rand() % 3600;
-		y = rand() % 3600;
+		y = rand() % 3600;*/
+		random.SetSeed(3600);
+
+		x = random.GetRand();
+		y = random.GetRand();
+		//x = random.GetRand(3600);
+		//y = random.GetRand(3600);
 		/*while (!isEmpty) {
 			x = rand() % 3600;
 			y = rand() % 3600;

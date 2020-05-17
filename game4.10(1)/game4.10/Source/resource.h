@@ -103,6 +103,25 @@
 #define IDB_HEALTHBAR                   243
 #define IDB_BITMAP3                     245
 #define IDB_DOT                         245
+#define IDB_ENERGY_0                    246
+#define IDB_ENERGY_1                    247
+#define IDB_ENERGY_2                    248
+#define IDB_ENERGY_3                    249
+#define IDB_ENERGY_4                    250
+#define IDB_ENERGY_5                    251
+#define IDB_ENERGY_6                    252
+#define IDB_ENERGY_7                    253
+#define IDB_ENERGY_8                    254
+#define IDB_RF_ENERGY_0                 255
+#define IDB_RF_ENERGY_1                 258
+#define IDB_RF_ENERGY_2                 259
+#define IDB_RF_ENERGY_3                 260
+#define IDB_RF_ENERGY_4                 261
+#define IDB_RF_ENERGY_5                 262
+#define IDB_RF_ENERGY_6                 263
+#define IDB_RF_ENERGY_7                 264
+#define IDB_BITMAP5                     265
+#define IDB_RF_ENERGY_8                 265
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -115,7 +134,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        246
+#define _APS_NEXT_RESOURCE_VALUE        266
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

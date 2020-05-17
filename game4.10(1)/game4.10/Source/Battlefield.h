@@ -1,6 +1,7 @@
 #pragma once
 #include "BattlePlayer.h"
 #include "Weapon.h"
+#include "Energy.h"
 
 namespace game_framework {
 	class Battlefield {
@@ -8,10 +9,13 @@ namespace game_framework {
 		Battlefield();
 		bool GetWeaponAlive(int num);
 		int  GetHealth(int player_num);
+		int  GetAngle(int weapon_num);
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
 		void OnMove();
+		//void Charge(int num);
+		void SetCharge(int num, bool flag);
 		void OnAttack(int num);
 		void ChangeCharacter(int number = 0, int number2 = 0);
 		void ChangeWeapon(int number, int number2);
@@ -26,6 +30,8 @@ namespace game_framework {
 		BattlePlayer * playerPointer1 = new BattlePlayer(0);
 		BattlePlayer * playerPointer2 = new BattlePlayer(0);
 		Weapon weapon1, weapon2;
+		Energy *energy1 = new Energy(0, 250);
+		Energy *energy2 = new Energy(520, 250, true);
 		int x, y;
 		int s_code, s_code2;
 	};

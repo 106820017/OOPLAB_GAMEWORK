@@ -11,13 +11,22 @@ namespace game_framework {
 		Initialize();
 	}
 
-	void Weapon::Initialize() {
+	/*Weapon::Weapon(bool invert) {
+		Initialize(invert);
+	}*/
+
+	void Weapon::Initialize(bool invert) {
 		x = ini_x;
 		y = ini_y;
 		centerX = x + 8;
 		centerY = y + 8;
-		x_speed = ini_x_speed;
-		y_speed = -32;
+		//x_speed = ini_x_speed;
+		//y_speed = -32;
+		if (!invert)
+			x_speed = parabola.GetSpeed()[0];
+		else
+			x_speed = -parabola.GetSpeed()[0];
+		y_speed = parabola.GetSpeed()[1];
 		aniPointer = animation;
 		alive = false;
 	}
@@ -37,6 +46,7 @@ namespace game_framework {
 	}
 
 	void Weapon::LoadBitmap() {
+		parabola.LoadBitmap();
 		animation[0].AddBitmap(IDB_TEST_WEAPON, RGB(255, 255, 255));
 	}
 
@@ -60,6 +70,16 @@ namespace game_framework {
 		return y + aniPointer->Height();
 	}
 
+	int Weapon::GetAngle()
+	{
+		return parabola.GetAngle();
+	}
+
+	int Weapon::GetPower()
+	{
+		return parabola.GetPower();
+	}
+
 	bool Weapon::IsAlive() {
 		return alive;
 	}
@@ -76,7 +96,7 @@ namespace game_framework {
 	}
 
 	void Weapon::SetInvertSpeed() {
-		ini_x_speed = -ini_x_speed;
+		//ini_x_speed = -ini_x_speed;
 		x_speed = -x_speed;
 	}
 
@@ -85,40 +105,55 @@ namespace game_framework {
 		y = centerY - 8;
 	}*/
 
-	void Weapon::OnMove() {
+	void Weapon::OnMove(bool invert) {
 		if (!alive) {
 			return;
 		}
 		SetXY(x+x_speed, y+y_speed);
 		y_speed += drop_acceleration;
-		CheckAlive();
+		CheckAlive(invert);
 	}
 
 	void Weapon::OnShow() {
+		parabola.OnShow();
 		if (alive) {
 			aniPointer->SetTopLeft(x, y);
 			aniPointer->OnShow();
 		}
+
 	}
 
-	void Weapon::CheckAlive() {
+	void Weapon::CheckAlive(bool invert) {
 		if (alive) {
 			if (x < -20 || GetX2() >= 680 || GetY2() >= 520) {
 				alive = false;
-				Initialize();
+				Initialize(invert);
 			}
 		}
 	}
 
-	void Weapon::SetAlive(bool isAlive) {
+	void Weapon::SetAlive(bool isAlive, bool invert) {
 		alive = isAlive;
 		if (isAlive == false)
-			Initialize();
+			Initialize(invert);
 	}
 
-	void Weapon::SetAngle(int angle) {
-		parabola.SetAngle(angle);
-		x_speed = parabola.GetSpeed()[0];
+	void Weapon::SetAngle(int angle, bool invert) {
+		parabola.SetAngle(angle, invert);
+		/*if (!invert)
+			x_speed = parabola.GetSpeed()[0];
+		else
+			x_speed = -parabola.GetSpeed()[0];
+		y_speed = parabola.GetSpeed()[1];*/
+	}
+
+	void Weapon::SetPower(int power, bool invert) {
+		parabola.SetPower(power+1, invert);
+		if (!invert)
+			x_speed = parabola.GetSpeed()[0];
+		else
+			x_speed = -parabola.GetSpeed()[0];
 		y_speed = parabola.GetSpeed()[1];
 	}
+
 }

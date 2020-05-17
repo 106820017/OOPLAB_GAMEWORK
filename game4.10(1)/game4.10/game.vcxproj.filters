@@ -159,6 +159,12 @@
     <ClCompile Include="Source\Parabola.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Energy.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Random.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -225,6 +231,12 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Parabola.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Energy.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Random.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -466,6 +478,63 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\dot.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\energy_bar_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\energy_bar_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\energy_bar_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\energy_bar_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\energy_bar_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\energy_bar_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\energy_bar_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\energy_bar_7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\energy_bar_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_energy_bar_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_energy_bar_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_energy_bar_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_energy_bar_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_energy_bar_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_energy_bar_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_energy_bar_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_energy_bar_7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rf_energy_bar_8.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

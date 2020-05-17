@@ -35,10 +35,23 @@ namespace game_framework {
 		}
 	}
 
+	int Battlefield::GetAngle(int weapon_num) {
+		switch (weapon_num)
+		{
+		case 1:
+			return weapon1.GetAngle();
+		case 2:
+			return weapon2.GetAngle();
+		default:
+			return 0;
+		}
+	}
+
 	void Battlefield::Initialize() {
 		x = y = 0;
 		weapon2.SetInitialXY(486, 290);
-		weapon2.SetInvertSpeed();
+		weapon2.Initialize(true);
+		//weapon2.SetInvertSpeed();
 	}
 
 	void Battlefield::ChangeCharacter(int number, int number2) {
@@ -58,7 +71,7 @@ namespace game_framework {
 
 	void Battlefield::SetAngle(int angle1, int angle2) {
 		weapon1.SetAngle(angle1);
-		weapon2.SetAngle(angle2);
+		weapon2.SetAngle(angle2, true);
 	}
 
 	void Battlefield::LoadBitmap() {
@@ -80,12 +93,23 @@ namespace game_framework {
 
 		healthbar_background.LoadBitmap(IDB_HEALTHBAR_BACKGROUND, RGB(255, 255, 255));
 		healthbar.LoadBitmap(IDB_HEALTHBAR, RGB(255, 255, 255));
+
+		energy1->LoadBitmap();
+		energy2->LoadBitmap();
 	}
 
 	void Battlefield::OnMove() {
 		background.OnMove();
+
+		energy1->OnMove();
+		if (energy1->GetCharging())
+			weapon1.SetPower(energy1->GetPower());
+		energy2->OnMove();
+		if (energy2->GetCharging())
+			weapon2.SetPower(energy2->GetPower(), true);
+		
 		weapon1.OnMove();
-		weapon2.OnMove();
+		weapon2.OnMove(true);
 		
 	}
 
@@ -95,12 +119,16 @@ namespace game_framework {
 		playerPointer1->OnShow();
 		playerPointer2->OnShow();
 		CheckHit();
-		if (weapon1.IsAlive()) {
+		/*if (weapon1.IsAlive()) {
 			weapon1.OnShow();
 		}
 		else if (weapon2.IsAlive()) {
 			weapon2.OnShow();
-		}
+		}*/
+		energy1->OnShow();
+		weapon1.OnShow();
+		energy2->OnShow();
+		weapon2.OnShow();
 
 		healthbar.SetTopLeft(-111 + (playerPointer1->GetHealth()*176/100), 20); //血量條長度176, 左框左上(65, 20)
 		healthbar.ShowBitmap();
@@ -110,6 +138,22 @@ namespace game_framework {
 
 		healthbar_background.SetTopLeft(0, 0);
 		healthbar_background.ShowBitmap();
+
+	}
+
+
+	void Battlefield::SetCharge(int num, bool flag) {
+		switch (num)
+		{
+		case 1:
+			energy1->SetCharging(flag);			
+			break;
+		case 2:
+			energy2->SetCharging(flag);
+			break;
+		default:
+			break;
+		}
 	}
 
 	void Battlefield::OnAttack(int num) {
@@ -129,7 +173,7 @@ namespace game_framework {
 	void Battlefield::CheckHit() {
 		if (weapon2.IsAlive() && (weapon2.GetX1() < playerPointer1->GetX2() - 10 && weapon2.GetX2() > playerPointer1->GetX1() + 10 && weapon2.GetY1() < playerPointer1->GetY2() - 10 && weapon2.GetY2() > playerPointer1->GetY1() + 10)) {
 			//playerPointer1->SetHit(true);
-			weapon2.SetAlive(false);
+			weapon2.SetAlive(false, true);
 			playerPointer1->GetAttack();
 		}
 		else if (weapon1.IsAlive() && (weapon1.GetX1() < playerPointer2->GetX2() - 10 && weapon1.GetX2() > playerPointer2->GetX1() + 10 && weapon1.GetY1() < playerPointer2->GetY2() - 10 && weapon1.GetY2() > playerPointer2->GetY1() + 10)) {

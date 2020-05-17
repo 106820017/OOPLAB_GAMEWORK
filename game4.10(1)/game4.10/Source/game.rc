@@ -238,6 +238,42 @@ IDB_HEALTHBAR           BITMAP                  "..\\RES\\redbar_small.bmp"
 
 IDB_DOT                 BITMAP                  "..\\RES\\dot.bmp"
 
+IDB_ENERGY_0            BITMAP                  "..\\RES\\energy_bar_0.bmp"
+
+IDB_ENERGY_1            BITMAP                  "..\\RES\\energy_bar_1.bmp"
+
+IDB_ENERGY_2            BITMAP                  "..\\RES\\energy_bar_2.bmp"
+
+IDB_ENERGY_3            BITMAP                  "..\\RES\\energy_bar_3.bmp"
+
+IDB_ENERGY_4            BITMAP                  "..\\RES\\energy_bar_4.bmp"
+
+IDB_ENERGY_5            BITMAP                  "..\\RES\\energy_bar_5.bmp"
+
+IDB_ENERGY_6            BITMAP                  "..\\RES\\energy_bar_6.bmp"
+
+IDB_ENERGY_7            BITMAP                  "..\\RES\\energy_bar_7.bmp"
+
+IDB_ENERGY_8            BITMAP                  "..\\RES\\energy_bar_8.bmp"
+
+IDB_RF_ENERGY_0         BITMAP                  "..\\RES\\rf_energy_bar_0.bmp"
+
+IDB_RF_ENERGY_1         BITMAP                  "..\\RES\\rf_energy_bar_1.bmp"
+
+IDB_RF_ENERGY_2         BITMAP                  "..\\RES\\rf_energy_bar_2.bmp"
+
+IDB_RF_ENERGY_3         BITMAP                  "..\\RES\\rf_energy_bar_3.bmp"
+
+IDB_RF_ENERGY_4         BITMAP                  "..\\RES\\rf_energy_bar_4.bmp"
+
+IDB_RF_ENERGY_5         BITMAP                  "..\\RES\\rf_energy_bar_5.bmp"
+
+IDB_RF_ENERGY_6         BITMAP                  "..\\RES\\rf_energy_bar_6.bmp"
+
+IDB_RF_ENERGY_7         BITMAP                  "..\\RES\\rf_energy_bar_7.bmp"
+
+IDB_RF_ENERGY_8         BITMAP                  "..\\RES\\rf_energy_bar_8.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
