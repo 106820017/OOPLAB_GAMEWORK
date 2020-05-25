@@ -416,6 +416,9 @@
     <Image Include="RES\left5.bmp" />
     <Image Include="RES\left6.bmp" />
     <Image Include="RES\pad2.bmp" />
+    <Image Include="RES\play0.bmp" />
+    <Image Include="RES\play1.bmp" />
+    <Image Include="RES\play2.bmp" />
     <Image Include="RES\redbar_small.bmp" />
     <Image Include="RES\rf_energy_bar_0.bmp" />
     <Image Include="RES\rf_energy_bar_1.bmp" />
@@ -448,8 +451,16 @@
     <Image Include="RES\snoopy_1.bmp" />
     <Image Include="RES\snoopy_small.bmp" />
     <Image Include="RES\snoopy_test.bmp" />
+    <Image Include="RES\textbar.bmp" />
+    <Image Include="RES\textbar2.bmp" />
     <Image Include="RES\U.bmp" />
     <Image Include="RES\unnamed.bmp" />
+    <Image Include="res\yellow1.bmp" />
+    <Image Include="RES\yellow2.bmp" />
+    <Image Include="RES\yellow3.bmp" />
+    <Image Include="RES\yellow4.bmp" />
+    <Image Include="RES\yellow5.bmp" />
+    <Image Include="RES\yellow6.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

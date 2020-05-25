@@ -9,6 +9,7 @@
 namespace game_framework {
 	Store::Store() {
 		x = y = 10;
+		option_num = 0;
 	}
 
 	/*void Initialize() {
@@ -23,11 +24,25 @@ namespace game_framework {
 		//back_arrow.LoadBitmap(IDB_LEFT_ARROW, RGB(255, 255, 255));
 		
 		clerk.LoadBitmap(IDB_CLERK, RGB(0, 255, 0));
+		textBar.LoadBitmap(IDB_TEXTBAR, RGB(255, 255, 255));
 		lines.LoadBitmap();
+
+		mm.LoadBitmap();
+
+		leave.LoadBitmap();
+
+		play_arrow.AddBitmap(IDB_PLAY_2, RGB(255, 255, 255));
+		play_arrow.AddBitmap(IDB_PLAY_2, RGB(255, 255, 255));
+		play_arrow.AddBitmap(IDB_PLAY_1, RGB(255, 255, 255));
+		play_arrow.AddBitmap(IDB_PLAY_1, RGB(255, 255, 255));
+		play_arrow.AddBitmap(IDB_PLAY_0, RGB(255, 255, 255));
+		play_arrow.AddBitmap(IDB_PLAY_0, RGB(255, 255, 255));
+
 	}
 
 	void Store::OnMove() {
 		lines.OnMove();
+		play_arrow.OnMove();
 	}
 
 	void Store::OnShow() {
@@ -44,17 +59,41 @@ namespace game_framework {
 		}
 		sign.SetTopLeft(x + 10, y + 10);
 		sign.ShowBitmap();
-		announcement.SetTopLeft(250, 250);
-		announcement.ShowBitmap();
+		/*announcement.SetTopLeft(250, 250);
+		announcement.ShowBitmap();*/
 
-		clerk.SetTopLeft(x + 10, y + 350);
+		textBar.SetTopLeft(x+52, y+264);
+		textBar.ShowBitmap();
+
+		clerk.SetTopLeft(x + 484, y + 340);
 		clerk.ShowBitmap();
 
-		lines.ShowString("Welcome!!\n  What do you want?", x+80, y+350);
+		lines.ShowString("Welcome!!\n  What can I help?", x+85, y+290);
+
+		mm.SetCurrent(20);
+		if (option_num == 0)
+			mm.ShowString("Change my character.", x + 85, y + 375);
+		leave.SetCurrent(12);
+		if (option_num == 1)
+			leave.ShowString("Leave store.", x + 85, y + 375);
+
+		play_arrow.SetTopLeft(x + 450, y + 350);
+		play_arrow.OnShow();
 	}
 
 	void Store::ClearCurrent() {
 		lines.ClearCurrent();
+	}
+
+	void Store::NextOption() {
+		if (option_num < 1)
+			option_num++;
+		else
+			option_num = 0;
+	}
+
+	int Store::GetOptionNum() {
+		return option_num;
 	}
 
 }

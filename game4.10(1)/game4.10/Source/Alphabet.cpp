@@ -151,7 +151,7 @@ namespace game_framework {
 			}
 			else if ((int)cstr[i] == 10) {	//\n
 				hover = this->x;
-				this->y += 40;
+				this->y += 30;
 			}
 			else {
 				break;
@@ -162,5 +162,9 @@ namespace game_framework {
 
 	void Alphabet::ClearCurrent() {
 		current_letter = 0;
+	}
+
+	void Alphabet::SetCurrent(int current) {
+		current_letter = current;
 	}
 }

@@ -9,6 +9,7 @@ namespace game_framework {
 		void OnMove();
 		void ShowString(string input, int x, int y);
 		void ClearCurrent();
+		void SetCurrent(int current);
 	protected:
 		int x, y;
 		int current_letter;

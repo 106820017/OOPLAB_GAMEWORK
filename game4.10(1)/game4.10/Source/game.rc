@@ -178,7 +178,7 @@ IDB_ANNOUNCEMENT        BITMAP                  "..\\res\\bmp00002.bmp"
 
 IDB_SIGN                BITMAP                  "..\\res\\bmp00003.bmp"
 
-IDB_OPPONENT_SCENT      BITMAP                  "..\\res\\bitmap4.bmp"
+IDB_OPPONENT_SCENT_0    BITMAP                  "..\\res\\yellow1.bmp"
 
 IDB_BATTLE_BACKGROUND_1 BITMAP                  "..\\RES\\battle_background1.bmp"
 
@@ -279,6 +279,22 @@ IDB_CLERK               BITMAP                  "C:\\Users\\User\\Documents\\oop
 IDB_STORE_PAD           BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\pad2.bmp"
 
 IDB_U                   BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\U.bmp"
+
+IDB_TEXTBAR             BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\textbar2.bmp"
+
+IDB_PLAY_0              BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\play0.bmp"
+
+IDB_PLAY_1              BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\play1.bmp"
+
+IDB_PLAY_2              BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\play2.bmp"
+
+IDB_OPPONENT_SCENT_1    BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\yellow3.bmp"
+
+IDB_OPPONENT_SCENT_2    BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\yellow4.bmp"
+
+IDB_OPPONENT_SCENT_3    BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\yellow5.bmp"
+
+IDB_OPPONENT_SCENT_4    BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\yellow6.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

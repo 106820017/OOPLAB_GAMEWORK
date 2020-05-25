@@ -11,6 +11,10 @@ namespace game_framework {
 		Initialize();
 	}
 
+	Opponent::Opponent(int num) {
+		SetNum(num);
+	}
+
 	int Opponent::GetX1()
 	{
 		return x;
@@ -23,12 +27,12 @@ namespace game_framework {
 
 	int Opponent::GetX2()
 	{
-		return x + bitmap.Width();
+		return x + bitmap0.Width();
 	}
 
 	int Opponent::GetY2()
 	{
-		return y + bitmap.Height();
+		return y + bitmap0.Height();
 	}
 
 	void Opponent::Initialize() {
@@ -38,6 +42,7 @@ namespace game_framework {
 		x = rand() % 3600;
 		y = rand() % 3600;*/
 		random.SetSeed(3600);
+		random20.SetSeed(20);
 
 		x = random.GetRand();
 		y = random.GetRand();
@@ -46,22 +51,54 @@ namespace game_framework {
 		/*while (!isEmpty) {
 			x = rand() % 3600;
 			y = rand() % 3600;
-		}	*/		
+		}	*/	
 	}
 
 	void Opponent::LoadBitmap() {
-		bitmap.LoadBitmap(IDB_OPPONENT_SCENT, RGB(255, 255, 255));
-
+		bitmap0.LoadBitmap(IDB_OPPONENT_SCENT_0, RGB(255, 255, 255));
+		
+		/*ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_0, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_0, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));
+		ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));*/
 	}
 
 	void Opponent::OnShow(int sx, int sy) {
-		bitmap.SetTopLeft(x-sx, y-sy);
-		bitmap.ShowBitmap();
+		bitmap0.SetTopLeft(x-sx, y-sy);
+		bitmap0.ShowBitmap();
+		/*ani.SetTopLeft(x - sx, y - sy);
+		ani.OnShow();*/
 	}
 
 	void Opponent::OnMove(unsigned seed) {
 		/*unsigned seed;
 		seed = (unsigned)time(NULL); // 取得時間序列*/
+		/*bool play = true;
+
+		if (ani.GetCurrentBitmapNumber() == 0) {
+			if (random20.GetRand() < 15) {
+				play = false;
+			}
+		}
+
+		if (play) {
+			ani.OnMove();
+		}*/
+
 		
 		RandomMove(seed);
 		//bitmap.SetTopLeft(x, y);
@@ -87,5 +124,9 @@ namespace game_framework {
 			y -= rand() % 3;
 		else
 			y += (rand() % 5 - 2);
+	}
+
+	void Opponent::SetNum(int num) {
+		this->num = num;
 	}
 }

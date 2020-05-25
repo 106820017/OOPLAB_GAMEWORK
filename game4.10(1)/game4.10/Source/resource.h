@@ -73,6 +73,7 @@
 #define IDB_ANNOUNCEMENT                211
 #define IDB_SIGN                        212
 #define IDB_OPPONENT_SCENT              214
+#define IDB_OPPONENT_SCENT_0            214
 #define IDB_BATTLE_BACKGROUND_1         215
 #define IDB_BATTLE_BACKGROUND_2         216
 #define IDB_BATTLE_BACKGROUND_3         218
@@ -124,8 +125,16 @@
 #define IDB_RF_ENERGY_8                 265
 #define IDB_CLERK                       266
 #define IDB_STORE_PAD                   267
-#define IDB_BITMAP4                     268
 #define IDB_U                           268
+#define IDB_TEXTBAR                     269
+#define IDB_PLAY_0                      270
+#define IDB_PLAY_1                      271
+#define IDB_PLAY_2                      272
+#define IDB_OPPONENT_SCENT_1            273
+#define IDB_OPPONENT_SCENT_2            274
+#define IDB_OPPONENT_SCENT_3            275
+#define IDB_BITMAP4                     276
+#define IDB_OPPONENT_SCENT_4            276
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -138,7 +147,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        269
+#define _APS_NEXT_RESOURCE_VALUE        277
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

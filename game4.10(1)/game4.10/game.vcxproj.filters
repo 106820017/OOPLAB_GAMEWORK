@@ -552,5 +552,38 @@
     <Image Include="RES\U.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\textbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\textbar2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\play0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\play1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\play2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\yellow2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\yellow1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\yellow3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\yellow4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\yellow5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\yellow6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -326,7 +326,13 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		//eraser.SetMovingDown(true);
 	}
 	
-	if (in_store && nChar == KEY_ESC)
+	/*if (in_store && nChar == KEY_ESC)
+		LeaveStore();*/
+
+	if (in_store && nChar == KEY_RIGHT)
+		store.NextOption();
+
+	if (in_store && store.GetOptionNum() == 1 && nChar == KEY_SPACE)
 		LeaveStore();
 
 	/*if (in_battle && nChar == KEY_SPACE) {
