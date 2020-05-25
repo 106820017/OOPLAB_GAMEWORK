@@ -223,6 +223,14 @@ void CGameStateRun::OnMove()							// ²¾°Ê¹CÀ¸¤¸¯À
 		music_played = false;
 	}
 
+	if (in_store) {
+		store.OnMove();
+	}
+	else
+	{
+		store.ClearCurrent();
+	}
+
 	
 
 	//

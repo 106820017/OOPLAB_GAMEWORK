@@ -274,6 +274,12 @@ IDB_RF_ENERGY_7         BITMAP                  "..\\RES\\rf_energy_bar_7.bmp"
 
 IDB_RF_ENERGY_8         BITMAP                  "..\\RES\\rf_energy_bar_8.bmp"
 
+IDB_CLERK               BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\clerk.bmp"
+
+IDB_STORE_PAD           BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\pad2.bmp"
+
+IDB_U                   BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\U.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

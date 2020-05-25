@@ -122,6 +122,10 @@
 #define IDB_RF_ENERGY_7                 264
 #define IDB_BITMAP5                     265
 #define IDB_RF_ENERGY_8                 265
+#define IDB_CLERK                       266
+#define IDB_STORE_PAD                   267
+#define IDB_BITMAP4                     268
+#define IDB_U                           268
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -134,7 +138,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        266
+#define _APS_NEXT_RESOURCE_VALUE        269
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

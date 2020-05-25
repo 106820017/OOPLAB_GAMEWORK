@@ -165,6 +165,9 @@
     <ClCompile Include="Source\Random.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Alphabet.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -237,6 +240,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Random.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Alphabet.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -535,6 +541,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\rf_energy_bar_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\clerk.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pad2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\U.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
