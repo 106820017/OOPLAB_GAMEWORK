@@ -310,6 +310,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_ESC	 = 0x1B; // keyboard ESC
 	const char KEY_SPACE = 0x20; // keyboard空白鍵
+	const char KEY_ENTER = 0x0D; // keyboard Enter
 	CheckInStore();
 	if (!in_store && !in_battle) {
 		if (nChar == KEY_LEFT)
@@ -329,8 +330,42 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	/*if (in_store && nChar == KEY_ESC)
 		LeaveStore();*/
 
-	if (in_store && nChar == KEY_RIGHT)
+	if (in_store && !store.IsChoosingCharacter() && nChar == KEY_RIGHT)
 		store.NextOption();
+
+	if (in_store && !store.IsChoosingCharacter()) {
+		if (store.GetOptionNum() == 0 && nChar == KEY_SPACE)
+			store.SetChoosingCharacter(true);
+	}
+	else if (in_store && store.IsChoosingCharacter()) {
+		switch (nChar)
+		{
+		case KEY_RIGHT:
+			if (store.GetProfileNum() < 4 && store.GetPlayerAble(store.GetProfileNum() + 1))
+				store.SetCharacter(store.GetProfileNum() + 1);
+			break;
+		case KEY_LEFT:
+			if (store.GetProfileNum() > 0 && store.GetPlayerAble(store.GetProfileNum() - 1))
+				store.SetCharacter(store.GetProfileNum() - 1);
+			break;
+		case KEY_UP:
+			if ((store.GetProfileNum() == 3 && store.GetPlayerAble(0)) || (store.GetProfileNum() == 4 && store.GetPlayerAble(1)))
+				store.SetCharacter(store.GetProfileNum() - 3);
+			break;
+		case KEY_DOWN:
+			if ((store.GetProfileNum() == 0 && store.GetPlayerAble(3)) || (store.GetProfileNum() == 1 && store.GetPlayerAble(4)))
+				store.SetCharacter(store.GetProfileNum() + 3);
+			else if (store.GetProfileNum() == 2 && store.GetPlayerAble(4))
+				store.SetCharacter(store.GetProfileNum() + 2);
+			break;
+		case KEY_SPACE:
+			battlefield.ChangeCharacter(store.GetProfileNum());
+			store.SetChoosingCharacter(false);
+			break;
+		default:
+			break;
+		}
+	}
 
 	if (in_store && store.GetOptionNum() == 1 && nChar == KEY_SPACE)
 		LeaveStore();
@@ -471,8 +506,9 @@ void CGameStateRun::OnShow()
 	}
 
 	if (battlefield.GetHealth(1) <= 0 || battlefield.GetHealth(2) <= 0) {
-		LeaveBattle();
-		battlefield.ChangeCharacter(0, 0);
+		LeaveBattle();		
+		//store.SetPlayerGet(battlefield) = true;
+		battlefield.ChangeCharacter(store.GetProfileNum(), 0);
 
 	}
 
@@ -494,21 +530,47 @@ void CGameStateRun::LeaveStore() {
 
 void CGameStateRun::CheckInBattle() {
 	in_battle = mapp->InBattle(character.GetX1(), character.GetX2(), character.GetY1(), character.GetY2());
+	//battling_num = mapp->GetBattlingNum();
 }
 
 void CGameStateRun::LeaveBattle() {
 	in_battle = false;
-	int nX1 = character.GetX1() - 120;
-	int nX2 = character.GetY1() + 120;
-	if (nX1 <= 0)
-		nX1 = character.GetX1() + 120;
-	if (nX2 >= 3480)
-		nX2 = character.GetY1() - 120;
 
-	character.SetXY(nX1, nX2);
+	if (battlefield.GetHealth(2) <= 0) {
+		store.SetPlayerGet(mapp->GetBattlingNum());
+		mapp->SetOpponentAlive(false);
+	}
+
+	int nX1 = mapp->GetOpponentX1() - 160;
+	int nY1 = mapp->GetOpponentY1() + 160;
+	if (nX1 < 0 || !(mapp->IsEmpty(nX1, nY1) && mapp->IsEmpty(nX1+character.GetWidth(), nY1)))
+		nX1 = mapp->GetOpponentX2() + 40;
+	if (nY1 >= 3480 || !(mapp->IsEmpty(nX1, nY1) && mapp->IsEmpty(nX1, nY1+character.GetHeight())))
+		nY1 = mapp->GetOpponentY2() - 40;
+
+	character.SetXY(nX1, nY1);
 
 	mapp->SetSX(character.GetX1());
-	mapp->SetSY(character.GetY1());
+	mapp->SetSY(character.GetY1());	
+
+	/*if (battlefield.GetHealth(2) <= 0) {
+		store.SetPlayerGet(mapp->GetBattlingNum());
+		mapp->SetOpponentAlive(false);
+	}
+	else {
+		int nX1 = mapp->GetOpponentX1() - 160;
+		int nY1 = mapp->GetOpponentY1() + 160;
+		if (nX1 <= 0)
+			nX1 = mapp->GetOpponentX2() + 160;
+		if (nY1 >= 3480)
+			nY1 = mapp->GetOpponentY2() - 160;
+
+		character.SetXY(nX1, nY1);
+
+		mapp->SetSX(character.GetX1());
+		mapp->SetSY(character.GetY1());
+	}*/
+
 	player1_attacked = false;
 }
 }

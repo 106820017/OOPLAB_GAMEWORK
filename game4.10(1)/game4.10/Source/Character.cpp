@@ -31,9 +31,21 @@ namespace game_framework {
 		return y + animation.Height();
 	}
 
+	int Character::GetWidth()
+	{
+		return animation.Width();
+	}
+
+	int Character::GetHeight()
+	{
+		return animation.Height();
+	}
+
 	void Character::Initialize() {
 		const int X_POS = 0;
 		const int Y_POS = 0;
+		animation.SetDelayCount(5);
+		animation_back.SetDelayCount(5);
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;

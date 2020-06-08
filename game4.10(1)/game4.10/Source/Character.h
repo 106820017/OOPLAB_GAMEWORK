@@ -8,6 +8,8 @@ namespace game_framework {
 		int  GetY1();
 		int  GetX2();
 		int  GetY2();
+		int  GetWidth();
+		int  GetHeight();
 		void Initialize();
 		void LoadBitmap();
 		void OnMove(Map * m);

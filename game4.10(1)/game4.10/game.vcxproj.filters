@@ -168,6 +168,9 @@
     <ClCompile Include="Source\Alphabet.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Skill.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -243,6 +246,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Alphabet.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Skill.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -583,6 +589,42 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\yellow6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\karby_profile.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pikachu_profile.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stitch_profile.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\snoopy_profile.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\profile_frame.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\profile_unable.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\paralyze_icon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\paralyze_icon_big.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\paralyze_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\paralyze_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\paralyze_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\paralyze_icon_small.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

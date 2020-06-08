@@ -32,6 +32,34 @@ namespace game_framework {
 		rf_animation[0].AddBitmap(IDB_RF_KIRBY, RGB(0, 255, 0));
 		rf_animation_wounded[0].AddBitmap(IDB_RF_KIRBY_WOUNDED, RGB(0, 255, 0));
 		rf_animation_attack[0].AddBitmap(IDB_RF_KIRBY_ANGRY, RGB(0, 255, 0));
+
+		animation[1].AddBitmap("res/pikachu_small.bmp", RGB(255, 255, 255));
+		animation_wounded[1].AddBitmap("res/pikachu_wounded_small.bmp", RGB(0, 255, 0));
+		animation_attack[1].AddBitmap("res/pikachu_angry_small.bmp", RGB(0, 255, 0));
+
+		rf_animation[1].AddBitmap("res/rf_pikachu_small.bmp", RGB(255, 255, 255));
+		rf_animation_wounded[1].AddBitmap("res/rf_pikachu_wounded_small.bmp", RGB(0, 255, 0));
+		rf_animation_attack[1].AddBitmap("res/rf_pikachu_angry_small.bmp", RGB(0, 255, 0));
+
+		animation[2].AddBitmap("res/stitch_small.bmp", RGB(0, 255, 0));
+		animation_wounded[2].AddBitmap("res/stitch_wounded_small.bmp", RGB(0, 255, 0));
+		animation_attack[2].AddBitmap("res/stitch_wounded_small.bmp", RGB(0, 255, 0));
+
+		rf_animation[2].AddBitmap("res/rf_stitch_small.bmp", RGB(0, 255, 0));
+		rf_animation_wounded[2].AddBitmap("res/rf_stitch_wounded_small.bmp", RGB(0, 255, 0));
+		rf_animation_attack[2].AddBitmap("res/rf_stitch_wounded_small.bmp", RGB(0, 255, 0));
+
+		animation[3].AddBitmap("res/snoopy_small.bmp", RGB(0, 255, 0));
+		animation_wounded[3].AddBitmap("res/snoopy_wounded_small.bmp", RGB(0, 255, 0));
+		animation_attack[3].AddBitmap("res/snoopy_wounded_small.bmp", RGB(0, 255, 0));
+
+		rf_animation[3].AddBitmap("res/rf_snoopy_small.bmp", RGB(0, 255, 0));
+		rf_animation_wounded[3].AddBitmap("res/rf_snoopy_wounded_small.bmp", RGB(0, 255, 0));
+		rf_animation_attack[3].AddBitmap("res/rf_snoopy_wounded_small.bmp", RGB(0, 255, 0));
+
+		animation[4].AddBitmap(IDB_KIRBY, RGB(0, 255, 0));
+		animation_wounded[4].AddBitmap(IDB_KIRBY_WOUNDED, RGB(0, 255, 0));
+		animation_attack[4].AddBitmap(IDB_KIRBY_ANGRY, RGB(0, 255, 0));
 	}
 
 	void BattlePlayer::LoadBitmap(int s_code, int * bitmaps, int r, int g, int b) {		//0-animation, 1-wounded, 2-under_attack, 3-attack, 4-rf_animation, 5-rf_wounded, 6-rf_under_attack, 7-rf_attack

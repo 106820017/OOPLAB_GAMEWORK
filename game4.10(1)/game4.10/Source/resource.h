@@ -133,8 +133,21 @@
 #define IDB_OPPONENT_SCENT_1            273
 #define IDB_OPPONENT_SCENT_2            274
 #define IDB_OPPONENT_SCENT_3            275
-#define IDB_BITMAP4                     276
 #define IDB_OPPONENT_SCENT_4            276
+#define IDB_KARBY_PROFILE               277
+#define IDB_PIKACHU_PROFILE             278
+#define IDB_STITCH_PROFILE              279
+#define IDB_SNOOPY_PROFILE              280
+#define IDB_BITMAP4                     281
+#define IDB_PROFILE_FRAME               281
+#define IDB_PROFILE_UNABLE              282
+#define IDB_PARALYZE_ICON               283
+#define IDB_PARALYZE_ICON_BIG           284
+#define IDB_PARALYZE_0                  285
+#define IDB_PARALYZE_1                  286
+#define IDB_PARALYZE_2                  287
+#define IDB_BITMAP6                     288
+#define IDB_PARALYZE_ICON_SMALL         288
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -147,7 +160,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        277
+#define _APS_NEXT_RESOURCE_VALUE        289
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

@@ -64,6 +64,7 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		const int		NUMBALLS;	// 球的總數
+		//int				battling_num = -1;
 		bool			in_store = false;
 		bool			in_battle = false;
 		bool			music_played = true;

@@ -10,6 +10,13 @@ namespace game_framework {
 	Store::Store() {
 		x = y = 10;
 		option_num = 0;
+		profile_num = 0;
+		choosingCharacter = false;
+		choosingSkill = false;
+		playersGet[0] = true;
+		for (int i = 1; i < 5; i++) {
+			playersGet[i] = false;
+		}
 	}
 
 	/*void Initialize() {
@@ -38,6 +45,21 @@ namespace game_framework {
 		play_arrow.AddBitmap(IDB_PLAY_0, RGB(255, 255, 255));
 		play_arrow.AddBitmap(IDB_PLAY_0, RGB(255, 255, 255));
 
+		profile[0].LoadBitmap(IDB_KARBY_PROFILE, RGB(0, 255, 0));
+		profile[1].LoadBitmap(IDB_PIKACHU_PROFILE, RGB(0, 255, 0));
+		profile[2].LoadBitmap(IDB_STITCH_PROFILE, RGB(0, 255, 0));
+		profile[3].LoadBitmap(IDB_SNOOPY_PROFILE, RGB(0, 255, 0));
+		profile[4].LoadBitmap(IDB_KARBY_PROFILE, RGB(0, 255, 0));
+
+		skill_icon[0].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
+		skill_icon[1].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
+		skill_icon[2].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
+		skill_icon[3].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
+		skill_icon[4].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
+
+		unable.LoadBitmap(IDB_PROFILE_UNABLE, RGB(255, 255, 255));
+
+		frame.LoadBitmap(IDB_PROFILE_FRAME, RGB(255, 255, 255));
 	}
 
 	void Store::OnMove() {
@@ -68,6 +90,29 @@ namespace game_framework {
 		clerk.SetTopLeft(x + 484, y + 340);
 		clerk.ShowBitmap();
 
+		if (!choosingSkill) {
+			profile[0].SetTopLeft(x + 142, y + 100);
+			profile[0].ShowBitmap();
+			profile[1].SetTopLeft(x + 286, y + 100);
+			profile[1].ShowBitmap();
+			profile[2].SetTopLeft(x + 410, y + 100);
+			profile[2].ShowBitmap();
+			profile[3].SetTopLeft(x + 208, y + 200);
+			profile[3].ShowBitmap();
+			profile[4].SetTopLeft(x + 363, y + 200);
+			profile[4].ShowBitmap();
+
+			for (int i = 1; i < 5; i++) {
+				if (!playersGet[i]) {
+					unable.SetTopLeft(profile[i].Left(), profile[i].Top());
+					unable.ShowBitmap();
+				}
+			}
+
+			frame.SetTopLeft(profile[profile_num].Left(), profile[profile_num].Top());
+			frame.ShowBitmap();
+		}	
+
 		lines.ShowString("Welcome!!\n  What can I help?", x+85, y+290);
 
 		mm.SetCurrent(20);
@@ -92,8 +137,30 @@ namespace game_framework {
 			option_num = 0;
 	}
 
+	void Store::SetCharacter(int char_num) {
+		profile_num = char_num;
+	}
+
+	void Store::SetChoosingCharacter(bool choosingCharacter) {
+		this->choosingCharacter = choosingCharacter;
+	}
+
+	void Store::SetPlayerGet(int char_num) {
+		playersGet[char_num] = true;
+	}
+
 	int Store::GetOptionNum() {
 		return option_num;
 	}
+	int Store::GetProfileNum() {
+		return profile_num;
+	}
 
+	bool Store::IsChoosingCharacter() {
+		return choosingCharacter;
+	}
+
+	bool Store::GetPlayerAble(int char_num) {
+		return playersGet[char_num];
+	}
 }

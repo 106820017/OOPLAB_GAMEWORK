@@ -292,6 +292,7 @@
     <ClCompile Include="Source\Parabola.cpp" />
     <ClCompile Include="Source\Random.cpp" />
     <ClCompile Include="Source\Rock.cpp" />
+    <ClCompile Include="Source\Skill.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -336,6 +337,7 @@
     <ClInclude Include="Source\Random.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\Rock.h" />
+    <ClInclude Include="Source\Skill.h" />
     <ClInclude Include="Source\StdAfx.h" />
     <ClInclude Include="Source\gamelib.h" />
     <ClInclude Include="Source\mygame.h" />
@@ -404,6 +406,7 @@
     <Image Include="RES\energy_bar_7.bmp" />
     <Image Include="RES\energy_bar_8.bmp" />
     <Image Include="RES\grass.bmp" />
+    <Image Include="RES\karby_profile.bmp" />
     <Image Include="RES\Kirby.bmp" />
     <Image Include="RES\Kirby_angry_small.bmp" />
     <Image Include="RES\Kirby_small.bmp" />
@@ -416,9 +419,18 @@
     <Image Include="RES\left5.bmp" />
     <Image Include="RES\left6.bmp" />
     <Image Include="RES\pad2.bmp" />
+    <Image Include="RES\paralyze_0.bmp" />
+    <Image Include="RES\paralyze_1.bmp" />
+    <Image Include="RES\paralyze_2.bmp" />
+    <Image Include="RES\paralyze_icon.bmp" />
+    <Image Include="RES\paralyze_icon_big.bmp" />
+    <Image Include="RES\paralyze_icon_small.bmp" />
+    <Image Include="RES\pikachu_profile.bmp" />
     <Image Include="RES\play0.bmp" />
     <Image Include="RES\play1.bmp" />
     <Image Include="RES\play2.bmp" />
+    <Image Include="RES\profile_frame.bmp" />
+    <Image Include="RES\profile_unable.bmp" />
     <Image Include="RES\redbar_small.bmp" />
     <Image Include="RES\rf_energy_bar_0.bmp" />
     <Image Include="RES\rf_energy_bar_1.bmp" />
@@ -449,8 +461,10 @@
     <Image Include="RES\role_test3_reflect.bmp" />
     <Image Include="RES\snoopy.bmp" />
     <Image Include="RES\snoopy_1.bmp" />
+    <Image Include="RES\snoopy_profile.bmp" />
     <Image Include="RES\snoopy_small.bmp" />
     <Image Include="RES\snoopy_test.bmp" />
+    <Image Include="RES\stitch_profile.bmp" />
     <Image Include="RES\textbar.bmp" />
     <Image Include="RES\textbar2.bmp" />
     <Image Include="RES\U.bmp" />

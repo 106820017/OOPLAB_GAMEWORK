@@ -11,6 +11,11 @@ namespace game_framework {
 		//int GetY2();	
 		int ScreenX(int x);
 		int ScreenY(int y);
+		int GetBattlingNum();
+		int GetOpponentX1();
+		int GetOpponentY1();
+		int GetOpponentX2();
+		int GetOpponentY2();
 		bool IsEmpty(int x, int y);
 		bool EnterHouse(int x, int y);
 		bool InBattle(int x1, int x2, int y1, int y2);
@@ -27,12 +32,17 @@ namespace game_framework {
 		void SetSX(int x);
 		void SetSY(int y);
 		void OpponentsOnMove();
+		void SetOpponentAlive(bool alive);
 		//int** GetOpponentPoints();
 	protected:
 		CMovingBitmap bitmap, rock, bush;
 		House house;
-		Opponent opponents[5] = { opponent1, opponent2, opponent3, opponent4, opponent5 };
-		Opponent opponent1, opponent2, opponent3, opponent4, opponent5;
+
+		//Opponent opponents[5];
+		Opponent *opponent1, *opponent2, *opponent3, *opponent4, *opponent5;
+		//Opponent opponent1;
+		Opponent * opponents_pointer;
+		int battling_num;
 		int map[30][30];
 		/*int rocks[30][30];
 		int bushes[30][30];*/

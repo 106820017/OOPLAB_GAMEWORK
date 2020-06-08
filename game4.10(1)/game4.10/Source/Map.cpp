@@ -22,6 +22,19 @@ namespace game_framework {
 		for (int i = 0; i < 30; i++)
 			for (int j = 0; j < 30; j++)
 				map[i][j] = obstacle[j][i];
+
+		opponent1 = new Opponent(0);
+		opponent2 = new Opponent(1);
+		opponent3 = new Opponent(2);
+		opponent4 = new Opponent(3);
+		opponent5 = new Opponent(4);
+		
+		opponents_pointer = new Opponent[5] { *opponent1, *opponent2, *opponent3, *opponent4, *opponent5 };
+
+		battling_num = -1;
+
+		//opponent1 = new Opponent(0);
+		//opponent2 = new Opponent(0);
 		/*Opponent ops[5] = { opponent1, opponent2, opponent3, opponent4, opponent5 };
 		for (int i = 0; i < 5; i++)
 			opponents[i] = ops[i];*/
@@ -38,6 +51,82 @@ namespace game_framework {
 		return y - sy;
 	}
 
+	int Map::GetBattlingNum() {
+		return battling_num;
+	}
+
+	int Map::GetOpponentX1() {
+		switch (battling_num)
+		{
+		case 0:
+			return opponent1->GetX1();
+		case 1:
+			return opponent2->GetX1();
+		case 2:
+			return opponent3->GetX1();
+		case 3:
+			return opponent4->GetX1();
+		case 4:
+			return opponent5->GetX1();
+		default:
+			return 0;
+		}
+	}
+
+	int Map::GetOpponentY1() {
+		switch (battling_num)
+		{
+		case 0:
+			return opponent1->GetY1();
+		case 1:
+			return opponent2->GetY1();
+		case 2:
+			return opponent3->GetY1();
+		case 3:
+			return opponent4->GetY1();
+		case 4:
+			return opponent5->GetY1();
+		default:
+			return 0;
+		}
+	}
+
+	int Map::GetOpponentX2() {
+		switch (battling_num)
+		{
+		case 0:
+			return opponent1->GetX2();
+		case 1:
+			return opponent2->GetX2();
+		case 2:
+			return opponent3->GetX2();
+		case 3:
+			return opponent4->GetX2();
+		case 4:
+			return opponent5->GetX2();
+		default:
+			return 0;
+		}
+	}
+
+	int Map::GetOpponentY2() {
+		switch (battling_num)
+		{
+		case 0:
+			return opponent1->GetY2();
+		case 1:
+			return opponent2->GetY2();
+		case 2:
+			return opponent3->GetY2();
+		case 3:
+			return opponent4->GetY2();
+		case 4:
+			return opponent5->GetY2();
+		default:
+			return 0;
+		}
+	}
+
 	bool Map::IsEmpty(int x, int y) {
 		int blockX = x / 120;
 		int blockY = y / 120;
@@ -51,16 +140,18 @@ namespace game_framework {
 	}
 
 	bool Map::InBattle(int x1, int x2, int y1, int y2) {
-		int points[5][4] = { {opponent1.GetX1(), opponent1.GetX2(), opponent1.GetY1(), opponent1.GetY2()},
-								  {opponent2.GetX1(), opponent2.GetX2(), opponent2.GetY1(), opponent2.GetY2()},
-								  {opponent3.GetX1(), opponent3.GetX2(), opponent3.GetY1(), opponent3.GetY2()},
-								  {opponent4.GetX1(), opponent4.GetX2(), opponent4.GetY1(), opponent4.GetY2()},
-								  {opponent5.GetX1(), opponent5.GetX2(), opponent5.GetY1(), opponent5.GetY2()} };
+		int points[5][4] = { {opponent1->GetX1(), opponent1->GetX2(), opponent1->GetY1(), opponent1->GetY2()},
+								  {opponent2->GetX1(), opponent2->GetX2(), opponent2->GetY1(), opponent2->GetY2()},
+								  {opponent3->GetX1(), opponent3->GetX2(), opponent3->GetY1(), opponent3->GetY2()},
+								  {opponent4->GetX1(), opponent4->GetX2(), opponent4->GetY1(), opponent4->GetY2()},
+								  {opponent5->GetX1(), opponent5->GetX2(), opponent5->GetY1(), opponent5->GetY2()} };
 		for (int i = 0; i < 5; i++) {
 			if (!((x2 < points[i][0]) || (x1 > points[i][1])) && !((y2 < points[i][2]) || (y1 > points[i][3]))) { //檢查腳色與怪物重疊
+				battling_num = i;
 				return true;
 			}
 		}
+		battling_num = -1;
 		return false;
 	}
 
@@ -75,11 +166,15 @@ namespace game_framework {
 		rock.LoadBitmap(IDB_ROCK, RGB(255, 255, 255));
 		bush.LoadBitmap(IDB_BUSH, RGB(255, 255, 255));
 		house.LoadBitmap();
-		opponent1.LoadBitmap();
-		opponent2.LoadBitmap();
-		opponent3.LoadBitmap();
-		opponent4.LoadBitmap();
-		opponent5.LoadBitmap();
+		opponent1->LoadBitmap();
+		opponent2->LoadBitmap();
+		opponent3->LoadBitmap();
+		opponent4->LoadBitmap();
+		opponent5->LoadBitmap();
+		
+		/*for (int i = 0; i < 5; i++)
+			opponents2[i].LoadBitmap();*/
+
 		/*for (int i = 0; i < 5; i++)
 			opponents[i].LoadBitmap();*/
 			//house.LoadBitmap(IDB_TEST);
@@ -109,11 +204,11 @@ namespace game_framework {
 			}
 			house.OnShow();
 		}
-		opponent1.OnShow(sx, sy);
-		opponent2.OnShow(sx, sy);
-		opponent3.OnShow(sx, sy);
-		opponent4.OnShow(sx, sy);
-		opponent5.OnShow(sx, sy);
+		opponent1->OnShow(sx, sy);
+		opponent2->OnShow(sx, sy);
+		opponent3->OnShow(sx, sy);
+		opponent4->OnShow(sx, sy);
+		opponent5->OnShow(sx, sy);
 		/*for (int i = 0; i < 5; i++)
 			opponents[i].OnShow(sx, sy);*/
 	}
@@ -142,13 +237,37 @@ namespace game_framework {
 		unsigned seed;
 		seed = (unsigned)time(NULL);
 
-		opponent1.OnMove(seed);
-		opponent2.OnMove(seed * 2);
-		opponent3.OnMove(seed * 3);
-		opponent4.OnMove(seed * 4);
-		opponent5.OnMove(seed * 5);
+		opponent1->OnMove(seed);
+		opponent2->OnMove(seed * 2);
+		opponent3->OnMove(seed * 3);
+		opponent4->OnMove(seed * 4);
+		opponent5->OnMove(seed * 5);
 		/*for (int i = 0; i < 5; i++)
 			opponents[i].OnMove(sx, sy);*/
+	}
+
+	void Map::SetOpponentAlive(bool alive) {
+		//opponents_pointer[battling_num].SetAlive(alive);
+		switch (battling_num)
+		{
+		case 0:
+			opponent1->SetAlive(alive);
+			break;
+		case 1:
+			opponent2->SetAlive(alive);
+			break;
+		case 2:
+			opponent3->SetAlive(alive);
+			break;
+		case 3:
+			opponent4->SetAlive(alive);
+			break;
+		case 4:
+			opponent5->SetAlive(alive);
+			break;
+		default:
+			break;
+		}
 	}
 
 	/*int** Map::GetOpponentPoints() {

@@ -51,6 +51,24 @@ namespace game_framework {
 		x = y = 0;
 		weapon2.SetInitialXY(486, 290);
 		weapon2.Initialize(true);
+		switch (skill_1.GetType())
+		{
+		case 0:
+			skill_1 = Paralyze(skill_1.GetType());
+			break;
+		default:
+			skill_1 = Paralyze(skill_1.GetType());
+			break;
+		}
+		switch (skill_2.GetType())
+		{
+		case 0:
+			skill_2 = Paralyze(skill_2.GetType());
+			break;
+		default:
+			skill_2 = Paralyze(skill_2.GetType());
+			break;
+		}
 		//weapon2.SetInvertSpeed();
 	}
 
@@ -67,6 +85,11 @@ namespace game_framework {
 	void Battlefield::ChangeWeapon(int number, int number2) {
 		weapon1.SetWeapon(number);
 		weapon2.SetWeapon(number2);
+	}
+
+	void Battlefield::ChangeSkill(int type1, int type2) {
+		skill_1.SetType(type1);
+		skill_2.SetType(type2);
 	}
 
 	void Battlefield::SetAngle(int angle1, int angle2) {
@@ -96,6 +119,9 @@ namespace game_framework {
 
 		energy1->LoadBitmap();
 		energy2->LoadBitmap();
+
+		skill_1.LoadBitmap();
+		skill_2.LoadBitmap();
 	}
 
 	void Battlefield::OnMove() {
@@ -111,6 +137,8 @@ namespace game_framework {
 		weapon1.OnMove();
 		weapon2.OnMove(true);
 		
+		skill_1.OnMove();
+		skill_2.OnMove();
 	}
 
 	void Battlefield::OnShow() {
@@ -133,12 +161,14 @@ namespace game_framework {
 		healthbar.SetTopLeft(-111 + (playerPointer1->GetHealth()*176/100), 20); //血量條長度176, 左框左上(65, 20)
 		healthbar.ShowBitmap();
 
-		healthbar.SetTopLeft(254 + (playerPointer2->GetHealth()*176/100), 20);	//血量條長度176, 左框左上(430, 20)
+		healthbar.SetTopLeft(254 + (playerPointer2->GetHealth()*176/100), 20);	//血量條長度176, 右框左上(430, 20)
 		healthbar.ShowBitmap();
 
 		healthbar_background.SetTopLeft(0, 0);
 		healthbar_background.ShowBitmap();
 
+		skill_1.OnShow(65, 70);
+		skill_2.OnShow(430, 70);
 	}
 
 

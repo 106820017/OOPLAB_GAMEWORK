@@ -274,27 +274,51 @@ IDB_RF_ENERGY_7         BITMAP                  "..\\RES\\rf_energy_bar_7.bmp"
 
 IDB_RF_ENERGY_8         BITMAP                  "..\\RES\\rf_energy_bar_8.bmp"
 
-IDB_CLERK               BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\clerk.bmp"
+IDB_CLERK               BITMAP                  "..\\RES\\clerk.bmp"
 
-IDB_STORE_PAD           BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\pad2.bmp"
+IDB_STORE_PAD           BITMAP                  "..\\RES\\pad2.bmp"
 
-IDB_U                   BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\U.bmp"
+IDB_U                   BITMAP                  "..\\RES\\U.bmp"
 
-IDB_TEXTBAR             BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\textbar2.bmp"
+IDB_TEXTBAR             BITMAP                  "..\\RES\\textbar2.bmp"
 
-IDB_PLAY_0              BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\play0.bmp"
+IDB_PLAY_0              BITMAP                  "..\\RES\\play0.bmp"
 
-IDB_PLAY_1              BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\play1.bmp"
+IDB_PLAY_1              BITMAP                  "..\\RES\\play1.bmp"
 
-IDB_PLAY_2              BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\play2.bmp"
+IDB_PLAY_2              BITMAP                  "..\\RES\\play2.bmp"
 
-IDB_OPPONENT_SCENT_1    BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\yellow3.bmp"
+IDB_OPPONENT_SCENT_1    BITMAP                  "..\\RES\\yellow3.bmp"
 
-IDB_OPPONENT_SCENT_2    BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\yellow4.bmp"
+IDB_OPPONENT_SCENT_2    BITMAP                  "..\\RES\\yellow4.bmp"
 
-IDB_OPPONENT_SCENT_3    BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\yellow5.bmp"
+IDB_OPPONENT_SCENT_3    BITMAP                  "..\\RES\\yellow5.bmp"
 
-IDB_OPPONENT_SCENT_4    BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\yellow6.bmp"
+IDB_OPPONENT_SCENT_4    BITMAP                  "..\\RES\\yellow6.bmp"
+
+IDB_KARBY_PROFILE       BITMAP                  "..\\RES\\karby_profile.bmp"
+
+IDB_PIKACHU_PROFILE     BITMAP                  "..\\RES\\pikachu_profile.bmp"
+
+IDB_STITCH_PROFILE      BITMAP                  "..\\RES\\stitch_profile.bmp"
+
+IDB_SNOOPY_PROFILE      BITMAP                  "..\\RES\\snoopy_profile.bmp"
+
+IDB_PROFILE_FRAME       BITMAP                  "..\\RES\\profile_frame.bmp"
+
+IDB_PROFILE_UNABLE      BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\profile_unable.bmp"
+
+IDB_PARALYZE_ICON       BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\paralyze_icon.bmp"
+
+IDB_PARALYZE_ICON_BIG   BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\paralyze_icon_big.bmp"
+
+IDB_PARALYZE_0          BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\paralyze_0.bmp"
+
+IDB_PARALYZE_1          BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\paralyze_1.bmp"
+
+IDB_PARALYZE_2          BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\paralyze_2.bmp"
+
+IDB_PARALYZE_ICON_SMALL BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\paralyze_icon_small.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

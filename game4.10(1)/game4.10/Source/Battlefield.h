@@ -2,6 +2,7 @@
 #include "BattlePlayer.h"
 #include "Weapon.h"
 #include "Energy.h"
+#include "Skill.h"
 
 namespace game_framework {
 	class Battlefield {
@@ -19,12 +20,14 @@ namespace game_framework {
 		void OnAttack(int num);
 		void ChangeCharacter(int number = 0, int number2 = 0);
 		void ChangeWeapon(int number, int number2);
+		void ChangeSkill(int type1 = 0, int type2 = 0);
 		void SetAngle(int angle1, int angle2);
 		void CheckHit();
 	protected:
 		CAnimation background;
 		CMovingBitmap healthbar_background;
 		CMovingBitmap healthbar;
+		Skill skill_1, skill_2;
 		//BattlePlayer playerChar1;
 		//BattlePlayer playerChar2;
 		BattlePlayer * playerPointer1 = new BattlePlayer(0);

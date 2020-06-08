@@ -13,6 +13,7 @@ namespace game_framework {
 
 	Opponent::Opponent(int num) {
 		SetNum(num);
+		Initialize();
 	}
 
 	int Opponent::GetX1()
@@ -27,12 +28,22 @@ namespace game_framework {
 
 	int Opponent::GetX2()
 	{
-		return x + bitmap0.Width();
+		return x + ani.Width();
 	}
 
 	int Opponent::GetY2()
 	{
-		return y + bitmap0.Height();
+		return y + ani.Height();
+	}
+
+	int Opponent::GetNum()
+	{
+		return num;
+	}
+
+	bool Opponent::IsAlive()
+	{
+		return alive;
 	}
 
 	void Opponent::Initialize() {
@@ -41,11 +52,17 @@ namespace game_framework {
 		srand(seed);
 		x = rand() % 3600;
 		y = rand() % 3600;*/
+		ani.SetDelayCount(3);
+
 		random.SetSeed(3600);
 		random20.SetSeed(20);
 
 		x = random.GetRand();
 		y = random.GetRand();
+
+		play_wait = 8;
+
+		alive = true;
 		//x = random.GetRand(3600);
 		//y = random.GetRand(3600);
 		/*while (!isEmpty) {
@@ -55,52 +72,64 @@ namespace game_framework {
 	}
 
 	void Opponent::LoadBitmap() {
-		bitmap0.LoadBitmap(IDB_OPPONENT_SCENT_0, RGB(255, 255, 255));
+		//bitmap0.LoadBitmap(IDB_OPPONENT_SCENT_0, RGB(255, 255, 255));
 		
-		/*ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));
+		//ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
-		ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
+		//ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
-		ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
+		//ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
-		ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
+		//ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_0, RGB(255, 255, 255));
-		ani.AddBitmap(IDB_OPPONENT_SCENT_0, RGB(255, 255, 255));
+		//ani.AddBitmap(IDB_OPPONENT_SCENT_0, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
-		ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
+		//ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
-		ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
+		//ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
-		ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
+		//ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));
-		ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));*/
+		//ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));
 	}
 
 	void Opponent::OnShow(int sx, int sy) {
-		bitmap0.SetTopLeft(x-sx, y-sy);
-		bitmap0.ShowBitmap();
-		/*ani.SetTopLeft(x - sx, y - sy);
-		ani.OnShow();*/
+		/*bitmap0.SetTopLeft(x-sx, y-sy);
+		bitmap0.ShowBitmap();*/
+		ani.SetTopLeft(x - sx, y - sy);
+		ani.OnShow();
 	}
 
 	void Opponent::OnMove(unsigned seed) {
 		/*unsigned seed;
 		seed = (unsigned)time(NULL); // 取得時間序列*/
-		/*bool play = true;
+		bool play = true;
 
 		if (ani.GetCurrentBitmapNumber() == 0) {
-			if (random20.GetRand() < 15) {
+			if (random20.GetRand() < 18) {
 				play = false;
 			}
+			/*if (play_wait > 0) {
+				play = false;
+				play_wait--;
+			}
+			else
+				play_wait = 8;*/
 		}
 
 		if (play) {
 			ani.OnMove();
-		}*/
+		}
 
-		
-		RandomMove(seed);
+		if (alive)
+			RandomMove(seed);
+		else {
+			x = -100;
+			y = -100;
+		}
+;
+
 		//bitmap.SetTopLeft(x, y);
 		/*bitmap.SetTopLeft(x - sx, y - sy);
 		bitmap.ShowBitmap();*/
@@ -128,5 +157,9 @@ namespace game_framework {
 
 	void Opponent::SetNum(int num) {
 		this->num = num;
+	}
+
+	void Opponent::SetAlive(bool alive) {
+		this->alive = alive;
 	}
 }
