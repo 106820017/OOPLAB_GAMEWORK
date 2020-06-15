@@ -9,7 +9,12 @@ namespace game_framework {
 	public:
 		Battlefield();
 		bool GetWeaponAlive(int num);
+		bool GetSkillActivated(int skill_num);
+		bool GetSkillUsed(int skill_num);
+		//bool AbleToMove();
+		int  GetSkillType(int skill_num);
 		int  GetHealth(int player_num);
+		int  GetParalyze(int player_num);
 		int  GetAngle(int weapon_num);
 		void Initialize();
 		void LoadBitmap();
@@ -17,6 +22,9 @@ namespace game_framework {
 		void OnMove();
 		//void Charge(int num);
 		void SetCharge(int num, bool flag);
+		void SetSkillActivated(int skill_num);
+		void SetSkillUsed(int skill_num, bool used);
+		void SetParalyze(int player_num, bool paralyze);
 		void OnAttack(int num);
 		void ChangeCharacter(int number = 0, int number2 = 0);
 		void ChangeWeapon(int number, int number2);
@@ -27,7 +35,8 @@ namespace game_framework {
 		CAnimation background;
 		CMovingBitmap healthbar_background;
 		CMovingBitmap healthbar;
-		Skill skill_1, skill_2;
+		CMovingBitmap test;
+		Skill *skill_1, *skill_2;
 		//BattlePlayer playerChar1;
 		//BattlePlayer playerChar2;
 		BattlePlayer * playerPointer1 = new BattlePlayer(0);
@@ -37,5 +46,7 @@ namespace game_framework {
 		Energy *energy2 = new Energy(520, 250, true);
 		int x, y;
 		int s_code, s_code2;
+		bool player1_paralyzed, player2_paralyzed;
+		//bool player1_hit, player2_hit;
 	};
 }

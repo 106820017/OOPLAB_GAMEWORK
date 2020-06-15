@@ -627,5 +627,8 @@
     <Image Include="RES\paralyze_icon_small.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\capoo_profile.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

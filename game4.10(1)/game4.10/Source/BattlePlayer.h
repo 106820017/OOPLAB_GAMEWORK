@@ -18,7 +18,7 @@ namespace game_framework {
 		int  GetY2();
 		int	 GetHealth();
 		void SetXY(int x, int y);
-		void GetAttack();
+		void GotAttack();
 		//void SetHPLow();
 	protected:
 		//CAnimation animation[10];

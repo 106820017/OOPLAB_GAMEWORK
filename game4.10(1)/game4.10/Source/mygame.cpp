@@ -197,6 +197,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	//eraser.OnMove();
 	character.OnMove(mapp);
+	bool wasInBattle = in_battle;
 	CheckInBattle();
 	//gamemap.OpponentsOnMove();
 	if (!in_battle) {
@@ -231,8 +232,17 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		store.ClearCurrent();
 	}
 
-	
+	/*if (wasInBattle = false && in_battle) {
+		battlefield.ChangeCharacter(store.GetProfileNum(), 0);
+	}*/
 
+	if (battlefield.GetHealth(1) <= 0 || battlefield.GetHealth(2) <= 0) {
+		LeaveBattle();
+		//store.SetPlayerGet(battlefield) = true;
+		battlefield.ChangeCharacter(store.GetProfileNum(), 0);
+
+	}
+	
 	//
 	// 判斷擦子是否碰到球
 	//
@@ -311,6 +321,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_ESC	 = 0x1B; // keyboard ESC
 	const char KEY_SPACE = 0x20; // keyboard空白鍵
 	const char KEY_ENTER = 0x0D; // keyboard Enter
+	const char KEY_Z	 = 0x5A; // keyboard_Z
 	CheckInStore();
 	if (!in_store && !in_battle) {
 		if (nChar == KEY_LEFT)
@@ -330,33 +341,69 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	/*if (in_store && nChar == KEY_ESC)
 		LeaveStore();*/
 
-	if (in_store && !store.IsChoosingCharacter() && nChar == KEY_RIGHT)
+	if (in_store && !store.IsChoosingCharacter() && !store.IsChoosingSkill() && nChar == KEY_RIGHT)
 		store.NextOption();
 
-	if (in_store && !store.IsChoosingCharacter()) {
+	if (in_store && !store.IsChoosingCharacter() && !store.IsChoosingSkill()) {
 		if (store.GetOptionNum() == 0 && nChar == KEY_SPACE)
 			store.SetChoosingCharacter(true);
+		else if (store.GetOptionNum() == 1 && nChar == KEY_SPACE)
+			store.SetChoosingSkill(true);
 	}
 	else if (in_store && store.IsChoosingCharacter()) {
+		int able[5] = {store.GetPlayerAble(0), store.GetPlayerAble(1), store.GetPlayerAble(2), store.GetPlayerAble(3), store.GetPlayerAble(4) };
+		int next_num = 0, prev_num = 0;
 		switch (nChar)
 		{
 		case KEY_RIGHT:
-			if (store.GetProfileNum() < 4 && store.GetPlayerAble(store.GetProfileNum() + 1))
-				store.SetCharacter(store.GetProfileNum() + 1);
+			if (store.GetProfileNum() < 4) {
+				for (int i = store.GetProfileNum()+1; i <= 4; i++)
+					if (able[i]) {
+						next_num = i;
+						store.SetCharacter(next_num);
+						break;
+					}
+			}
 			break;
 		case KEY_LEFT:
-			if (store.GetProfileNum() > 0 && store.GetPlayerAble(store.GetProfileNum() - 1))
-				store.SetCharacter(store.GetProfileNum() - 1);
+			if (store.GetProfileNum() > 0) {
+				for (int i = store.GetProfileNum()-1; i >= 0; i--)
+					if (able[i]) {
+						prev_num = i;
+						store.SetCharacter(prev_num);
+						break;
+					}
+			}
 			break;
 		case KEY_UP:
-			if ((store.GetProfileNum() == 3 && store.GetPlayerAble(0)) || (store.GetProfileNum() == 4 && store.GetPlayerAble(1)))
-				store.SetCharacter(store.GetProfileNum() - 3);
+			if ((store.GetProfileNum() == 3)) {
+				if (store.GetPlayerAble(0))
+					store.SetCharacter(0);
+				else if (store.GetPlayerAble(1))
+					store.SetCharacter(1);
+			}
+			else if ((store.GetProfileNum() == 4)) {
+				if (store.GetPlayerAble(2))
+					store.SetCharacter(2);
+				else if (store.GetPlayerAble(1))
+					store.SetCharacter(1);
+			}
 			break;
 		case KEY_DOWN:
-			if ((store.GetProfileNum() == 0 && store.GetPlayerAble(3)) || (store.GetProfileNum() == 1 && store.GetPlayerAble(4)))
-				store.SetCharacter(store.GetProfileNum() + 3);
-			else if (store.GetProfileNum() == 2 && store.GetPlayerAble(4))
-				store.SetCharacter(store.GetProfileNum() + 2);
+			if ((store.GetProfileNum() == 0)) {
+				if (store.GetPlayerAble(3))
+					store.SetCharacter(3);
+			}
+			else if ((store.GetProfileNum() == 1)) {
+				if (store.GetPlayerAble(3))
+					store.SetCharacter(3);
+				else if (store.GetPlayerAble(4))
+					store.SetCharacter(4);
+			}
+			else if ((store.GetProfileNum() == 2)) {
+				if (store.GetPlayerAble(4))
+					store.SetCharacter(4);
+			}
 			break;
 		case KEY_SPACE:
 			battlefield.ChangeCharacter(store.GetProfileNum());
@@ -366,8 +413,23 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			break;
 		}
 	}
+	else if (in_store && store.IsChoosingSkill()) {
+		switch (nChar)
+		{
+		case KEY_RIGHT:
+			store.NextSkill();
+			break;
+		case KEY_LEFT:
+			store.LastSkill();
+			break;
+		case KEY_SPACE:
+			store.SetChoosingSkill(false);
+		default:
+			break;
+		}
+	}
 
-	if (in_store && store.GetOptionNum() == 1 && nChar == KEY_SPACE)
+	if (in_store && store.GetOptionNum() == 2 && nChar == KEY_SPACE)
 		LeaveStore();
 
 	/*if (in_battle && nChar == KEY_SPACE) {
@@ -380,8 +442,23 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			player1_attacked = false;
 		}
 	}*/
+	
+	if (in_battle && nChar == KEY_Z) {
+		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2) && !battlefield.GetSkillUsed(1)) {
+			battlefield.SetSkillActivated(1);
+		}
+	}
 
 	if (in_battle && nChar == KEY_SPACE) {
+		if (battlefield.GetParalyze(2)) {
+			player1_attacked = false;
+			battlefield.SetParalyze(2, false);
+		}
+		else if (battlefield.GetParalyze(1)) {
+			player1_attacked = true;
+			battlefield.SetParalyze(1, false);
+		}
+
 		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
 			battlefield.SetCharge(1, true);
 		}
@@ -436,11 +513,19 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 			battlefield.SetCharge(1, false);
 			battlefield.OnAttack(1);
 			player1_attacked = true;
+			/*if (!battlefield.GetParalyze(2))
+				player1_attacked = true;
+			else
+				battlefield.SetParalyze(2, false);*/
 		}
 		else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
 			battlefield.SetCharge(2, false);
 			battlefield.OnAttack(2);
 			player1_attacked = false;
+			/*if (!battlefield.GetParalyze(1))
+				player1_attacked = false;
+			else
+				battlefield.SetParalyze(1, false);*/
 		}
 	}
 }
@@ -505,12 +590,12 @@ void CGameStateRun::OnShow()
 		store.OnShow();
 	}
 
-	if (battlefield.GetHealth(1) <= 0 || battlefield.GetHealth(2) <= 0) {
+	/*if (battlefield.GetHealth(1) <= 0 || battlefield.GetHealth(2) <= 0) {
 		LeaveBattle();		
 		//store.SetPlayerGet(battlefield) = true;
 		battlefield.ChangeCharacter(store.GetProfileNum(), 0);
 
-	}
+	}*/
 
 	if (in_battle) {
 		battlefield.OnShow();

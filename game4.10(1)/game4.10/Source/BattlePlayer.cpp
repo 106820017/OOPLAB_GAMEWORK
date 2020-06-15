@@ -33,7 +33,7 @@ namespace game_framework {
 		rf_animation_wounded[0].AddBitmap(IDB_RF_KIRBY_WOUNDED, RGB(0, 255, 0));
 		rf_animation_attack[0].AddBitmap(IDB_RF_KIRBY_ANGRY, RGB(0, 255, 0));
 
-		animation[1].AddBitmap("res/pikachu_small.bmp", RGB(255, 255, 255));
+		animation[1].AddBitmap("res/pikachu_small.bmp", RGB(0, 255, 0));
 		animation_wounded[1].AddBitmap("res/pikachu_wounded_small.bmp", RGB(0, 255, 0));
 		animation_attack[1].AddBitmap("res/pikachu_angry_small.bmp", RGB(0, 255, 0));
 
@@ -43,23 +43,27 @@ namespace game_framework {
 
 		animation[2].AddBitmap("res/stitch_small.bmp", RGB(0, 255, 0));
 		animation_wounded[2].AddBitmap("res/stitch_wounded_small.bmp", RGB(0, 255, 0));
-		animation_attack[2].AddBitmap("res/stitch_wounded_small.bmp", RGB(0, 255, 0));
+		animation_attack[2].AddBitmap("res/stitch_angry_small.bmp", RGB(0, 255, 0));
 
 		rf_animation[2].AddBitmap("res/rf_stitch_small.bmp", RGB(0, 255, 0));
 		rf_animation_wounded[2].AddBitmap("res/rf_stitch_wounded_small.bmp", RGB(0, 255, 0));
-		rf_animation_attack[2].AddBitmap("res/rf_stitch_wounded_small.bmp", RGB(0, 255, 0));
+		rf_animation_attack[2].AddBitmap("res/rf_stitch_angry_small.bmp", RGB(0, 255, 0));
 
 		animation[3].AddBitmap("res/snoopy_small.bmp", RGB(0, 255, 0));
 		animation_wounded[3].AddBitmap("res/snoopy_wounded_small.bmp", RGB(0, 255, 0));
-		animation_attack[3].AddBitmap("res/snoopy_wounded_small.bmp", RGB(0, 255, 0));
+		animation_attack[3].AddBitmap("res/snoopy_angry_small.bmp", RGB(0, 255, 0));
 
 		rf_animation[3].AddBitmap("res/rf_snoopy_small.bmp", RGB(0, 255, 0));
 		rf_animation_wounded[3].AddBitmap("res/rf_snoopy_wounded_small.bmp", RGB(0, 255, 0));
-		rf_animation_attack[3].AddBitmap("res/rf_snoopy_wounded_small.bmp", RGB(0, 255, 0));
+		rf_animation_attack[3].AddBitmap("res/rf_snoopy_angry_small.bmp", RGB(0, 255, 0));
 
-		animation[4].AddBitmap(IDB_KIRBY, RGB(0, 255, 0));
-		animation_wounded[4].AddBitmap(IDB_KIRBY_WOUNDED, RGB(0, 255, 0));
-		animation_attack[4].AddBitmap(IDB_KIRBY_ANGRY, RGB(0, 255, 0));
+		animation[4].AddBitmap("res/capoo.bmp", RGB(0, 255, 0));
+		animation_wounded[4].AddBitmap("res/capoo_wounded.bmp", RGB(0, 255, 0));
+		animation_attack[4].AddBitmap("res/capoo_angry.bmp", RGB(0, 255, 0));
+
+		rf_animation[4].AddBitmap("res/rf_capoo.bmp", RGB(0, 255, 0));
+		rf_animation_wounded[4].AddBitmap("res/rf_capoo_wounded.bmp", RGB(0, 255, 0));
+		rf_animation_attack[4].AddBitmap("res/rf_capoo_angry.bmp", RGB(0, 255, 0));
 	}
 
 	void BattlePlayer::LoadBitmap(int s_code, int * bitmaps, int r, int g, int b) {		//0-animation, 1-wounded, 2-under_attack, 3-attack, 4-rf_animation, 5-rf_wounded, 6-rf_under_attack, 7-rf_attack
@@ -135,7 +139,7 @@ namespace game_framework {
 		return Health;
 	}
 
-	void BattlePlayer::GetAttack()
+	void BattlePlayer::GotAttack()
 	{
 		Health -= 20;
 	}

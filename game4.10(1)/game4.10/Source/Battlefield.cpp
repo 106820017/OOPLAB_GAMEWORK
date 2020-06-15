@@ -23,6 +23,35 @@ namespace game_framework {
 		}
 	}
 
+	bool Battlefield::GetSkillActivated(int skill_num) {
+		if (skill_num == 1)
+			return skill_1->IsActivated();
+		else
+			return skill_2->IsActivated();
+	}
+
+	bool Battlefield::GetSkillUsed(int skill_num) {
+		if (skill_num == 1)
+			return skill_1->GetUsed();
+		else
+			return skill_2->GetUsed();
+	}
+
+	/*bool Battlefield::AbleToMove() {
+		if (player1_hit && skill_1->GetActivated())
+			return false;
+		else if (player2_hit && skill_2->GetActivated())
+			return false;
+		return true;
+	}*/
+
+	int Battlefield::GetSkillType(int skill_num) {
+		if (skill_num == 1)
+			return skill_1->GetType();
+		else
+			return skill_2->GetType();
+	}
+
 	int Battlefield::GetHealth(int player_num) {
 		switch (player_num)
 		{
@@ -30,6 +59,18 @@ namespace game_framework {
 			return playerPointer1->GetHealth();
 		case 2:
 			return playerPointer2->GetHealth();
+		default:
+			return 0;
+		}
+	}
+
+	int Battlefield::GetParalyze(int player_num) {
+		switch (player_num)
+		{
+		case 1:
+			return player1_paralyzed;
+		case 2:
+			return player2_paralyzed;
 		default:
 			return 0;
 		}
@@ -51,25 +92,28 @@ namespace game_framework {
 		x = y = 0;
 		weapon2.SetInitialXY(486, 290);
 		weapon2.Initialize(true);
-		switch (skill_1.GetType())
+		skill_1 = new Skill();
+		skill_2 = new Skill();
+		switch (skill_1->GetType())
 		{
-		case 0:
-			skill_1 = Paralyze(skill_1.GetType());
+		case 1:
+			skill_1 = new Paralyze(skill_1->GetType());
 			break;
 		default:
-			skill_1 = Paralyze(skill_1.GetType());
+			skill_1 = new Paralyze(skill_1->GetType());
 			break;
 		}
-		switch (skill_2.GetType())
+		switch (skill_2->GetType())
 		{
-		case 0:
-			skill_2 = Paralyze(skill_2.GetType());
+		case 1:
+			skill_2 = new Paralyze(skill_2->GetType());
 			break;
 		default:
-			skill_2 = Paralyze(skill_2.GetType());
+			skill_2 = new Paralyze(skill_2->GetType());
 			break;
 		}
 		//weapon2.SetInvertSpeed();
+		player1_paralyzed = player2_paralyzed = false;
 	}
 
 	void Battlefield::ChangeCharacter(int number, int number2) {
@@ -88,8 +132,8 @@ namespace game_framework {
 	}
 
 	void Battlefield::ChangeSkill(int type1, int type2) {
-		skill_1.SetType(type1);
-		skill_2.SetType(type2);
+		skill_1->SetType(type1);
+		skill_2->SetType(type2);
 	}
 
 	void Battlefield::SetAngle(int angle1, int angle2) {
@@ -120,8 +164,10 @@ namespace game_framework {
 		energy1->LoadBitmap();
 		energy2->LoadBitmap();
 
-		skill_1.LoadBitmap();
-		skill_2.LoadBitmap();
+		skill_1->LoadBitmap();
+		skill_2->LoadBitmap();
+
+		test.LoadBitmap(IDB_0);
 	}
 
 	void Battlefield::OnMove() {
@@ -133,12 +179,16 @@ namespace game_framework {
 		energy2->OnMove();
 		if (energy2->GetCharging())
 			weapon2.SetPower(energy2->GetPower(), true);
-		
+		bool weapon1_alive = weapon1.IsAlive(), weapon2_alive = weapon2.IsAlive();
 		weapon1.OnMove();
 		weapon2.OnMove(true);
+		if (weapon1.IsAlive() == false && weapon1_alive == true)
+			skill_1->SetActivated(false);
+		if (weapon2.IsAlive() == false && weapon2_alive == true)
+			skill_2->SetActivated(false);
 		
-		skill_1.OnMove();
-		skill_2.OnMove();
+		skill_1->OnMove();
+		skill_2->OnMove();
 	}
 
 	void Battlefield::OnShow() {
@@ -167,8 +217,19 @@ namespace game_framework {
 		healthbar_background.SetTopLeft(0, 0);
 		healthbar_background.ShowBitmap();
 
-		skill_1.OnShow(65, 70);
-		skill_2.OnShow(430, 70);
+		skill_1->OnShow(65, 70);
+		skill_2->OnShow(430, 70);
+
+		if (player1_paralyzed)
+			skill_1->ShowAnimation(20, 290);
+		if (player2_paralyzed)
+			skill_2->ShowAnimation(490, 290);
+
+		if (skill_1->IsActivated()) {
+			test.SetTopLeft(10, 10);
+			test.ShowBitmap();
+		}			
+
 	}
 
 
@@ -186,13 +247,57 @@ namespace game_framework {
 		}
 	}
 
+	void Battlefield::SetSkillActivated(int skill_num) {
+		switch (skill_num)
+		{
+		case 1:
+			skill_1->SetActivated(true);
+			break;
+		case 2:
+			skill_2->SetActivated(true);
+			break;
+		default:
+			break;
+		}
+	}
+
+	void Battlefield::SetSkillUsed(int skill_num, bool used) {
+		switch (skill_num)
+		{
+		case 1:
+			skill_1->SetUsed(used);
+			break;
+		case 2:
+			skill_2->SetUsed(used);
+			break;
+		default:
+			break;
+		}
+	}
+
+	void Battlefield::SetParalyze(int player_num, bool paralyze) {
+		switch (player_num)
+		{
+		case 1:
+			player1_paralyzed = paralyze;
+			break;
+		case 2:
+			player2_paralyzed = paralyze;
+			break;
+		default:
+			break;
+		}
+	}
+
 	void Battlefield::OnAttack(int num) {
 		switch (num)
 		{
 		case 1:
+			//player1_hit = false;
 			weapon1.SetAlive(true);
 			break;
 		case 2:
+			//player2_hit = false;
 			weapon2.SetAlive(true);
 			break;
 		default:
@@ -203,12 +308,25 @@ namespace game_framework {
 	void Battlefield::CheckHit() {
 		if (weapon2.IsAlive() && (weapon2.GetX1() < playerPointer1->GetX2() - 10 && weapon2.GetX2() > playerPointer1->GetX1() + 10 && weapon2.GetY1() < playerPointer1->GetY2() - 10 && weapon2.GetY2() > playerPointer1->GetY1() + 10)) {
 			//playerPointer1->SetHit(true);
+			//if (skill_2->IsActivated() && skill_2->GetType() == 1) {
+			if (skill_2->IsActivated()) {
+				player1_paralyzed = true;
+				//skill_2->SetActivated(false);
+			}
+			skill_2->SetActivated(false);
 			weapon2.SetAlive(false, true);
-			playerPointer1->GetAttack();
+			playerPointer1->GotAttack();
 		}
 		else if (weapon1.IsAlive() && (weapon1.GetX1() < playerPointer2->GetX2() - 10 && weapon1.GetX2() > playerPointer2->GetX1() + 10 && weapon1.GetY1() < playerPointer2->GetY2() - 10 && weapon1.GetY2() > playerPointer2->GetY1() + 10)) {
+			//player1_hit = true;
+			//if (skill_1->IsActivated() && skill_1->GetType() == 1) {
+			if (skill_1->IsActivated()) {
+				player2_paralyzed = true;
+				//skill_1->SetActivated(false);
+			}
+			skill_1->SetActivated(false);
 			weapon1.SetAlive(false);
-			playerPointer2->GetAttack();
+			playerPointer2->GotAttack();
 		}
 	}
 }

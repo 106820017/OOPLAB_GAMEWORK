@@ -11,6 +11,7 @@ namespace game_framework {
 		x = y = 10;
 		option_num = 0;
 		profile_num = 0;
+		skill_num = 0;
 		choosingCharacter = false;
 		choosingSkill = false;
 		playersGet[0] = true;
@@ -34,8 +35,8 @@ namespace game_framework {
 		textBar.LoadBitmap(IDB_TEXTBAR, RGB(255, 255, 255));
 		lines.LoadBitmap();
 
-		mm.LoadBitmap();
-
+		ccharacter.LoadBitmap();
+		cskill.LoadBitmap();
 		leave.LoadBitmap();
 
 		play_arrow.AddBitmap(IDB_PLAY_2, RGB(255, 255, 255));
@@ -49,13 +50,13 @@ namespace game_framework {
 		profile[1].LoadBitmap(IDB_PIKACHU_PROFILE, RGB(0, 255, 0));
 		profile[2].LoadBitmap(IDB_STITCH_PROFILE, RGB(0, 255, 0));
 		profile[3].LoadBitmap(IDB_SNOOPY_PROFILE, RGB(0, 255, 0));
-		profile[4].LoadBitmap(IDB_KARBY_PROFILE, RGB(0, 255, 0));
+		profile[4].LoadBitmap(IDB_CAPOO_PROFILE, RGB(0, 255, 0));
 
-		skill_icon[0].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
-		skill_icon[1].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
-		skill_icon[2].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
-		skill_icon[3].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
-		skill_icon[4].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
+		skill_icon[0].LoadBitmap(IDB_PARALYZE_ICON_BIG, RGB(255, 255, 255));
+		skill_icon[1].LoadBitmap(IDB_PARALYZE_ICON_BIG, RGB(255, 255, 255));
+		skill_icon[2].LoadBitmap(IDB_PARALYZE_ICON_BIG, RGB(255, 255, 255));
+		skill_icon[3].LoadBitmap("res/suckblood_icon_big.bmp", RGB(255, 255, 255));
+		skill_icon[4].LoadBitmap("res/lightbeam_icon_big.bmp", RGB(255, 255, 255));
 
 		unable.LoadBitmap(IDB_PROFILE_UNABLE, RGB(255, 255, 255));
 
@@ -112,14 +113,21 @@ namespace game_framework {
 			frame.SetTopLeft(profile[profile_num].Left(), profile[profile_num].Top());
 			frame.ShowBitmap();
 		}	
+		else {
+			skill_icon[skill_num].SetTopLeft(x + 250, y + 100);
+			skill_icon[skill_num].ShowBitmap();
+		}
 
 		lines.ShowString("Welcome!!\n  What can I help?", x+85, y+290);
 
-		mm.SetCurrent(20);
+		ccharacter.SetCurrent(20);
 		if (option_num == 0)
-			mm.ShowString("Change my character.", x + 85, y + 375);
-		leave.SetCurrent(12);
+			ccharacter.ShowString("Change my character.", x + 85, y + 375);
+		cskill.SetCurrent(16);
 		if (option_num == 1)
+			cskill.ShowString("Change my skill.", x + 85, y + 375);
+		leave.SetCurrent(12);
+		if (option_num == 2)
 			leave.ShowString("Leave store.", x + 85, y + 375);
 
 		play_arrow.SetTopLeft(x + 450, y + 350);
@@ -131,7 +139,7 @@ namespace game_framework {
 	}
 
 	void Store::NextOption() {
-		if (option_num < 1)
+		if (option_num < 2)
 			option_num++;
 		else
 			option_num = 0;
@@ -141,8 +149,26 @@ namespace game_framework {
 		profile_num = char_num;
 	}
 
+	void Store::NextSkill() {
+		if (skill_num < 4)
+			skill_num++;
+		else
+			skill_num = 0;
+	}
+
+	void Store::LastSkill() {
+		if (skill_num > 0)
+			skill_num--;
+		else
+			skill_num = 4;
+	}
+
 	void Store::SetChoosingCharacter(bool choosingCharacter) {
 		this->choosingCharacter = choosingCharacter;
+	}
+
+	void Store::SetChoosingSkill(bool choosingSkill) {
+		this->choosingSkill = choosingSkill;
 	}
 
 	void Store::SetPlayerGet(int char_num) {
@@ -152,12 +178,21 @@ namespace game_framework {
 	int Store::GetOptionNum() {
 		return option_num;
 	}
+
 	int Store::GetProfileNum() {
 		return profile_num;
 	}
 
+	int Store::GetSkillNum() {
+		return skill_num;
+	}
+
 	bool Store::IsChoosingCharacter() {
 		return choosingCharacter;
+	}
+
+	bool Store::IsChoosingSkill() {
+		return choosingSkill;
 	}
 
 	bool Store::GetPlayerAble(int char_num) {

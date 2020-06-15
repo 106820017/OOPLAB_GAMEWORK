@@ -394,6 +394,7 @@
     <Image Include="RES\cabin_7.bmp" />
     <Image Include="RES\cabin_8.bmp" />
     <Image Include="RES\cabin_9.bmp" />
+    <Image Include="RES\capoo_profile.bmp" />
     <Image Include="RES\clerk.bmp" />
     <Image Include="RES\dot.bmp" />
     <Image Include="RES\energy_bar_0.bmp" />
