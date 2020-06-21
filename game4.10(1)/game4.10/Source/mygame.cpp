@@ -200,7 +200,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	bool wasInBattle = in_battle;
 	CheckInBattle();
 	//gamemap.OpponentsOnMove();
-	if (!in_battle) {
+	if (!in_battle && !in_store) {
 		gamemap.OpponentsOnMove();
 	}
 	else {
@@ -232,9 +232,9 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		store.ClearCurrent();
 	}
 
-	/*if (wasInBattle = false && in_battle) {
-		battlefield.ChangeCharacter(store.GetProfileNum(), 0);
-	}*/
+	if (!wasInBattle && in_battle && battling_num != -1) {
+		battlefield.ChangeCharacter(store.GetProfileNum(), battling_num);
+	}
 
 	if (battlefield.GetHealth(1) <= 0 || battlefield.GetHealth(2) <= 0) {
 		LeaveBattle();
@@ -423,7 +423,9 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			store.LastSkill();
 			break;
 		case KEY_SPACE:
+			battlefield.ChangeSkill(store.GetSkillNum());
 			store.SetChoosingSkill(false);
+			break;
 		default:
 			break;
 		}
@@ -462,7 +464,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
 			battlefield.SetCharge(1, true);
 		}
-		else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
+		else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2) && !battlefield.GetLaserAlive()) {
 			battlefield.SetCharge(2, true);
 		}
 	}
@@ -511,7 +513,12 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (in_battle && nChar == KEY_SPACE) {
 		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
 			battlefield.SetCharge(1, false);
-			battlefield.OnAttack(1);
+			if (battlefield.GetSkillType(1) == 4 && battlefield.GetSkillActivated(1)) {
+				battlefield.OnLaserAttack();
+				battlefield.SetSkillActivated(1, false);
+			}
+			else
+				battlefield.OnAttack(1);
 			player1_attacked = true;
 			/*if (!battlefield.GetParalyze(2))
 				player1_attacked = true;
@@ -615,7 +622,7 @@ void CGameStateRun::LeaveStore() {
 
 void CGameStateRun::CheckInBattle() {
 	in_battle = mapp->InBattle(character.GetX1(), character.GetX2(), character.GetY1(), character.GetY2());
-	//battling_num = mapp->GetBattlingNum();
+	battling_num = mapp->GetBattlingNum();
 }
 
 void CGameStateRun::LeaveBattle() {
@@ -625,6 +632,9 @@ void CGameStateRun::LeaveBattle() {
 		store.SetPlayerGet(mapp->GetBattlingNum());
 		mapp->SetOpponentAlive(false);
 	}
+
+	battlefield.ResetSkillAnimation(1);
+	battlefield.ResetSkillAnimation(2);
 
 	int nX1 = mapp->GetOpponentX1() - 160;
 	int nY1 = mapp->GetOpponentY1() + 160;

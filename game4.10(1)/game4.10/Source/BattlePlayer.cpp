@@ -37,7 +37,7 @@ namespace game_framework {
 		animation_wounded[1].AddBitmap("res/pikachu_wounded_small.bmp", RGB(0, 255, 0));
 		animation_attack[1].AddBitmap("res/pikachu_angry_small.bmp", RGB(0, 255, 0));
 
-		rf_animation[1].AddBitmap("res/rf_pikachu_small.bmp", RGB(255, 255, 255));
+		rf_animation[1].AddBitmap("res/rf_pikachu_small.bmp", RGB(0, 255, 0));
 		rf_animation_wounded[1].AddBitmap("res/rf_pikachu_wounded_small.bmp", RGB(0, 255, 0));
 		rf_animation_attack[1].AddBitmap("res/rf_pikachu_angry_small.bmp", RGB(0, 255, 0));
 
@@ -142,6 +142,10 @@ namespace game_framework {
 	void BattlePlayer::GotAttack()
 	{
 		Health -= 20;
+	}
+
+	void BattlePlayer::SetHealth(int health) {
+		Health = health;
 	}
 
 	/*void BattlePlayer::SetHPLow() {

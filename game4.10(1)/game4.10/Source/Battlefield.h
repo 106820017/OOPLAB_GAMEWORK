@@ -11,6 +11,7 @@ namespace game_framework {
 		bool GetWeaponAlive(int num);
 		bool GetSkillActivated(int skill_num);
 		bool GetSkillUsed(int skill_num);
+		bool GetLaserAlive();
 		//bool AbleToMove();
 		int  GetSkillType(int skill_num);
 		int  GetHealth(int player_num);
@@ -22,10 +23,12 @@ namespace game_framework {
 		void OnMove();
 		//void Charge(int num);
 		void SetCharge(int num, bool flag);
-		void SetSkillActivated(int skill_num);
+		void SetSkillActivated(int skill_num, bool flag = true);
 		void SetSkillUsed(int skill_num, bool used);
 		void SetParalyze(int player_num, bool paralyze);
+		void ResetSkillAnimation(int skill_num);
 		void OnAttack(int num);
+		void OnLaserAttack();
 		void ChangeCharacter(int number = 0, int number2 = 0);
 		void ChangeWeapon(int number, int number2);
 		void ChangeSkill(int type1 = 0, int type2 = 0);
@@ -46,7 +49,7 @@ namespace game_framework {
 		Energy *energy2 = new Energy(520, 250, true);
 		int x, y;
 		int s_code, s_code2;
-		bool player1_paralyzed, player2_paralyzed;
+		bool player1_paralyzed, player2_paralyzed, player1_useLaser;
 		//bool player1_hit, player2_hit;
 	};
 }
