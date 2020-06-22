@@ -16,8 +16,8 @@ namespace game_framework {
 		void SetType(int type);
 		void SetActivated(bool activated);
 		void SetUsed(bool used);
-		void ResetShowed();
-		void ResetAnimation();
+		void ResetShowed();	//回到第一張圖開始撥放
+		void ResetAnimation();	//回到第一張圖不撥放
 		int GetType();
 		int GetShowedTimes();
 		bool IsActivated();
@@ -41,6 +41,13 @@ namespace game_framework {
 		void ReloadBitmap();
 		void ShowAnimation(int x = 0, int y = 0);
 	
+	};
+
+	class Twice : public Skill {
+	public:
+		Twice(int type = 2);
+		void Initialize();
+		void ReloadBitmap();
 	};
 
 	class SuckBlood : public Skill {

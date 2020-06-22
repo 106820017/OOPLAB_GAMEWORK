@@ -52,9 +52,9 @@ namespace game_framework {
 		profile[3].LoadBitmap(IDB_SNOOPY_PROFILE, RGB(0, 255, 0));
 		profile[4].LoadBitmap(IDB_CAPOO_PROFILE, RGB(0, 255, 0));
 
-		skill_icon[0].LoadBitmap(IDB_PARALYZE_ICON_BIG, RGB(255, 255, 255));
+		skill_icon[0].LoadBitmap("res/blank.bmp", RGB(255, 255, 255));
 		skill_icon[1].LoadBitmap(IDB_PARALYZE_ICON_BIG, RGB(255, 255, 255));
-		skill_icon[2].LoadBitmap(IDB_PARALYZE_ICON_BIG, RGB(255, 255, 255));
+		skill_icon[2].LoadBitmap("res/twice_icon_big.bmp", RGB(255, 255, 255));
 		skill_icon[3].LoadBitmap("res/suckblood_icon_big.bmp", RGB(255, 255, 255));
 		skill_icon[4].LoadBitmap("res/lightbeam_icon_big.bmp", RGB(255, 255, 255));
 

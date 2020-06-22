@@ -103,6 +103,9 @@ namespace game_framework {
 		case 1:
 			skill_1 = new Paralyze(skill_1->GetType());
 			break;
+		case 2:
+			skill_1 = new Twice(skill_1->GetType());
+			break;
 		case 3:
 			skill_1 = new SuckBlood(skill_1->GetType());
 			break;
@@ -110,7 +113,7 @@ namespace game_framework {
 			skill_1 = new Laser(skill_1->GetType());
 			break;
 		default:
-			skill_1 = new Paralyze(skill_1->GetType());
+			skill_1 = new Skill(skill_1->GetType());
 			//skill_1->ReloadAnimation();
 			break;
 		}
@@ -119,6 +122,9 @@ namespace game_framework {
 		case 1:
 			skill_2 = new Paralyze(skill_2->GetType());
 			break;
+		case 2:
+			skill_2 = new Twice(skill_2->GetType());
+			break;
 		case 3:
 			skill_2 = new SuckBlood(skill_2->GetType());
 			break;
@@ -126,7 +132,7 @@ namespace game_framework {
 			skill_2 = new Laser(skill_2->GetType());
 			break;
 		default:
-			skill_2 = new Paralyze(skill_2->GetType());
+			skill_2 = new Skill(skill_2->GetType());
 			break;
 		}
 		//weapon2.SetInvertSpeed();
@@ -205,10 +211,18 @@ namespace game_framework {
 		bool weapon1_alive = weapon1.IsAlive(), weapon2_alive = weapon2.IsAlive();
 		weapon1.OnMove();
 		weapon2.OnMove(true);
-		if (weapon1.IsAlive() == false && weapon1_alive == true)
+		CheckHit();
+		if (weapon1.IsAlive() == false && weapon1_alive == true) {
+			if (skill_1->GetType() == 2 && skill_1->IsActivated())
+				weapon1.SetAlive(true);
 			skill_1->SetActivated(false);
-		if (weapon2.IsAlive() == false && weapon2_alive == true)
+		}
+
+		if (weapon2.IsAlive() == false && weapon2_alive == true) {
+			if (skill_2->GetType() == 2 && skill_2->IsActivated())
+				weapon2.SetAlive(true, true);
 			skill_2->SetActivated(false);
+		}
 		
 		skill_1->OnMove();
 		skill_2->OnMove();
@@ -227,7 +241,7 @@ namespace game_framework {
 		background.OnShow();
 		playerPointer1->OnShow();
 		playerPointer2->OnShow();
-		CheckHit();
+		//CheckHit();
 		/*if (weapon1.IsAlive()) {
 			weapon1.OnShow();
 		}
@@ -335,9 +349,11 @@ namespace game_framework {
 		{
 		case 1:
 			skill_1->ResetAnimation();
+			weapon1.SetAlive(false);
 			break;
 		case 2:
 			skill_2->ResetAnimation();
+			weapon2.SetAlive(false, true);
 			break;
 		default:
 			break;
@@ -378,9 +394,12 @@ namespace game_framework {
 					playerPointer2->SetHealth(playerPointer2->GetHealth() + 20);
 				skill_2->ResetShowed();
 			}
-			skill_2->SetActivated(false);
+
 			weapon2.SetAlive(false, true);
 			playerPointer1->GotAttack();
+			if (skill_2->GetType() == 2 && skill_2->IsActivated())
+				weapon2.SetAlive(true, true);
+			skill_2->SetActivated(false);
 		}
 		else if (weapon1.IsAlive() && (weapon1.GetX1() < playerPointer2->GetX2() - 10 && weapon1.GetX2() > playerPointer2->GetX1() + 10 && weapon1.GetY1() < playerPointer2->GetY2() - 10 && weapon1.GetY2() > playerPointer2->GetY1() + 10)) {
 			//player1_hit = true;
@@ -393,10 +412,12 @@ namespace game_framework {
 				if (playerPointer1->GetHealth() < 100)
 					playerPointer1->SetHealth(playerPointer1->GetHealth() + 20);
 				skill_1->ResetShowed();
-			}
-			skill_1->SetActivated(false);
+			}			
 			weapon1.SetAlive(false);
 			playerPointer2->GotAttack();
+			if (skill_1->GetType() == 2 && skill_1->IsActivated())
+				weapon1.SetAlive(true);
+			skill_1->SetActivated(false);
 		}
 	}
 }

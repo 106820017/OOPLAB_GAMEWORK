@@ -21,8 +21,8 @@ namespace game_framework {
 	}
 
 	void Skill::LoadBitmap() {
-		bitmap[0].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
-		bitmap_big[0].LoadBitmap(IDB_PARALYZE_ICON, RGB(255, 255, 255));
+		bitmap[0].LoadBitmap("res/blank.bmp", RGB(255, 255, 255));
+		bitmap_big[0].LoadBitmap("res/blank.bmp", RGB(255, 255, 255));
 		bitmap[1].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
 		bitmap_big[1].LoadBitmap(IDB_PARALYZE_ICON_BIG, RGB(255, 255, 255));
 		bitmap[2].LoadBitmap("res/suckblood_icon_small.bmp", RGB(255, 255, 255));
@@ -50,7 +50,18 @@ namespace game_framework {
 	}
 
 	void Skill::ReloadBitmap() {
+		bitmap[0].LoadBitmap("res/blank.bmp", RGB(255, 255, 255));
+		bitmap_big[0].LoadBitmap("res/blank.bmp", RGB(255, 255, 255));
+		bitmap[1].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
+		bitmap_big[1].LoadBitmap(IDB_PARALYZE_ICON_BIG, RGB(255, 255, 255));
+		bitmap[2].LoadBitmap("res/suckblood_icon_small.bmp", RGB(255, 255, 255));
+		bitmap_big[2].LoadBitmap("res/suckblood_icon_big.bmp", RGB(255, 255, 255));
+		bitmap[3].LoadBitmap("res/suckblood_icon_small.bmp", RGB(255, 255, 255));
+		bitmap_big[3].LoadBitmap("res/suckblood_icon_big.bmp", RGB(255, 255, 255));
+		bitmap[4].LoadBitmap("res/suckblood_icon_small.bmp", RGB(255, 255, 255));
+		bitmap_big[4].LoadBitmap("res/suckblood_icon_big.bmp", RGB(255, 255, 255));
 
+		animation.AddBitmap(IDB_PLAY_0, RGB(255, 255, 255));
 	}
 
 	void Skill::ShowAnimation(int x, int y) {
@@ -141,8 +152,8 @@ namespace game_framework {
 		bitmap_big[0].LoadBitmap(IDB_PARALYZE_ICON, RGB(255, 255, 255));
 		bitmap[1].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
 		bitmap_big[1].LoadBitmap(IDB_PARALYZE_ICON_BIG, RGB(255, 255, 255));
-		bitmap[2].LoadBitmap("res/suckblood_icon_small.bmp", RGB(255, 255, 255));
-		bitmap_big[2].LoadBitmap("res/suckblood_icon_big.bmp", RGB(255, 255, 255));
+		bitmap[2].LoadBitmap("res/twice_icon_small.bmp", RGB(255, 255, 255));
+		bitmap_big[2].LoadBitmap("res/twice_icon_big.bmp", RGB(255, 255, 255));
 		bitmap[3].LoadBitmap("res/suckblood_icon_small.bmp", RGB(255, 255, 255));
 		bitmap_big[3].LoadBitmap("res/suckblood_icon_big.bmp", RGB(255, 255, 255));
 		bitmap[4].LoadBitmap("res/suckblood_icon_small.bmp", RGB(255, 255, 255));
@@ -160,6 +171,32 @@ namespace game_framework {
 		animation.SetDelayCount(3);
 		animation.SetTopLeft(x, y);
 		animation.OnShow();
+	}
+
+	Twice::Twice(int type) : Skill(type) {
+		Initialize();
+	}
+
+	void Twice::Initialize() {
+		used = false;
+		activated = false;
+		showed_times = 2;
+	}
+
+	void Twice::ReloadBitmap() {
+		//animation.ClearBitmap();
+		bitmap[0].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
+		bitmap_big[0].LoadBitmap(IDB_PARALYZE_ICON, RGB(255, 255, 255));
+		bitmap[1].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
+		bitmap_big[1].LoadBitmap(IDB_PARALYZE_ICON_BIG, RGB(255, 255, 255));
+		bitmap[2].LoadBitmap("res/twice_icon_small.bmp", RGB(255, 255, 255));
+		bitmap_big[2].LoadBitmap("res/twice_icon_big.bmp", RGB(255, 255, 255));
+		bitmap[3].LoadBitmap("res/suckblood_icon_small.bmp", RGB(255, 255, 255));
+		bitmap_big[3].LoadBitmap("res/suckblood_icon_big.bmp", RGB(255, 255, 255));
+		bitmap[4].LoadBitmap("res/suckblood_icon_small.bmp", RGB(255, 255, 255));
+		bitmap_big[4].LoadBitmap("res/suckblood_icon_big.bmp", RGB(255, 255, 255));
+
+		animation.AddBitmap(IDB_PARALYZE_0, RGB(255, 255, 255));
 	}
 
 	SuckBlood::SuckBlood(int type) : Skill(type) {
