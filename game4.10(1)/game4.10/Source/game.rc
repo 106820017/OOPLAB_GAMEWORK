@@ -306,21 +306,21 @@ IDB_SNOOPY_PROFILE      BITMAP                  "..\\RES\\snoopy_profile.bmp"
 
 IDB_PROFILE_FRAME       BITMAP                  "..\\RES\\profile_frame.bmp"
 
-IDB_PROFILE_UNABLE      BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\profile_unable.bmp"
+IDB_PROFILE_UNABLE      BITMAP                  "..\\RES\\profile_unable.bmp"
 
-IDB_PARALYZE_ICON       BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\paralyze_icon.bmp"
+IDB_PARALYZE_ICON       BITMAP                  "..\\RES\\paralyze_icon.bmp"
 
-IDB_PARALYZE_ICON_BIG   BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\paralyze_icon_big.bmp"
+IDB_PARALYZE_ICON_BIG   BITMAP                  "..\\RES\\paralyze_icon_big.bmp"
 
-IDB_PARALYZE_0          BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\paralyze_0.bmp"
+IDB_PARALYZE_0          BITMAP                  "..\\RES\\paralyze_0.bmp"
 
-IDB_PARALYZE_1          BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\paralyze_1.bmp"
+IDB_PARALYZE_1          BITMAP                  "..\\RES\\paralyze_1.bmp"
 
-IDB_PARALYZE_2          BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\paralyze_2.bmp"
+IDB_PARALYZE_2          BITMAP                  "..\\RES\\paralyze_2.bmp"
 
-IDB_PARALYZE_ICON_SMALL BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\paralyze_icon_small.bmp"
+IDB_PARALYZE_ICON_SMALL BITMAP                  "..\\RES\\paralyze_icon_small.bmp"
 
-IDB_CAPOO_PROFILE       BITMAP                  "C:\\Users\\User\\Documents\\ooplab\\game4.10(2)\\game4.10\\RES\\capoo_profile.bmp"
+IDB_CAPOO_PROFILE       BITMAP                  "..\\RES\\capoo_profile.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

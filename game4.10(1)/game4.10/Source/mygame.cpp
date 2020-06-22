@@ -28,6 +28,11 @@ void CGameStateInit::OnInit()
 	// 開始載入資料
 	//
 	logo.LoadBitmap(IDB_BACKGROUND);
+	start_page.LoadBitmap("res/start.bmp", RGB(255, 255, 255));
+	start_button.LoadBitmap("res/play.bmp", RGB(255, 255, 255));
+	quit_button.LoadBitmap("res/quit.bmp", RGB(255, 255, 255));
+	howTo_button.LoadBitmap("res/howtoplay_small.bmp");
+	selection_frame.LoadBitmap("res/start_selection_frame.bmp", RGB(255, 255, 255));
 	Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 	//
 	// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
@@ -42,15 +47,27 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	const char KEY_ESC = 27;
 	const char KEY_SPACE = ' ';
-	if (nChar == KEY_SPACE)
+	const char KEY_UP = 0x26; // keyboard上箭頭
+	const char KEY_DOWN = 0x28; // keyboard下箭頭
+	if (nChar == KEY_UP && selecting > 0)
+		selecting--;
+	else if (nChar == KEY_DOWN && selecting < 2)
+		selecting++;
+	else if (nChar == KEY_SPACE) {
+		if (selecting == 0)
+			GotoGameState(GAME_STATE_RUN);
+		else if(selecting == 2)
+			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
+	}
+	/*if (nChar == KEY_SPACE)
 		GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
 	else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
-		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0);	// 關閉遊戲
+		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0);	// 關閉遊戲*/
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+	//GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
 }
 
 void CGameStateInit::OnShow()
@@ -58,12 +75,22 @@ void CGameStateInit::OnShow()
 	//
 	// 貼上logo
 	//
-	logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y/8);
-	logo.ShowBitmap();
+	/*logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y/8);
+	logo.ShowBitmap();*/
+	start_page.SetTopLeft(0, 0);
+	start_page.ShowBitmap();
+	start_button.SetTopLeft(270, 220);
+	start_button.ShowBitmap();
+	howTo_button.SetTopLeft(270, 290);
+	howTo_button.ShowBitmap();
+	quit_button.SetTopLeft(270, 360);
+	quit_button.ShowBitmap();
+	selection_frame.SetTopLeft(270, 220 + selecting * 70);
+	selection_frame.ShowBitmap();
 	//
 	// Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
 	//
-	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+	/*CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 	CFont f,*fp;
 	f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
 	fp=pDC->SelectObject(&f);					// 選用 font f
@@ -75,7 +102,7 @@ void CGameStateInit::OnShow()
 		pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
 	pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");
 	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC*/
 }								
 
 /////////////////////////////////////////////////////////////////////////////
@@ -242,6 +269,18 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		battlefield.ChangeCharacter(store.GetProfileNum(), 0);
 
 	}
+
+	int quit = 0;
+	for (int i = 0; i < 5; i++) {
+		if (store.GetPlayerAble(i))
+			quit++;
+	}
+
+	if (in_store && quit >= 5) {
+		GotoGameState(GAME_STATE_OVER);
+		CAudio::Instance()->Stop(AUDIO_STORE);
+	}
+		
 	
 	//
 	// 判斷擦子是否碰到球
@@ -322,6 +361,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_SPACE = 0x20; // keyboard空白鍵
 	const char KEY_ENTER = 0x0D; // keyboard Enter
 	const char KEY_Z	 = 0x5A; // keyboard_Z
+	const char KEY_K	 = 0x4B; //keyboard_K
 	CheckInStore();
 	if (!in_store && !in_battle) {
 		if (nChar == KEY_LEFT)
@@ -430,6 +470,12 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			break;
 		}
 	}
+
+	if (in_store && store.GetOptionNum() == 0 && nChar == KEY_K) {
+		for (int i = 0; i < 5; i++)
+			store.SetPlayerGet(i);
+	}
+
 
 	if (in_store && store.GetOptionNum() == 2 && nChar == KEY_SPACE)
 		LeaveStore();

@@ -35,6 +35,8 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap logo;								// csie的logo
+		CMovingBitmap start_page, start_button, quit_button, howTo_button, selection_frame;
+		int selecting = 0;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
