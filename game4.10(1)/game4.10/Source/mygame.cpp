@@ -353,13 +353,18 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//bball.LoadBitmap();										// 載入圖形
 	hits_left.LoadBitmap();		
 	rand20.SetSeed(20);
-	rand19.SetSeed(19);
+	rand10.SetSeed(10);
 	angle = 35;
 	//CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
 	//CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
-	CAudio::Instance()->Load(AUDIO_GAME,  "sounds\\game.mp3");	// 載入編號2的聲音ntut.mid
+	CAudio::Instance()->Load(AUDIO_GAME,  "sounds\\game.mp3");	// 載入編號0的聲音
 	CAudio::Instance()->Load(AUDIO_FIGHT, "sounds\\fight.mp3");
 	CAudio::Instance()->Load(AUDIO_STORE, "sounds\\store.mp3");
+	CAudio::Instance()->Load(AUDIO_PRESS, "sounds\\press.mp3");
+	CAudio::Instance()->Load(AUDIO_SELECT, "sounds\\select.mp3");
+	CAudio::Instance()->Load(AUDIO_UNABLE, "sounds\\unable.mp3");
+	CAudio::Instance()->Load(AUDIO_HIT, "sounds\\hit.mp3");
+	CAudio::Instance()->Load(AUDIO_LASER, "sounds\\laser.mp3");
 	//
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//
@@ -395,14 +400,20 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	/*if (in_store && nChar == KEY_ESC)
 		LeaveStore();*/
 
-	if (in_store && !store.IsChoosingCharacter() && !store.IsChoosingSkill() && nChar == KEY_RIGHT)
+	if (in_store && !store.IsChoosingCharacter() && !store.IsChoosingSkill() && nChar == KEY_RIGHT) {
+		CAudio::Instance()->Play(AUDIO_PRESS);
 		store.NextOption();
+	}
 
 	if (in_store && !store.IsChoosingCharacter() && !store.IsChoosingSkill()) {
-		if (store.GetOptionNum() == 0 && nChar == KEY_SPACE)
+		if (store.GetOptionNum() == 0 && nChar == KEY_SPACE) {
+			CAudio::Instance()->Play(AUDIO_SELECT);
 			store.SetChoosingCharacter(true);
-		else if (store.GetOptionNum() == 1 && nChar == KEY_SPACE)
+		}
+		else if (store.GetOptionNum() == 1 && nChar == KEY_SPACE) {
+			CAudio::Instance()->Play(AUDIO_SELECT);
 			store.SetChoosingSkill(true);
+		}
 	}
 	else if (in_store && store.IsChoosingCharacter()) {
 		int able[5] = {store.GetPlayerAble(0), store.GetPlayerAble(1), store.GetPlayerAble(2), store.GetPlayerAble(3), store.GetPlayerAble(4) };
@@ -411,57 +422,95 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		{
 		case KEY_RIGHT:
 			if (store.GetProfileNum() < 4) {
-				for (int i = store.GetProfileNum()+1; i <= 4; i++)
+				for (int i = store.GetProfileNum() + 1; i <= 4; i++) {
 					if (able[i]) {
 						next_num = i;
 						store.SetCharacter(next_num);
+						CAudio::Instance()->Play(AUDIO_PRESS);
 						break;
 					}
+				}					
+				CAudio::Instance()->Play(AUDIO_UNABLE);
 			}
 			break;
 		case KEY_LEFT:
 			if (store.GetProfileNum() > 0) {
-				for (int i = store.GetProfileNum()-1; i >= 0; i--)
+				for (int i = store.GetProfileNum() - 1; i >= 0; i--) {
 					if (able[i]) {
 						prev_num = i;
 						store.SetCharacter(prev_num);
+						CAudio::Instance()->Play(AUDIO_PRESS);
 						break;
 					}
+				}
+				CAudio::Instance()->Play(AUDIO_UNABLE);
 			}
 			break;
 		case KEY_UP:
 			if ((store.GetProfileNum() == 3)) {
-				if (store.GetPlayerAble(0))
+				if (store.GetPlayerAble(0)) {
 					store.SetCharacter(0);
-				else if (store.GetPlayerAble(1))
+					CAudio::Instance()->Play(AUDIO_PRESS);
+				}					
+				else if (store.GetPlayerAble(1)) {
+					CAudio::Instance()->Play(AUDIO_PRESS);
 					store.SetCharacter(1);
+				}			
+				else {
+					CAudio::Instance()->Play(AUDIO_UNABLE);
+				}
 			}
 			else if ((store.GetProfileNum() == 4)) {
-				if (store.GetPlayerAble(2))
+				if (store.GetPlayerAble(2)) {
+					CAudio::Instance()->Play(AUDIO_PRESS);
 					store.SetCharacter(2);
-				else if (store.GetPlayerAble(1))
+				}
+				else if (store.GetPlayerAble(1)) {
+					CAudio::Instance()->Play(AUDIO_PRESS);
 					store.SetCharacter(1);
+				}
+				else {
+					CAudio::Instance()->Play(AUDIO_UNABLE);
+				}
 			}
 			break;
 		case KEY_DOWN:
 			if ((store.GetProfileNum() == 0)) {
-				if (store.GetPlayerAble(3))
+				if (store.GetPlayerAble(3)) {
+					CAudio::Instance()->Play(AUDIO_PRESS);
 					store.SetCharacter(3);
+				}
+				else {
+					CAudio::Instance()->Play(AUDIO_UNABLE);
+				}
 			}
 			else if ((store.GetProfileNum() == 1)) {
-				if (store.GetPlayerAble(3))
+				if (store.GetPlayerAble(3)) {
+					CAudio::Instance()->Play(AUDIO_PRESS);
 					store.SetCharacter(3);
-				else if (store.GetPlayerAble(4))
+				}
+				else if (store.GetPlayerAble(4)) {
+					CAudio::Instance()->Play(AUDIO_PRESS);
 					store.SetCharacter(4);
+				}
+				else {
+					CAudio::Instance()->Play(AUDIO_UNABLE);
+				}
 			}
 			else if ((store.GetProfileNum() == 2)) {
-				if (store.GetPlayerAble(4))
+				if (store.GetPlayerAble(4)) {
+					CAudio::Instance()->Play(AUDIO_PRESS);
 					store.SetCharacter(4);
+				}
+				else {
+					CAudio::Instance()->Play(AUDIO_UNABLE);
+				}
 			}
 			break;
 		case KEY_SPACE:
 			battlefield.ChangeCharacter(store.GetProfileNum());
 			store.SetChoosingCharacter(false);
+			CAudio::Instance()->Play(AUDIO_SELECT);
 			break;
 		default:
 			break;
@@ -472,13 +521,16 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		{
 		case KEY_RIGHT:
 			store.NextSkill();
+			CAudio::Instance()->Play(AUDIO_PRESS);
 			break;
 		case KEY_LEFT:
 			store.LastSkill();
+			CAudio::Instance()->Play(AUDIO_PRESS);
 			break;
 		case KEY_SPACE:
 			battlefield.ChangeSkill(store.GetSkillNum());
 			store.SetChoosingSkill(false);
+			CAudio::Instance()->Play(AUDIO_SELECT);
 			break;
 		default:
 			break;
@@ -488,6 +540,15 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (in_store && store.GetOptionNum() == 0 && nChar == KEY_K) {
 		for (int i = 0; i < 5; i++)
 			store.SetPlayerGet(i);
+	}
+
+	if (!in_store && !in_battle && nChar == KEY_K) {
+		for (int i = 0; i < 5; i++) {
+			if (mapp->GetOpponentAlive(i)) {
+				mapp->SetOpponentXY(i, character.GetX1(), character.GetY1());
+				break;
+			}
+		}
 	}
 
 
@@ -575,6 +636,7 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 			battlefield.SetCharge(1, false);
 			if (battlefield.GetSkillType(1) == 4 && battlefield.GetSkillActivated(1)) {
 				battlefield.OnLaserAttack();
+				CAudio::Instance()->Play(AUDIO_LASER);
 				battlefield.SetSkillActivated(1, false);
 			}
 			else
@@ -743,6 +805,7 @@ void CGameStateRun::LeaveBattle() {
 
 	player1_attacked = false;
 	battlefield.SetParalyze(2, false);
+	SetPlayer2Charge(false);
 }
 void CGameStateRun::AngleMove() {
 	if (!Chargable) {
@@ -765,14 +828,14 @@ void CGameStateRun::AngleMove() {
 
 void CGameStateRun::Charge() {
 	if (Chargable) {
-		if (rand20.GetRand() < 16)
+		if (rand20.GetRand() < 18)
 			SetPlayer2Charge(true);
 		else {
 			SetPlayer2Charge(false);
 			SetPlayer2Attack();
 			Chargable = false;
 			player1_attacked = false;
-			angle = (rand19.GetRand() - 9) * 5;
+			angle = rand10.GetRand() * 5;
 		}
 	}
 

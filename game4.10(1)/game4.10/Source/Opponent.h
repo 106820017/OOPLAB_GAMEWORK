@@ -19,6 +19,7 @@ namespace game_framework {
 		void OnMove(unsigned seed);
 		void SetNum(int num);
 		void SetAlive(bool alive);
+		void SetXY(int x, int y);
 
 	protected:
 		CMovingBitmap bitmap0;

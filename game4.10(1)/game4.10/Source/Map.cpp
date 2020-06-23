@@ -155,6 +155,25 @@ namespace game_framework {
 		return false;
 	}
 
+	bool Map::GetOpponentAlive(int num) {
+		switch (num)
+		{
+		case 0:
+			return opponent1->IsAlive();
+		case 1:
+			return opponent2->IsAlive();
+		case 2:
+			return opponent3->IsAlive();
+			break;
+		case 3:
+			return opponent4->IsAlive();
+		case 4:
+			return opponent5->IsAlive();
+		default:
+			return false;
+		}
+	}
+
 	void Map::SetEmpty(int x, int y) {
 		int blockX = x / 120;
 		int blockY = y / 120;
@@ -270,21 +289,26 @@ namespace game_framework {
 		}
 	}
 
-	/*int** Map::GetOpponentPoints() {
-		//return opponents;
-		int *[] oppoXYs = 0;
-		oppoXYs = new int *[5];
-		oppoXYs[0] = new int[4]{ opponent1.GetX1(), opponent1.GetX2(), opponent1.GetY1(), opponent1.GetY2() };
-		oppoXYs[1] = new int[4]{ opponent2.GetX1(), opponent2.GetX2(), opponent2.GetY1(), opponent2.GetY2() };
-		oppoXYs[2] = new int[4]{ opponent3.GetX1(), opponent3.GetX2(), opponent3.GetY1(), opponent3.GetY2() };
-		oppoXYs[3] = new int[4]{ opponent4.GetX1(), opponent4.GetX2(), opponent4.GetY1(), opponent4.GetY2() };
-		oppoXYs[4] = new int[4]{ opponent5.GetX1(), opponent5.GetX2(), opponent5.GetY1(), opponent5.GetY2() };
-		int opponentXYs[5][4] = { {opponent1.GetX1(), opponent1.GetX2(), opponent1.GetY1(), opponent1.GetY2()},
-								  {opponent2.GetX1(), opponent2.GetX2(), opponent2.GetY1(), opponent2.GetY2()},
-								  {opponent3.GetX1(), opponent3.GetX2(), opponent3.GetY1(), opponent3.GetY2()},
-								  {opponent4.GetX1(), opponent4.GetX2(), opponent4.GetY1(), opponent4.GetY2()},
-								  {opponent5.GetX1(), opponent5.GetX2(), opponent5.GetY1(), opponent5.GetY2()} };
-
-		return oppoXYs;
-	}*/
+	void Map::SetOpponentXY(int num, int x, int y) {
+		switch (num)
+		{
+		case 0:
+			opponent1->SetXY(x, y);
+			break;
+		case 1:
+			opponent2->SetXY(x, y);
+			break;
+		case 2:
+			opponent3->SetXY(x, y);
+			break;
+		case 3:
+			opponent4->SetXY(x, y);
+			break;
+		case 4:
+			opponent5->SetXY(x, y);
+			break;
+		default:
+			break;
+		}
+	}
 }

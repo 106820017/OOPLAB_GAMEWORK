@@ -162,4 +162,9 @@ namespace game_framework {
 	void Opponent::SetAlive(bool alive) {
 		this->alive = alive;
 	}
+
+	void Opponent::SetXY(int x, int y) {
+		this->x = x;
+		this->y = y;
+	}
 }

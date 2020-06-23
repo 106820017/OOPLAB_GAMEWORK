@@ -397,6 +397,7 @@ namespace game_framework {
 
 			weapon2.SetAlive(false, true);
 			playerPointer1->GotAttack();
+			CAudio::Instance()->Play(6);
 			if (skill_2->GetType() == 2 && skill_2->IsActivated())
 				weapon2.SetAlive(true, true);
 			skill_2->SetActivated(false);
@@ -415,6 +416,7 @@ namespace game_framework {
 			}			
 			weapon1.SetAlive(false);
 			playerPointer2->GotAttack();
+			CAudio::Instance()->Play(6);
 			if (skill_1->GetType() == 2 && skill_1->IsActivated())
 				weapon1.SetAlive(true);
 			skill_1->SetActivated(false);

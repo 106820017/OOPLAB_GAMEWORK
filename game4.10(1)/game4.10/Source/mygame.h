@@ -15,9 +15,14 @@ namespace game_framework {
 	enum AUDIO_ID {				// 定義各種音效的編號
 		//AUDIO_DING,				// 0
 		//AUDIO_LAKE,				// 1
-		AUDIO_GAME,			    // 2
-		AUDIO_FIGHT,
-		AUDIO_STORE
+		AUDIO_GAME,			    // 0
+		AUDIO_FIGHT,			// 1
+		AUDIO_STORE,			// 2
+		AUDIO_PRESS,			// 3
+		AUDIO_SELECT,			// 4
+		AUDIO_UNABLE,			// 5
+		AUDIO_HIT,				// 6
+		AUDIO_LASER				// 7
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -96,7 +101,7 @@ namespace game_framework {
 		//Rock			rock;
 		CInteger		hits_left;	// 剩下的撞擊數
 		//CBouncingBall   bball;		// 反覆彈跳的球
-		Random rand20, rand19;
+		Random rand20, rand10;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

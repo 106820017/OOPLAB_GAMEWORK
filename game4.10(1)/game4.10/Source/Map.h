@@ -19,6 +19,7 @@ namespace game_framework {
 		bool IsEmpty(int x, int y);
 		bool EnterHouse(int x, int y);
 		bool InBattle(int x1, int x2, int y1, int y2);
+		bool GetOpponentAlive(int num);
 		void SetEmpty(int x, int y);
 		void Initialize();				
 		void LoadBitmap();				
@@ -33,7 +34,7 @@ namespace game_framework {
 		void SetSY(int y);
 		void OpponentsOnMove();
 		void SetOpponentAlive(bool alive);
-		//int** GetOpponentPoints();
+		void SetOpponentXY(int num, int x, int y);
 	protected:
 		CMovingBitmap bitmap, rock, bush;
 		House house;
