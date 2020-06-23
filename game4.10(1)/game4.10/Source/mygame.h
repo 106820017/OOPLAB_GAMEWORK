@@ -3,6 +3,7 @@
 #include "Rock.h"
 #include "CEraser.h"
 #include "Battlefield.h"
+#include "Random.h"
 //#include "CBall.h"
 //#include "CBouncingBall.h"
 
@@ -57,16 +58,22 @@ namespace game_framework {
 		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
 		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
+		void SetPlayer2Angle(UINT nFlags);
+		void SetPlayer2Charge(bool flag);
+		void SetPlayer2Attack();
 		void CheckInStore();
 		void LeaveStore();
 		void CheckInBattle();
 		void LeaveBattle();
+		void AngleMove();
+		void Charge();
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		const int		NUMBALLS;	// 球的總數
 		int				battling_num = -1;
+		int				angle = 0;
 		bool			in_store = false;
 		bool			in_battle = false;
 		bool			music_played = true;
@@ -74,6 +81,7 @@ namespace game_framework {
 		bool			weapon2_in_attack = false;
 		bool			player1_attacked = false;
 		bool			player2_attacked = false;
+		bool			Chargable = false;
 		Map				gamemap;
 		Map *			mapp = &gamemap;
 		CMovingBitmap	background;	// 背景圖
@@ -88,6 +96,7 @@ namespace game_framework {
 		//Rock			rock;
 		CInteger		hits_left;	// 剩下的撞擊數
 		//CBouncingBall   bball;		// 反覆彈跳的球
+		Random rand20, rand19;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

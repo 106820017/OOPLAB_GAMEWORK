@@ -118,7 +118,8 @@ void CGameStateOver::OnMove()
 {
 	counter--;
 	if (counter < 0)
-		GotoGameState(GAME_STATE_INIT);
+		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
+		//GotoGameState(GAME_STATE_INIT);
 }
 
 void CGameStateOver::OnBeginState()
@@ -259,6 +260,16 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		store.ClearCurrent();
 	}
 
+	if (battlefield.GetParalyze(2)) {
+		player1_attacked = false;
+		//battlefield.SetParalyze(2, false);
+	}
+
+	if (in_battle && player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
+		AngleMove();
+		Charge();
+	}
+
 	if (!wasInBattle && in_battle && battling_num != -1) {
 		battlefield.ChangeCharacter(store.GetProfileNum(), battling_num);
 	}
@@ -340,7 +351,10 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
 	//corner.ShowBitmap(background);							// 將corner貼到background
 	//bball.LoadBitmap();										// 載入圖形
-	hits_left.LoadBitmap();									
+	hits_left.LoadBitmap();		
+	rand20.SetSeed(20);
+	rand19.SetSeed(19);
+	angle = 35;
 	//CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
 	//CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
 	CAudio::Instance()->Load(AUDIO_GAME,  "sounds\\game.mp3");	// 載入編號2的聲音ntut.mid
@@ -499,38 +513,38 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	if (in_battle && nChar == KEY_SPACE) {
 		if (battlefield.GetParalyze(2)) {
-			player1_attacked = false;
+			//player1_attacked = false;
 			battlefield.SetParalyze(2, false);
 		}
-		else if (battlefield.GetParalyze(1)) {
+		/*else if (battlefield.GetParalyze(1)) {
 			player1_attacked = true;
 			battlefield.SetParalyze(1, false);
-		}
+		}*/
 
 		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
 			battlefield.SetCharge(1, true);
 		}
-		else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2) && !battlefield.GetLaserAlive()) {
+		/*else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2) && !battlefield.GetLaserAlive()) {
 			battlefield.SetCharge(2, true);
-		}
+		}*/
 	}
 
 	if (in_battle && nChar == KEY_UP) {
 		if (!player1_attacked) {
 			battlefield.SetAngle(battlefield.GetAngle(1) + 5, battlefield.GetAngle(2));
 		}
-		else if (player1_attacked) {
+		/*else if (player1_attacked) {
 			battlefield.SetAngle(battlefield.GetAngle(1), battlefield.GetAngle(2) + 5);
-		}
+		}*/
 	}
 	
 	if (in_battle && nChar == KEY_DOWN) {
 		if (!player1_attacked) {
 			battlefield.SetAngle(battlefield.GetAngle(1) - 5, battlefield.GetAngle(2));
 		}
-		else if (player1_attacked) {
+		/*else if (player1_attacked) {
 			battlefield.SetAngle(battlefield.GetAngle(1), battlefield.GetAngle(2) - 5);
-		}
+		}*/
 	}
 
 }
@@ -571,15 +585,11 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 			else
 				battlefield.SetParalyze(2, false);*/
 		}
-		else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
+		/*else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
 			battlefield.SetCharge(2, false);
 			battlefield.OnAttack(2);
 			player1_attacked = false;
-			/*if (!battlefield.GetParalyze(1))
-				player1_attacked = false;
-			else
-				battlefield.SetParalyze(1, false);*/
-		}
+		}*/
 	}
 }
 
@@ -610,6 +620,25 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
 	//eraser.SetMovingRight(false);
 	character.SetMovingRight(false);
+}
+
+void CGameStateRun::SetPlayer2Angle(UINT nFlags) {
+	const char KEY_UP = 0x26; // keyboard上箭頭
+	const char KEY_DOWN = 0x28; // keyboard下箭頭
+
+	if (nFlags == KEY_UP)
+		battlefield.SetAngle(battlefield.GetAngle(1), battlefield.GetAngle(2) + 5);
+	else if (nFlags == KEY_DOWN)
+		battlefield.SetAngle(battlefield.GetAngle(1), battlefield.GetAngle(2) - 5);
+}
+
+void CGameStateRun::SetPlayer2Charge(bool flag) {
+	battlefield.SetCharge(2, flag);
+}
+
+void CGameStateRun::SetPlayer2Attack() {
+	battlefield.OnAttack(2);
+	player1_attacked = false;
 }
 
 void CGameStateRun::OnShow()
@@ -713,5 +742,39 @@ void CGameStateRun::LeaveBattle() {
 	}*/
 
 	player1_attacked = false;
+	battlefield.SetParalyze(2, false);
+}
+void CGameStateRun::AngleMove() {
+	if (!Chargable) {
+		
+		if (battlefield.GetAngle(2) > angle)
+			SetPlayer2Angle(0x28);	//down
+		else if (battlefield.GetAngle(2) < angle)
+			SetPlayer2Angle(0x26);	//up
+		else
+			Chargable = true;
+		/*if (rand20.GetRand() < 9)
+			SetPlayer2Angle(0x28);	//down
+		else if (rand20.GetRand() < 18)
+			SetPlayer2Angle(0x26);	//up
+		else
+			Chargable = true;*/
+	}
+	player1_attacked = true;
+}
+
+void CGameStateRun::Charge() {
+	if (Chargable) {
+		if (rand20.GetRand() < 16)
+			SetPlayer2Charge(true);
+		else {
+			SetPlayer2Charge(false);
+			SetPlayer2Attack();
+			Chargable = false;
+			player1_attacked = false;
+			angle = (rand19.GetRand() - 9) * 5;
+		}
+	}
+
 }
 }
