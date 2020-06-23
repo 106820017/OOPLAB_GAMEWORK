@@ -53,12 +53,16 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		selecting--;
 	else if (nChar == KEY_DOWN && selecting < 2)
 		selecting++;
-	else if (nChar == KEY_SPACE) {
+	else if (nChar == KEY_SPACE && !show_how_to) {
 		if (selecting == 0)
 			GotoGameState(GAME_STATE_RUN);
-		else if(selecting == 2)
+		if (selecting == 1)
+			show_how_to = true;
+		else if (selecting == 2)
 			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
 	}
+	else if (nChar = KEY_ESC && show_how_to)
+		show_how_to = false;
 	/*if (nChar == KEY_SPACE)
 		GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
 	else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
@@ -90,19 +94,21 @@ void CGameStateInit::OnShow()
 	//
 	// Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
 	//
-	/*CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-	CFont f,*fp;
-	f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
-	fp=pDC->SelectObject(&f);					// 選用 font f
-	pDC->SetBkColor(RGB(0,0,0));
-	pDC->SetTextColor(RGB(255,255,0));
-	pDC->TextOut(120,220,"Please click mouse or press SPACE to begin.");
-	pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
-	if (ENABLE_GAME_PAUSE)
-		pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
-	pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");
-	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC*/
+	if (show_how_to) {
+		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, *fp;
+		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetTextColor(RGB(255, 255, 0));
+		pDC->TextOut(120, 220, "ESC to return to start page.");
+		/*pDC->TextOut(5, 395, "Press Ctrl-F to switch in between window mode and full screen mode.");
+		if (ENABLE_GAME_PAUSE)
+			pDC->TextOut(5, 425, "Press Ctrl-Q to pause the Game.");
+		pDC->TextOut(5, 455, "Press Alt-F4 or ESC to Quit.");*/
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	}
 }								
 
 /////////////////////////////////////////////////////////////////////////////
@@ -153,8 +159,8 @@ void CGameStateOver::OnShow()
 	pDC->SetBkColor(RGB(0,0,0));
 	pDC->SetTextColor(RGB(255,255,0));
 	char str[80];								// Demo 數字對字串的轉換
-	sprintf(str, "Game Over ! (%d)", counter / 30);
-	pDC->TextOut(240,210,str);
+	sprintf(str, "Congrats ! You've got all of the characters ! (%d)", counter / 30);
+	pDC->TextOut(60,210,str);
 	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 }
@@ -396,9 +402,6 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			character.SetMovingDown(true);
 		//eraser.SetMovingDown(true);
 	}
-	
-	/*if (in_store && nChar == KEY_ESC)
-		LeaveStore();*/
 
 	if (in_store && !store.IsChoosingCharacter() && !store.IsChoosingSkill() && nChar == KEY_RIGHT) {
 		CAudio::Instance()->Play(AUDIO_PRESS);
@@ -551,20 +554,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		}
 	}
 
-
 	if (in_store && store.GetOptionNum() == 2 && nChar == KEY_SPACE)
 		LeaveStore();
-
-	/*if (in_battle && nChar == KEY_SPACE) {
-		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
-			battlefield.OnAttack(1);
-			player1_attacked = true;
-		}
-		else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
-			battlefield.OnAttack(2);
-			player1_attacked = false;
-		}
-	}*/
 	
 	if (in_battle && nChar == KEY_Z) {
 		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2) && !battlefield.GetSkillUsed(1)) {
@@ -577,35 +568,22 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			//player1_attacked = false;
 			battlefield.SetParalyze(2, false);
 		}
-		/*else if (battlefield.GetParalyze(1)) {
-			player1_attacked = true;
-			battlefield.SetParalyze(1, false);
-		}*/
 
 		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
 			battlefield.SetCharge(1, true);
 		}
-		/*else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2) && !battlefield.GetLaserAlive()) {
-			battlefield.SetCharge(2, true);
-		}*/
 	}
 
 	if (in_battle && nChar == KEY_UP) {
 		if (!player1_attacked) {
 			battlefield.SetAngle(battlefield.GetAngle(1) + 5, battlefield.GetAngle(2));
 		}
-		/*else if (player1_attacked) {
-			battlefield.SetAngle(battlefield.GetAngle(1), battlefield.GetAngle(2) + 5);
-		}*/
 	}
 	
 	if (in_battle && nChar == KEY_DOWN) {
 		if (!player1_attacked) {
 			battlefield.SetAngle(battlefield.GetAngle(1) - 5, battlefield.GetAngle(2));
 		}
-		/*else if (player1_attacked) {
-			battlefield.SetAngle(battlefield.GetAngle(1), battlefield.GetAngle(2) - 5);
-		}*/
 	}
 
 }
@@ -642,16 +620,7 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 			else
 				battlefield.OnAttack(1);
 			player1_attacked = true;
-			/*if (!battlefield.GetParalyze(2))
-				player1_attacked = true;
-			else
-				battlefield.SetParalyze(2, false);*/
 		}
-		/*else if (player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
-			battlefield.SetCharge(2, false);
-			battlefield.OnAttack(2);
-			player1_attacked = false;
-		}*/
 	}
 }
 
@@ -716,7 +685,7 @@ void CGameStateRun::OnShow()
 	gamemap.OnShow();
 	//background.ShowBitmap();			// 貼上背景圖
 	//help.ShowBitmap();					// 貼上說明圖
-	hits_left.ShowBitmap();
+	//hits_left.ShowBitmap();
 	/*for (int i=0; i < NUMBALLS; i++)
 		ball[i].OnShow();			*/	// 貼上第i號球
 	//bball.OnShow();						// 貼上彈跳的球
@@ -725,21 +694,15 @@ void CGameStateRun::OnShow()
 	//
 	//  貼上左上及右下角落的圖
 	//
-	corner.SetTopLeft(0,0);
-	corner.ShowBitmap();
-	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
-	corner.ShowBitmap();
+	//corner.SetTopLeft(0,0);
+	//corner.ShowBitmap();
+	//corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
+	//corner.ShowBitmap();
 
 	if (in_store) {
 		store.OnShow();
 	}
 
-	/*if (battlefield.GetHealth(1) <= 0 || battlefield.GetHealth(2) <= 0) {
-		LeaveBattle();		
-		//store.SetPlayerGet(battlefield) = true;
-		battlefield.ChangeCharacter(store.GetProfileNum(), 0);
-
-	}*/
 
 	if (in_battle) {
 		battlefield.OnShow();
@@ -785,24 +748,6 @@ void CGameStateRun::LeaveBattle() {
 	mapp->SetSX(character.GetX1());
 	mapp->SetSY(character.GetY1());	
 
-	/*if (battlefield.GetHealth(2) <= 0) {
-		store.SetPlayerGet(mapp->GetBattlingNum());
-		mapp->SetOpponentAlive(false);
-	}
-	else {
-		int nX1 = mapp->GetOpponentX1() - 160;
-		int nY1 = mapp->GetOpponentY1() + 160;
-		if (nX1 <= 0)
-			nX1 = mapp->GetOpponentX2() + 160;
-		if (nY1 >= 3480)
-			nY1 = mapp->GetOpponentY2() - 160;
-
-		character.SetXY(nX1, nY1);
-
-		mapp->SetSX(character.GetX1());
-		mapp->SetSY(character.GetY1());
-	}*/
-
 	player1_attacked = false;
 	battlefield.SetParalyze(2, false);
 	SetPlayer2Charge(false);
@@ -816,12 +761,6 @@ void CGameStateRun::AngleMove() {
 			SetPlayer2Angle(0x26);	//up
 		else
 			Chargable = true;
-		/*if (rand20.GetRand() < 9)
-			SetPlayer2Angle(0x28);	//down
-		else if (rand20.GetRand() < 18)
-			SetPlayer2Angle(0x26);	//up
-		else
-			Chargable = true;*/
 	}
 	player1_attacked = true;
 }

@@ -43,6 +43,7 @@ namespace game_framework {
 		CMovingBitmap logo;								// csieªºlogo
 		CMovingBitmap start_page, start_button, quit_button, howTo_button, selection_frame;
 		int selecting = 0;
+		bool show_how_to = false;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
