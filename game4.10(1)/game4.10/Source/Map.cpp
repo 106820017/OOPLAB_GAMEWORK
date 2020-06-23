@@ -311,4 +311,14 @@ namespace game_framework {
 			break;
 		}
 	}
+
+	void Map::OpponentsInitialize() {
+		opponent1->Initialize();
+		opponent2->Initialize();
+		opponent3->Initialize();
+		opponent4->Initialize();
+		opponent5->Initialize();
+		sx = 0;
+		sy = 0;
+	}
 }

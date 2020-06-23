@@ -124,8 +124,8 @@ void CGameStateOver::OnMove()
 {
 	counter--;
 	if (counter < 0)
-		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
-		//GotoGameState(GAME_STATE_INIT);
+		GotoGameState(GAME_STATE_INIT);		
+		//PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
 }
 
 void CGameStateOver::OnBeginState()
@@ -294,6 +294,12 @@ void CGameStateRun::OnMove()							// ²¾°Ê¹CÀ¸¤¸¯À
 	}
 
 	if (in_store && quit >= 5) {
+		mapp->OpponentsInitialize();
+		store.Initialize();
+		character.Initialize();
+		in_store = false;
+		battlefield.ChangeSkill(0);
+		battlefield.ChangeCharacter(0);
 		GotoGameState(GAME_STATE_OVER);
 		CAudio::Instance()->Stop(AUDIO_STORE);
 	}

@@ -5,7 +5,7 @@ namespace game_framework {
 	class Store {
 	public:
 		Store();
-		//void Initialize();
+		void Initialize();
 		void LoadBitmap();
 		void OnMove();
 		void OnShow();

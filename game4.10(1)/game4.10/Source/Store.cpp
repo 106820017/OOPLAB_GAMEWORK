@@ -20,9 +20,16 @@ namespace game_framework {
 		}
 	}
 
-	/*void Initialize() {
-
-	}*/
+	void Store::Initialize() {
+		option_num = 0;
+		profile_num = 0;
+		skill_num = 0;
+		for (int i = 1; i < 5; i++) {
+			playersGet[i] = false;
+		}
+		choosingCharacter = false;
+		choosingSkill = false;
+	}
 
 	void Store::LoadBitmap() {
 		bitmap.LoadBitmap(IDB_SHOP_BACKGROUND, RGB(255, 255, 255));

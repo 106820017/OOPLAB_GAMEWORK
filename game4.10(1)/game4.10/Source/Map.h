@@ -35,6 +35,7 @@ namespace game_framework {
 		void OpponentsOnMove();
 		void SetOpponentAlive(bool alive);
 		void SetOpponentXY(int num, int x, int y);
+		void OpponentsInitialize();
 	protected:
 		CMovingBitmap bitmap, rock, bush;
 		House house;
