@@ -377,6 +377,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	CAudio::Instance()->Load(AUDIO_UNABLE, "sounds\\unable.mp3");
 	CAudio::Instance()->Load(AUDIO_HIT, "sounds\\hit.mp3");
 	CAudio::Instance()->Load(AUDIO_LASER, "sounds\\laser.mp3");
+	CAudio::Instance()->Load(AUDIO_PARALYZE, "sounds\\paralyze.mp3");
+	CAudio::Instance()->Load(AUDIO_REVIVE, "sounds\\revive.mp3");
 	//
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//

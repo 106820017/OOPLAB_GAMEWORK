@@ -22,7 +22,9 @@ namespace game_framework {
 		AUDIO_SELECT,			// 4
 		AUDIO_UNABLE,			// 5
 		AUDIO_HIT,				// 6
-		AUDIO_LASER				// 7
+		AUDIO_LASER,			// 7
+		AUDIO_PARALYZE,			// 8
+		AUDIO_REVIVE			// 9
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

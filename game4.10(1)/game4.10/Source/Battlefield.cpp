@@ -407,11 +407,14 @@ namespace game_framework {
 			//if (skill_1->IsActivated() && skill_1->GetType() == 1) {
 			if (skill_1->IsActivated() && skill_1->GetType() == 1) {
 				player2_paralyzed = true;
+				CAudio::Instance()->Play(8);
 				//skill_1->SetActivated(false);
 			}
 			if (skill_1->IsActivated() && skill_1->GetType() == 3) {
-				if (playerPointer1->GetHealth() < 100)
+				if (playerPointer1->GetHealth() < 100) {
+					CAudio::Instance()->Play(9);
 					playerPointer1->SetHealth(playerPointer1->GetHealth() + 20);
+				}				
 				skill_1->ResetShowed();
 			}			
 			weapon1.SetAlive(false);
