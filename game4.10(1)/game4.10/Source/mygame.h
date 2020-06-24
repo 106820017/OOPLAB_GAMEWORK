@@ -43,9 +43,12 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap logo;								// csie的logo
-		CMovingBitmap start_page, start_button, quit_button, howTo_button, selection_frame;
+		CMovingBitmap start_page, start_button, quit_button, howTo_button, credit_button, selection_frame;
+		CMovingBitmap how_to;
+		CMovingBitmap teacher_credit;
+		CMovingBitmap yu;
 		int selecting = 0;
-		bool show_how_to = false;
+		bool show_how_to = false, show_teacher_credit = false, show_student_credit = false;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
