@@ -9,9 +9,7 @@ namespace game_framework {
 	class Random {
 	public:
 		Random();
-
 		void SetSeed(int range);
-
 		int GetRand();
 	protected:
 		std::vector<int> numbers;

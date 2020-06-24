@@ -27,15 +27,8 @@ namespace game_framework {
 	}
 
 	int Random::GetRand() {
-		//unsigned seed;
-		/*seed = (unsigned)pow(time(NULL), 100);	// 取得時間序列
-		srand(seed);*/
-		//seed = (unsigned)time(NULL) * (rand() % 10) * (rand() % 25); // 取得時間序列
-		//srand(seed);
-		//return rand() % range;
 		int num = numbers.front();
-		std::random_shuffle(numbers.begin(), numbers.end());
-		
+		std::random_shuffle(numbers.begin(), numbers.end());		
 		return num;
 	}
 }
