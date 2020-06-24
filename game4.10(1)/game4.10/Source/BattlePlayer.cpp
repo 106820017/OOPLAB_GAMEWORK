@@ -24,7 +24,6 @@ namespace game_framework {
 	}
 
 	void BattlePlayer::LoadBitmap() {
-		//animation[0].AddBitmap();
 		animation[0].AddBitmap(IDB_KIRBY, RGB(0, 255, 0));
 		animation_wounded[0].AddBitmap(IDB_KIRBY_WOUNDED, RGB(0, 255, 0));
 		animation_attack[0].AddBitmap(IDB_KIRBY_ANGRY, RGB(0, 255, 0));
@@ -148,7 +147,4 @@ namespace game_framework {
 		Health = health;
 	}
 
-	/*void BattlePlayer::SetHPLow() {
-		lowHP = true;
-	}*/
 }

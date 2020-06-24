@@ -20,9 +20,7 @@ namespace game_framework {
 		void SetXY(int x, int y);
 		void GotAttack();
 		void SetHealth(int health);
-		//void SetHPLow();
 	protected:
-		//CAnimation animation[10];
 		CAnimation * aniPointer_recent, * aniPointer, * aniPointer_wounded, * aniPointer_under_attack, * aniPointer_attack;
 		CAnimation animation[10];
 		CAnimation animation_wounded[10];

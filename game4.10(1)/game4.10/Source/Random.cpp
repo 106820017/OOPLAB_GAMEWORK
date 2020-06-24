@@ -9,9 +9,7 @@
 
 namespace game_framework {
 	Random::Random() {
-		/*unsigned seed;
-		seed = (unsigned)time(NULL);	// 取得時間序列
-		srand(seed);*/
+
 	}
 
 	void Random::SetSeed(int range) {

@@ -47,11 +47,6 @@ namespace game_framework {
 	}
 
 	void Opponent::Initialize() {
-		/*unsigned seed;
-		seed = (unsigned)time(NULL) * (rand()%10); // 取得時間序列
-		srand(seed);
-		x = rand() % 3600;
-		y = rand() % 3600;*/
 		ani.SetDelayCount(3);
 
 		random.SetSeed(3600);
@@ -63,59 +58,32 @@ namespace game_framework {
 		play_wait = 8;
 
 		alive = true;
-		//x = random.GetRand(3600);
-		//y = random.GetRand(3600);
-		/*while (!isEmpty) {
-			x = rand() % 3600;
-			y = rand() % 3600;
-		}	*/	
 	}
 
-	void Opponent::LoadBitmap() {
-		//bitmap0.LoadBitmap(IDB_OPPONENT_SCENT_0, RGB(255, 255, 255));
-		
+	void Opponent::LoadBitmap() {		
 		ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));
-		//ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
-		//ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
-		//ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
-		//ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_0, RGB(255, 255, 255));
-		//ani.AddBitmap(IDB_OPPONENT_SCENT_0, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
-		//ani.AddBitmap(IDB_OPPONENT_SCENT_1, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
-		//ani.AddBitmap(IDB_OPPONENT_SCENT_2, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
-		//ani.AddBitmap(IDB_OPPONENT_SCENT_3, RGB(255, 255, 255));
 		ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));
-		//ani.AddBitmap(IDB_OPPONENT_SCENT_4, RGB(255, 255, 255));
 	}
 
 	void Opponent::OnShow(int sx, int sy) {
-		/*bitmap0.SetTopLeft(x-sx, y-sy);
-		bitmap0.ShowBitmap();*/
 		ani.SetTopLeft(x - sx, y - sy);
 		ani.OnShow();
 	}
 
 	void Opponent::OnMove(unsigned seed) {
-		/*unsigned seed;
-		seed = (unsigned)time(NULL); // 取得時間序列*/
 		bool play = true;
 
 		if (ani.GetCurrentBitmapNumber() == 0) {
 			if (random20.GetRand() < 18) {
 				play = false;
 			}
-			/*if (play_wait > 0) {
-				play = false;
-				play_wait--;
-			}
-			else
-				play_wait = 8;*/
 		}
 
 		if (play) {
@@ -128,16 +96,9 @@ namespace game_framework {
 			x = -100;
 			y = -100;
 		}
-;
-
-		//bitmap.SetTopLeft(x, y);
-		/*bitmap.SetTopLeft(x - sx, y - sy);
-		bitmap.ShowBitmap();*/
 	}
 
 	void Opponent::RandomMove(unsigned seed) {	//隨機上下左右移動
-		/*unsigned seed;
-		seed = (unsigned)time(NULL); // 取得時間序列*/
 		srand(seed);
 
 		if (x <= 0)

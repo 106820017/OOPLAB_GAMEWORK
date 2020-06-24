@@ -36,7 +36,6 @@ namespace game_framework {
 		pad.LoadBitmap(IDB_STORE_PAD, RGB(255, 255, 255));
 		sign.LoadBitmap(IDB_SIGN, RGB(255, 255, 255));
 		announcement.LoadBitmap(IDB_ANNOUNCEMENT, RGB(255, 255, 255));
-		//back_arrow.LoadBitmap(IDB_LEFT_ARROW, RGB(255, 255, 255));
 		
 		clerk.LoadBitmap(IDB_CLERK, RGB(0, 255, 0));
 		textBar.LoadBitmap(IDB_TEXTBAR, RGB(255, 255, 255));
@@ -89,8 +88,6 @@ namespace game_framework {
 		}
 		sign.SetTopLeft(x + 10, y + 10);
 		sign.ShowBitmap();
-		/*announcement.SetTopLeft(250, 250);
-		announcement.ShowBitmap();*/
 
 		textBar.SetTopLeft(x+52, y+264);
 		textBar.ShowBitmap();

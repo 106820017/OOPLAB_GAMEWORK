@@ -11,17 +11,11 @@ namespace game_framework {
 		Initialize();
 	}
 
-	/*Weapon::Weapon(bool invert) {
-		Initialize(invert);
-	}*/
-
 	void Weapon::Initialize(bool invert) {
 		x = ini_x;
 		y = ini_y;
 		centerX = x + 8;
 		centerY = y + 8;
-		//x_speed = ini_x_speed;
-		//y_speed = -32;
 		if (!invert)
 			x_speed = parabola.GetSpeed()[0];
 		else
@@ -84,10 +78,6 @@ namespace game_framework {
 		return alive;
 	}
 
-	/*bool Weapon::WasHit() {
-		return get_hit;
-	}*/
-
 	void Weapon::SetXY(int x, int y) {
 		this->x = x;
 		this->y = y;
@@ -96,14 +86,8 @@ namespace game_framework {
 	}
 
 	void Weapon::SetInvertSpeed() {
-		//ini_x_speed = -ini_x_speed;
 		x_speed = -x_speed;
 	}
-
-	/*void Weapon::SetXY() {
-		x = centerX - 8;
-		y = centerY - 8;
-	}*/
 
 	void Weapon::OnMove(bool invert) {
 		if (!alive) {
@@ -140,11 +124,6 @@ namespace game_framework {
 
 	void Weapon::SetAngle(int angle, bool invert) {
 		parabola.SetAngle(angle, invert);
-		/*if (!invert)
-			x_speed = parabola.GetSpeed()[0];
-		else
-			x_speed = -parabola.GetSpeed()[0];
-		y_speed = parabola.GetSpeed()[1];*/
 	}
 
 	void Weapon::SetPower(int power, bool invert) {

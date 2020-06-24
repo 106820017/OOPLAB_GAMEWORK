@@ -14,16 +14,6 @@ namespace game_framework {
 	}
 
 	void Alphabet::LoadBitmap() {
-		/*char capital_a = 'A';
-		string source;
-		for (int i = 0; i < 26; i++) {
-			source.append("res/bmp");
-			string s(1, capital_a+i);
-			source.append(s);
-			source.append(".bmp");
-			capitals[i].LoadBitmap("res/A.bmp", RGB(255, 255, 255));
-		}*/
-
 		capitals[0].LoadBitmap("res/a.bmp", RGB(255, 255, 255));
 		capitals[1].LoadBitmap("res/B.bmp", RGB(255, 255, 255));
 		capitals[2].LoadBitmap("res/C.bmp", RGB(255, 255, 255));
@@ -101,13 +91,8 @@ namespace game_framework {
 		char cstr[300];		
 		
 		this->x = x, this->y = y;
-
 		int hover = this->x;
-
 		strcpy(cstr, input.c_str());
-		/*for (int i = input.size()+1; i < 300; i++) {
-			cstr[i] = NULL;
-		}*/
 
 		for (int i = 0; i < current_letter; i++) {
 			if ((int)cstr[i] >= 65 && (int)cstr[i] <= 90) {		//'A'=65  'Z'=90				

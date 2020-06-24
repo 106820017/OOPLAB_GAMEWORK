@@ -97,16 +97,11 @@ namespace game_framework {
 		Map *			mapp = &gamemap;
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
-		//CBall			*ball;		// 球的陣列
 		CMovingBitmap	corner;		// 角落圖
-		//CEraser			eraser;		// 拍子
 		Character		character;
-		//Opponent *		opponents;
 		Store			store;
 		Battlefield		battlefield;
-		//Rock			rock;
 		CInteger		hits_left;	// 剩下的撞擊數
-		//CBouncingBall   bball;		// 反覆彈跳的球
 		Random rand20, rand10;
 	};
 

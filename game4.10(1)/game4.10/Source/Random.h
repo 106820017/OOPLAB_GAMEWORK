@@ -15,8 +15,5 @@ namespace game_framework {
 		int GetRand();
 	protected:
 		std::vector<int> numbers;
-		//std::queue<int> numbers;
-
-
 	};
 }

@@ -10,9 +10,6 @@ namespace game_framework {
 	Map::Map()
 		:sx(0), sy(0), MH(120), MW(120) {
 		Initialize();
-		/*unsigned seed;
-		seed = (unsigned)time(NULL) * 100; // 取得時間序列
-		srand(seed);*/
 	}
 
 	void Map::Initialize() {
@@ -32,15 +29,6 @@ namespace game_framework {
 		opponents_pointer = new Opponent[5] { *opponent1, *opponent2, *opponent3, *opponent4, *opponent5 };
 
 		battling_num = -1;
-
-		//opponent1 = new Opponent(0);
-		//opponent2 = new Opponent(0);
-		/*Opponent ops[5] = { opponent1, opponent2, opponent3, opponent4, opponent5 };
-		for (int i = 0; i < 5; i++)
-			opponents[i] = ops[i];*/
-			/*for (int i = 3; i < 30; i += 3)
-				for (int j = 0; j < 30; j += 3)
-					map[i][j] = 2;*/
 	}
 
 	int Map::ScreenX(int x) {
@@ -190,13 +178,6 @@ namespace game_framework {
 		opponent3->LoadBitmap();
 		opponent4->LoadBitmap();
 		opponent5->LoadBitmap();
-		
-		/*for (int i = 0; i < 5; i++)
-			opponents2[i].LoadBitmap();*/
-
-		/*for (int i = 0; i < 5; i++)
-			opponents[i].LoadBitmap();*/
-			//house.LoadBitmap(IDB_TEST);
 	}
 
 	void Map::OnShow() {
@@ -217,7 +198,6 @@ namespace game_framework {
 					break;
 				case 4:
 					house.SetXY(x, y);
-					//house.OnShow();
 					break;
 				}
 			}
@@ -228,15 +208,10 @@ namespace game_framework {
 		opponent3->OnShow(sx, sy);
 		opponent4->OnShow(sx, sy);
 		opponent5->OnShow(sx, sy);
-		/*for (int i = 0; i < 5; i++)
-			opponents[i].OnShow(sx, sy);*/
 	}
 
 	void Map::SetSX(int x) {	//輸入x為角色座標
 		if (x != sx + 260) {	//角色不在螢幕正中間 螢幕為640*480
-			/*if (x > 260 && x < 11620) {	//邊界
-				sx = x - 260;
-			}*/
 			if (x > 260 && x < 3220)
 				sx = x - 260;
 		}
@@ -244,9 +219,6 @@ namespace game_framework {
 
 	void Map::SetSY(int y) {	//輸入y為角色座標
 		if (y != sy + 179) {	//角色不在螢幕正中間
-			/*if (y > 179 && y < 11700) {	//邊界
-				sy = y - 179;
-			}*/
 			if (y > 179 && y < 3360)
 				sy = y - 179;
 		}
@@ -261,12 +233,9 @@ namespace game_framework {
 		opponent3->OnMove(seed * 3);
 		opponent4->OnMove(seed * 4);
 		opponent5->OnMove(seed * 5);
-		/*for (int i = 0; i < 5; i++)
-			opponents[i].OnMove(sx, sy);*/
 	}
 
 	void Map::SetOpponentAlive(bool alive) {
-		//opponents_pointer[battling_num].SetAlive(alive);
 		switch (battling_num)
 		{
 		case 0:

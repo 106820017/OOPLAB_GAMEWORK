@@ -5,10 +5,6 @@ namespace game_framework {
 	class Map {
 	public:
 		Map();
-		//int GetX1();					
-		//int GetY1();					
-		//int GetX2();					
-		//int GetY2();	
 		int ScreenX(int x);
 		int ScreenY(int y);
 		int GetBattlingNum();
@@ -22,14 +18,8 @@ namespace game_framework {
 		bool GetOpponentAlive(int num);
 		void SetEmpty(int x, int y);
 		void Initialize();				
-		void LoadBitmap();				
-		//void OnMove();					
+		void LoadBitmap();									
 		void OnShow();					
-		//void SetMovingDown(bool flag);	
-		//void SetMovingLeft(bool flag);	
-		//void SetMovingRight(bool flag); 
-		//void SetMovingUp(bool flag);	
-		//void SetXY(int nx, int ny);
 		void SetSX(int x);
 		void SetSY(int y);
 		void OpponentsOnMove();
@@ -39,15 +29,11 @@ namespace game_framework {
 	protected:
 		CMovingBitmap bitmap, rock, bush;
 		House house;
-
-		//Opponent opponents[5];
 		Opponent *opponent1, *opponent2, *opponent3, *opponent4, *opponent5;
-		//Opponent opponent1;
 		Opponent * opponents_pointer;
 		int battling_num;
 		int map[30][30];
-		/*int rocks[30][30];
-		int bushes[30][30];*/
+
 		int obstacle[30][30] = {{0,0,0,2,2,2,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0},
 								{0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0},
 								{2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0},

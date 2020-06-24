@@ -12,7 +12,6 @@ namespace game_framework {
 		bool GetSkillActivated(int skill_num);
 		bool GetSkillUsed(int skill_num);
 		bool GetLaserAlive();
-		//bool AbleToMove();
 		int  GetSkillType(int skill_num);
 		int  GetHealth(int player_num);
 		int  GetParalyze(int player_num);
@@ -21,7 +20,6 @@ namespace game_framework {
 		void LoadBitmap();
 		void OnShow();
 		void OnMove();
-		//void Charge(int num);
 		void SetCharge(int num, bool flag);
 		void SetSkillActivated(int skill_num, bool flag = true);
 		void SetSkillUsed(int skill_num, bool used);
@@ -40,8 +38,6 @@ namespace game_framework {
 		CMovingBitmap healthbar;
 		CMovingBitmap test;
 		Skill *skill_1, *skill_2;
-		//BattlePlayer playerChar1;
-		//BattlePlayer playerChar2;
 		BattlePlayer * playerPointer1 = new BattlePlayer(0);
 		BattlePlayer * playerPointer2 = new BattlePlayer(0);
 		Weapon weapon1, weapon2;
@@ -50,6 +46,5 @@ namespace game_framework {
 		int x, y;
 		int s_code, s_code2;
 		bool player1_paralyzed, player2_paralyzed, player1_useLaser;
-		//bool player1_hit, player2_hit;
 	};
 }

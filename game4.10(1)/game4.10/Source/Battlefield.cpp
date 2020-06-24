@@ -46,14 +46,6 @@ namespace game_framework {
 		return skill_1->GetAlive();
 	}
 
-	/*bool Battlefield::AbleToMove() {
-		if (player1_hit && skill_1->GetActivated())
-			return false;
-		else if (player2_hit && skill_2->GetActivated())
-			return false;
-		return true;
-	}*/
-
 	int Battlefield::GetSkillType(int skill_num) {
 		if (skill_num == 1)
 			return skill_1->GetType();
@@ -114,7 +106,6 @@ namespace game_framework {
 			break;
 		default:
 			skill_1 = new Skill(skill_1->GetType());
-			//skill_1->ReloadAnimation();
 			break;
 		}
 		switch (skill_2->GetType())
@@ -135,7 +126,6 @@ namespace game_framework {
 			skill_2 = new Skill(skill_2->GetType());
 			break;
 		}
-		//weapon2.SetInvertSpeed();
 		player1_paralyzed = player2_paralyzed = false;
 		player1_useLaser = false;
 		skill_1->SetActivated(false);
@@ -241,13 +231,6 @@ namespace game_framework {
 		background.OnShow();
 		playerPointer1->OnShow();
 		playerPointer2->OnShow();
-		//CheckHit();
-		/*if (weapon1.IsAlive()) {
-			weapon1.OnShow();
-		}
-		else if (weapon2.IsAlive()) {
-			weapon2.OnShow();
-		}*/
 		energy1->OnShow();
 		weapon1.OnShow();
 		energy2->OnShow();
@@ -364,11 +347,9 @@ namespace game_framework {
 		switch (num)
 		{
 		case 1:
-			//player1_hit = false;
 			weapon1.SetAlive(true);
 			break;
 		case 2:
-			//player2_hit = false;
 			weapon2.SetAlive(true);
 			break;
 		default:
@@ -378,16 +359,12 @@ namespace game_framework {
 
 	void Battlefield::OnLaserAttack() {
 		skill_1->ResetShowed();
-		//player1_useLaser = true;
 	}
 
 	void Battlefield::CheckHit() {
 		if (weapon2.IsAlive() && (weapon2.GetX1() < playerPointer1->GetX2() - 10 && weapon2.GetX2() > playerPointer1->GetX1() + 10 && weapon2.GetY1() < playerPointer1->GetY2() - 10 && weapon2.GetY2() > playerPointer1->GetY1() + 10)) {
-			//playerPointer1->SetHit(true);
-			//if (skill_2->IsActivated() && skill_2->GetType() == 1) {
 			if (skill_2->IsActivated() && skill_2->GetType() == 1) {
 				player1_paralyzed = true;
-				//skill_2->SetActivated(false);
 			}
 			if (skill_2->IsActivated() && skill_2->GetType() == 3) {
 				if (playerPointer2->GetHealth() < 100)
@@ -403,12 +380,9 @@ namespace game_framework {
 			skill_2->SetActivated(false);
 		}
 		else if (weapon1.IsAlive() && (weapon1.GetX1() < playerPointer2->GetX2() - 10 && weapon1.GetX2() > playerPointer2->GetX1() + 10 && weapon1.GetY1() < playerPointer2->GetY2() - 10 && weapon1.GetY2() > playerPointer2->GetY1() + 10)) {
-			//player1_hit = true;
-			//if (skill_1->IsActivated() && skill_1->GetType() == 1) {
 			if (skill_1->IsActivated() && skill_1->GetType() == 1) {
 				player2_paralyzed = true;
 				CAudio::Instance()->Play(8);
-				//skill_1->SetActivated(false);
 			}
 			if (skill_1->IsActivated() && skill_1->GetType() == 3) {
 				if (playerPointer1->GetHealth() < 100) {

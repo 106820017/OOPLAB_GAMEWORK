@@ -24,10 +24,6 @@ namespace game_framework {
 	}
 
 	int* Parabola::GetSpeed() {
-		//int speedX = (int)(sqrt(337)*cos((double)angle*(PI / 180)));
-		//int speedY = -(int)(sqrt(337)*sin((double)angle*(PI / 180)));
-		//int speedX = (int)(sqrt(1348)*cos((double)angle*(PI / 180)));
-		//int speedY = -(int)(sqrt(1348)*sin((double)angle*(PI / 180)));
 		int speedX = (int)(energy*cos((double)angle*(PI / 180)));
 		int speedY = -(int)(energy*sin((double)angle*(PI / 180)));
 		return new int[2] {speedX, speedY};

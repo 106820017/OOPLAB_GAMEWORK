@@ -28,16 +28,12 @@ namespace game_framework {
 		CAnimation animation;
 		int type, showed_times;
 		bool activated, used;
-		//int x, y;
-
 	};
 
 	class Paralyze : public Skill {
 	public:
 		Paralyze(int type = 1);
 		void Initialize();
-		//void LoadBitmap();
-		//void OnShow(int x = 0, int y = 0);
 		void ReloadBitmap();
 		void ShowAnimation(int x = 0, int y = 0);
 	
@@ -54,9 +50,7 @@ namespace game_framework {
 	public:
 		SuckBlood(int type = 3);
 		void Initialize();
-		//void LoadBitmap();
 		void OnMove();
-		//void OnShow(int x = 0, int y = 0);
 		void ReloadBitmap();
 		void ShowAnimation(int x = 0, int y = 0);
 		void ShowOnce(int x = 0, int y = 0);

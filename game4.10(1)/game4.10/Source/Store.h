@@ -27,7 +27,6 @@ namespace game_framework {
 		CMovingBitmap bitmap, back_arrow, sign, announcement, clerk, pad, textBar, unable, frame;
 		CMovingBitmap profile[5];
 		CMovingBitmap skill_icon[5];
-		//CMovingBitmap *current_player;
 		CAnimation play_arrow;
 		Alphabet lines, ccharacter, cskill, leave;
 

@@ -4,10 +4,6 @@ namespace game_framework {
 	class Parabola {
 	public:
 		Parabola();
-		/*int  GetX1();
-		int  GetY1();
-		int  GetX2();
-		int  GetY2();*/
 		int  GetAngle();
 		int  GetPower();
 		int* GetSpeed();

@@ -130,9 +130,6 @@ namespace game_framework {
 			aniPointer = &animation;
 		aniPointer->SetTopLeft(m->ScreenX(x), m->ScreenY(y));
 		aniPointer->OnShow();
-
-		//animation.SetTopLeft(m->ScreenX(x), m->ScreenY(y));
-		//animation.OnShow();	//πÔ¿≥ShowBitamp
 		
 	}
 }

@@ -17,7 +17,6 @@ namespace game_framework {
 		used = false;
 		activated = false;
 		showed_times = 2;
-		//animation = new CAnimation();
 	}
 
 	void Skill::LoadBitmap() {
@@ -123,31 +122,12 @@ namespace game_framework {
 	}
 
 	void Paralyze::Initialize() {
-		//x = y = 0;
 		used = false;
 		activated = false;
 		showed_times = 2;
-		//animation = new CAnimation();
 	}
 
-	/*void Paralyze::LoadBitmap() {
-		bitmap.LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
-		bitmap_big.LoadBitmap(IDB_PARALYZE_ICON_BIG, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_PARALYZE_0, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_PARALYZE_1, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_PARALYZE_2, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_PARALYZE_1, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_PARALYZE_2, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_PARALYZE_0, RGB(255, 255, 255));
-	}*/
-
-	/*void Paralyze::OnShow(int x, int y) {
-		bitmap[1].SetTopLeft(x, y);
-		bitmap[1].ShowBitmap();
-	}*/
-
 	void Paralyze::ReloadBitmap() {
-		//animation.ClearBitmap();
 		bitmap[0].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
 		bitmap_big[0].LoadBitmap(IDB_PARALYZE_ICON, RGB(255, 255, 255));
 		bitmap[1].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
@@ -184,7 +164,6 @@ namespace game_framework {
 	}
 
 	void Twice::ReloadBitmap() {
-		//animation.ClearBitmap();
 		bitmap[0].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
 		bitmap_big[0].LoadBitmap(IDB_PARALYZE_ICON, RGB(255, 255, 255));
 		bitmap[1].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
@@ -207,19 +186,7 @@ namespace game_framework {
 		used = false;
 		activated = false;
 		showed_times = 2;
-		//animation = new CAnimation();
 	}
-
-	/*void SuckBlood::LoadBitmap() {
-		bitmap.LoadBitmap("res/suckblood_icon_small.bmp", RGB(255, 255, 255));
-		bitmap_big.LoadBitmap("res/suckblood_icon_big.bmp", RGB(255, 255, 255));
-		animation.AddBitmap("res/bubble1.bmp", RGB(255, 255, 255));
-		animation.AddBitmap("res/bubble2.bmp", RGB(255, 255, 255));
-		animation.AddBitmap("res/bubble3.bmp", RGB(255, 255, 255));
-		animation.AddBitmap("res/bubble4.bmp", RGB(255, 255, 255));
-		animation.AddBitmap("res/bubble5.bmp", RGB(255, 255, 255));
-		//animation.AddBitmap(IDB_PARALYZE_0, RGB(255, 255, 255));
-	}*/
 
 	void SuckBlood::OnMove() {
 		animation.OnMove();
@@ -227,13 +194,7 @@ namespace game_framework {
 			showed_times++;
 	}
 
-	/*void SuckBlood::OnShow(int x, int y) {
-		bitmap[3].SetTopLeft(x, y);
-		bitmap[3].ShowBitmap();
-	}*/
-
 	void SuckBlood::ReloadBitmap() {
-		//animation.ClearBitmap();
 		bitmap[0].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));
 		bitmap_big[0].LoadBitmap(IDB_PARALYZE_ICON, RGB(255, 255, 255));
 		bitmap[1].LoadBitmap(IDB_PARALYZE_ICON_SMALL, RGB(255, 255, 255));

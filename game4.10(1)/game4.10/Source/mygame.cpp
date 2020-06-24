@@ -37,7 +37,7 @@ void CGameStateInit::OnInit()
 	selection_frame.LoadBitmap("res/start_selection_frame.bmp", RGB(255, 255, 255));
 	teacher_credit.LoadBitmap("res/teacher_credit.bmp", RGB(255, 255, 255));
 	yu.LoadBitmap("res/yu.bmp", RGB(255, 255, 255));
-	Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
+	Sleep(300);				
 	//
 	// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
 	//
@@ -86,15 +86,10 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		show_student_credit = false;
 	}
 		
-	/*if (nChar == KEY_SPACE)
-		GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
-	else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
-		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0);	// 關閉遊戲*/
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	//GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
 }
 
 void CGameStateInit::OnShow()
@@ -130,11 +125,7 @@ void CGameStateInit::OnShow()
 		fp = pDC->SelectObject(&f);					// 選用 font f
 		pDC->SetBkColor(RGB(0, 0, 0));
 		pDC->SetTextColor(RGB(255, 255, 0));
-		pDC->TextOut(10, 445, "ESC to return.");
-		/*pDC->TextOut(5, 395, "Press Ctrl-F to switch in between window mode and full screen mode.");
-		if (ENABLE_GAME_PAUSE)
-			pDC->TextOut(5, 425, "Press Ctrl-Q to pause the Game.");
-		pDC->TextOut(5, 455, "Press Alt-F4 or ESC to Quit.");*/
+		pDC->TextOut(10, 445, "ESC to return.");		
 		pDC->SelectObject(fp);						// 放掉 font f 
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
@@ -265,21 +256,12 @@ void CGameStateRun::OnBeginState()
 	const int HITS_LEFT_Y = 0;
 	const int BACKGROUND_X = 60;
 	const int ANIMATION_SPEED = 15;
-	/*for (int i = 0; i < NUMBALLS; i++) {				// 設定球的起始座標
-		int x_pos = i % BALL_PER_ROW;
-		int y_pos = i / BALL_PER_ROW;
-		ball[i].SetXY(x_pos * BALL_GAP + BALL_XY_OFFSET, y_pos * BALL_GAP + BALL_XY_OFFSET);
-		ball[i].SetDelay(x_pos);
-		ball[i].SetIsAlive(true);
-	}*/
-	//eraser.Initialize();
-	character.Initialize();
-	//background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
+	
+	character.Initialize();	
 	help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 	hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 	hits_left.SetTopLeft(HITS_LEFT_X,HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-	//CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
-	//CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
+	
 	CAudio::Instance()->Play(AUDIO_GAME, true);			// 撥放 MIDI
 }
 
@@ -290,25 +272,11 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// SetCursor(AfxGetApp()->LoadCursor(IDC_GAMECURSOR));
 	//
-	// 移動背景圖的座標
-	//
-	/*if (background.Top() > SIZE_Y)
-		background.SetTopLeft(60 ,-background.Height());
-	background.SetTopLeft(background.Left(),background.Top()+1);*/
-	//
-	// 移動球
-	//
-	/*int i;
-	for (i=0; i < NUMBALLS; i++)
-		ball[i].OnMove();*/
-	//
-	// 移動擦子
-	//
-	//eraser.OnMove();
+	
 	character.OnMove(mapp);
 	bool wasInBattle = in_battle;
 	CheckInBattle();
-	//gamemap.OpponentsOnMove();
+	
 	if (!in_battle && !in_store) {
 		gamemap.OpponentsOnMove();
 	}
@@ -342,8 +310,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	}
 
 	if (battlefield.GetParalyze(2)) {
-		player1_attacked = false;
-		//battlefield.SetParalyze(2, false);
+		player1_attacked = false;		
 	}
 
 	if (in_battle && player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
@@ -357,7 +324,6 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 
 	if (battlefield.GetHealth(1) <= 0 || battlefield.GetHealth(2) <= 0) {
 		LeaveBattle();
-		//store.SetPlayerGet(battlefield) = true;
 		battlefield.ChangeCharacter(store.GetProfileNum(), 0);
 
 	}
@@ -379,28 +345,6 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		CAudio::Instance()->Stop(AUDIO_STORE);
 	}
 		
-	
-	//
-	// 判斷擦子是否碰到球
-	//
-	/*for (i=0; i < NUMBALLS; i++)
-		if (ball[i].IsAlive() && ball[i].HitEraser(&eraser)) {
-			ball[i].SetIsAlive(false);
-			CAudio::Instance()->Play(AUDIO_DING);
-			hits_left.Add(-1);
-			//
-			// 若剩餘碰撞次數為0，則跳到Game Over狀態
-			//
-			if (hits_left.GetInteger() <= 0) {
-				CAudio::Instance()->Stop(AUDIO_LAKE);	// 停止 WAVE
-				CAudio::Instance()->Stop(AUDIO_NTUT);	// 停止 MIDI
-				GotoGameState(GAME_STATE_OVER);
-			}
-		}*/
-	//
-	// 移動彈跳的球
-	//
-	//bball.OnMove();
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -413,19 +357,12 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	// 開始載入資料
 	//
-	/*unsigned seed;
-	seed = (unsigned)time(NULL); // 取得時間序列
-	srand(seed);*/
+
 	gamemap.LoadBitmap();
 	store.LoadBitmap();
 	battlefield.LoadBitmap();
 
-	/*int i;
-	for (i = 0; i < NUMBALLS; i++)	
-		ball[i].LoadBitmap();	*/							// 載入第i個球的圖形
-	//eraser.LoadBitmap();
 	character.LoadBitmap();
-	//background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
 	//
 	// 完成部分Loading動作，提高進度
 	//
@@ -436,14 +373,11 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形
 	corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
-	//corner.ShowBitmap(background);							// 將corner貼到background
-	//bball.LoadBitmap();										// 載入圖形
 	hits_left.LoadBitmap();		
 	rand20.SetSeed(20);
 	rand10.SetSeed(10);
 	angle = 35;
-	//CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
-	//CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
+
 	CAudio::Instance()->Load(AUDIO_GAME,  "sounds\\game.mp3");	// 載入編號0的聲音
 	CAudio::Instance()->Load(AUDIO_FIGHT, "sounds\\fight.mp3");
 	CAudio::Instance()->Load(AUDIO_STORE, "sounds\\store.mp3");
@@ -474,16 +408,12 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (!in_store && !in_battle) {
 		if (nChar == KEY_LEFT)
 			character.SetMovingLeft(true);
-		//eraser.SetMovingLeft(true);
 		if (nChar == KEY_RIGHT)
 			character.SetMovingRight(true);
-		//eraser.SetMovingRight(true);
 		if (nChar == KEY_UP)
 			character.SetMovingUp(true);
-		//eraser.SetMovingUp(true);
 		if (nChar == KEY_DOWN)
 			character.SetMovingDown(true);
-		//eraser.SetMovingDown(true);
 	}
 
 	if (in_store && !store.IsChoosingCharacter() && !store.IsChoosingSkill() && nChar == KEY_RIGHT) {
@@ -648,7 +578,6 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	if (in_battle && nChar == KEY_SPACE) {
 		if (battlefield.GetParalyze(2)) {
-			//player1_attacked = false;
 			battlefield.SetParalyze(2, false);
 		}
 
@@ -681,16 +610,12 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	//CheckInStore();
 	if (nChar == KEY_LEFT)
 		character.SetMovingLeft(false);
-		//eraser.SetMovingLeft(false);
 	if (nChar == KEY_RIGHT)
 		character.SetMovingRight(false);
-		//eraser.SetMovingRight(false);
 	if (nChar == KEY_UP)
 		character.SetMovingUp(false);
-		//eraser.SetMovingUp(false);
 	if (nChar == KEY_DOWN)
 		character.SetMovingDown(false);
-		//eraser.SetMovingDown(false);
 
 	if (in_battle && nChar == KEY_SPACE) {
 		if (!player1_attacked && !battlefield.GetWeaponAlive(1) && !battlefield.GetWeaponAlive(2)) {
@@ -715,7 +640,6 @@ void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	//eraser.SetMovingLeft(false);
 	character.SetMovingLeft(false);
 }
 
@@ -726,13 +650,11 @@ void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-	//eraser.SetMovingRight(true);
 	character.SetMovingRight(true);
 }
 
 void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	//eraser.SetMovingRight(false);
 	character.SetMovingRight(false);
 }
 
@@ -766,21 +688,7 @@ void CGameStateRun::OnShow()
 	//  貼上背景圖、撞擊數、球、擦子、彈跳的球
 	//
 	gamemap.OnShow();
-	//background.ShowBitmap();			// 貼上背景圖
-	//help.ShowBitmap();					// 貼上說明圖
-	//hits_left.ShowBitmap();
-	/*for (int i=0; i < NUMBALLS; i++)
-		ball[i].OnShow();			*/	// 貼上第i號球
-	//bball.OnShow();						// 貼上彈跳的球
-	//eraser.OnShow();					// 貼上擦子
 	character.OnShow(mapp);
-	//
-	//  貼上左上及右下角落的圖
-	//
-	//corner.SetTopLeft(0,0);
-	//corner.ShowBitmap();
-	//corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
-	//corner.ShowBitmap();
 
 	if (in_store) {
 		store.OnShow();

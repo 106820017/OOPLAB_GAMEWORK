@@ -13,7 +13,6 @@ namespace game_framework {
 		int  GetAngle();
 		int  GetPower();
 		bool IsAlive();
-		//bool WasHit();
 		void SetWeapon(int s_code);
 		void Initialize(bool invert = false);
 		void SetInitialXY(int x, int y);	//作為初始用的
@@ -24,25 +23,19 @@ namespace game_framework {
 		void SetInvertSpeed();	//設為反方向速度
 		void SetAngle(int angle = 0, bool invert = false);	//設定角度
 		void SetPower(int power = 0, bool invert = false);	//設定力量, power 0-8
-		//void SetXY();	//轉換centerXY為XY
 		void SetAlive(bool isAlive, bool invert = false);
 		void CheckAlive(bool invert);
 
 	protected:
 		CAnimation * aniPointer;
 		CAnimation animation[10];
-
 		Parabola parabola;
-
 		int angle;
-		//int power;
 		int x, y;
 		int ini_x = 120, ini_y = 290;
 		int centerX, centerY;
 		int x_speed, y_speed;
-		//int ini_x_speed = 18;
 		const int drop_acceleration = 3;
 		bool alive;
-		//bool get_hit;
 	};
 }
